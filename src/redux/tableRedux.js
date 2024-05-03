@@ -66,7 +66,6 @@ export const deleteTable = (id) => {
 //**Selectors
 export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
 export const updatingTables = (payload) => ({type: UPDATING_INFO, payload});
-export const addingTable = (payload) => ({type: "ADDING_TABLE", payload});
 //Returns correct table based on url id
 export const selectedTable = ({id, state}) => {
     return state.tables.tables.filter((table) => id === table.id);   
@@ -77,16 +76,46 @@ export const ifTableLimitReached = (state) => {
     const tableLimit = state.tables.tables.length > 4 ? true : false
     return tableLimit
 }
+export const tableErrMsg = (payload) => {
+return ({type: "ERROR_MESSAGE", payload})
+} ;
+export const tableErrMsgClear = (payload) => ({type: "ERROR_MESSAGE_CLEAR", payload});
 
+export const tableErrMsgCheck = (state) => {
+   let errMsg = true; 
+   let errObj = [];
+    state.tables.Message.forEach((msg) => {
+        if (msg.notTriggered === false) {
+            errMsg = false; 
+            errObj.push(msg);
+        } 
+        
+    })
+       return {notTriggered: errMsg, error: errObj}; 
+}
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
-        case "LOADING":
-        return console.log('');
+        case 'ERROR_MESSAGE':
+            return {
+                ...statePart,
+                tables: statePart.tables.tables,
+                Message: statePart.tables.Message.map(msg =>
+                    msg.id === action.payload.id? { ...msg, notTriggered: false } : msg
+                ),
+            }
+        case 'ERROR_MESSAGE_CLEAR':
+            return {
+                ...statePart,
+                tables: statePart.tables.tables,
+                Message: statePart.tables.Message.map(msg => 
+                    msg.id !== action.payload.id? { ...msg, notTriggered: true } : msg
+                )
+            }    
         case GETTING_INFO:
             return {...statePart, tables: action.payload, Message: statePart.tables.Message};
         case UPDATING_INFO:
-            return statePart.map(table =>
+            return statePart.forEach(table =>
                 table.id === action.payload.id ? { ...table, ...action.payload } : table);
         default:
             return statePart

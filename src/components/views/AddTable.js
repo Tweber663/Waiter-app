@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchTablePost } from "../../redux/tableRedux";
 import { ifTableAlredyExists } from "../../redux/tableRedux";
 import { ifTableLimitReached } from "../../redux/tableRedux";
+import { tableErrMsg } from "../../redux/tableRedux";
 
 const AddTable = () => {
 
@@ -11,17 +12,18 @@ const AddTable = () => {
    const [tableNum, setTableNum] = useState(0);
    const ifTableIdUsed = useSelector(state => ifTableAlredyExists(tableNum, state));
    const ifTableLimit = useSelector(state => ifTableLimitReached(state));
+   const currentStateMess = useSelector(state => state.tables.Message);
 
    const verifyHandler = (e) => {
     e.preventDefault();
-    const regEx = /^(?:[1-9]|10)$/;
+    const regEx = /^[1-6]$/;
     if (regEx.test(e.target.value)) {
         setVerifyInfo(true)
         setTableNum(e.target.value);
     } 
    }
-   console.log(ifTableLimit)
    const addDispatch = (e) => {
+    console.log(tableNum)
     e.preventDefault();
     if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
         dispatch(fetchTablePost({
@@ -32,9 +34,11 @@ const AddTable = () => {
             bill: 0,
         }))
         } else if (ifTableLimit){
-            alert('Table limit reached')
+            dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
+        } else if (tableNum > 6){
+            dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
         } else {
-            alert('table alredy exsists')
+            dispatch(tableErrMsg({stateMessage: currentStateMess, id: 3, notTriggered: false}));
         }
     }
 
