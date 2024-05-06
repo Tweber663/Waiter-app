@@ -35,7 +35,7 @@ const AddTable = () => {
         }))
         } else if (ifTableLimit){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
-        } else if (tableNum > 6){
+        } else if (tableNum === 0 || tableNum > 7){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
         } else {
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 3, notTriggered: false}));
