@@ -45,13 +45,9 @@ const AddTable = () => {
         }
     }
 
-    const refreshHandler = () => {
-        dispatch(updateStore())
-    }
-
     
     return (
-        <form onSubmit={refreshHandler} className={styles.addTableForm}>
+        <form className={styles.addTableForm}>
             <label>Table Number:</label>
             <input name="verify" className="form-control" onChange={verifyHandler} type="text"></input>
             <button className="btn btn-warning" onClick={addDispatch}>Add Table +</button>

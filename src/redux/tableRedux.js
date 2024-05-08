@@ -63,7 +63,9 @@ export const deleteTable = (id) => {
     } 
 }  
 
-export const updateStore = (payload) => ({type: "UPDATE_STORE"})
+export const updateStore = () => {
+   return ({type: "UPDATE_STORE"})
+}
 
 //**Selectors
 export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
