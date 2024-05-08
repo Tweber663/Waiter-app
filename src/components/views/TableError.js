@@ -20,9 +20,9 @@ const TableError = () => {
 
     useEffect(() => {
         setClickedOk(notTriggered);
-    }, [notTriggered])
+    }, [notTriggered, dispatch])
 
-    
+
     return (
         <div className={clsx(styles.messBlock, clickedOk && styles.messBlockDisspear)}>
         <div className={styles.messBox}>

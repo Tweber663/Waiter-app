@@ -8,9 +8,8 @@ const TableDelete = ({id}) => {
         dispatch(deleteTable(id))
     }
 
-
     return (
-        <button onClick={deleteHandler} className={styles.delete}>Delete</button>
+        <button onClick={deleteHandler} className={styles.delete}><i class="fa-regular fa-trash-can"></i></button>
     )
 }
 

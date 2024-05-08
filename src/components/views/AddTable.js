@@ -4,6 +4,7 @@ import { fetchTablePost } from "../../redux/tableRedux";
 import { ifTableAlredyExists } from "../../redux/tableRedux";
 import { ifTableLimitReached } from "../../redux/tableRedux";
 import { tableErrMsg } from "../../redux/tableRedux";
+import styles from './AddTable.module.scss'
 
 const AddTable = () => {
 
@@ -17,13 +18,14 @@ const AddTable = () => {
    const verifyHandler = (e) => {
     e.preventDefault();
     const regEx = /^[1-6]$/;
-    if (regEx.test(e.target.value)) {
+    if (regEx.test(e.target.value) && e.target.value < 9) {
         setVerifyInfo(true)
         setTableNum(e.target.value);
-    } 
+    } else if (e.target.value > 9 && !undefined){
+        dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
+    }
    }
    const addDispatch = (e) => {
-    console.log(tableNum)
     e.preventDefault();
     if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
         dispatch(fetchTablePost({
@@ -44,10 +46,10 @@ const AddTable = () => {
 
     
     return (
-        <form>
+        <form className={styles.addTableForm}>
             <label>Table Number:</label>
-            <input name="verify" onChange={verifyHandler} type="number"></input>
-            <button onClick={addDispatch}>Add Table</button>
+            <input name="verify" className="form-control" onChange={verifyHandler} type="text"></input>
+            <button className="btn btn-warning" onClick={addDispatch}>Add Table +</button>
         </form>
     )
 }

@@ -14,7 +14,7 @@ const Table = (table) => {
                 <Col className={styles.col}>
                     <div className={styles.holder}>
                         <li className={styles.gird} key={id}>
-                                <h2>Table{id}
+                                <h2>Table {id}
                                 <span className={styles.spanOne}>Status: </span>
                                 <span className={styles.spanTwo}>{status}</span>
                                 </h2> 

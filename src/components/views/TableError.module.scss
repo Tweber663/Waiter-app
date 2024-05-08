@@ -1,3 +1,7 @@
+.messBlockDisspear {
+    display: none;
+
+}
 .messBox {
     z-index: 2;
     max-width: 200px;
@@ -15,6 +19,7 @@
 .mess {
     color: rgb(0, 0, 0);
     font-weight: 400px;
+    padding: 10px;
 }
 
 .messBtn {
@@ -47,8 +52,4 @@
     width: 100%;
     left: 0;
     right: 0;
-}
-
-.messBlockDisspear {
-    display: none;
 }
