@@ -34,8 +34,7 @@ export const fetchingTablesPUT = (updatedTable) => {
 }
 
 export const fetchTablePost = (addedTable) => {
-    console.log(addedTable)
-    return (disptach) => {
+    return (dispatch) => {
         const options = {
             method: 'POST',
             headers: {
@@ -45,13 +44,12 @@ export const fetchTablePost = (addedTable) => {
         };
 
         fetch(`${API_URL}/tables`, options)
-        .then((raw) => raw.json())
-        .then((e) => console.log(e))
+        .then(() => dispatch(updateStore()));
     }
 }
 
 export const deleteTable = (id) => {
-    return (disptach) => {
+    return (dispatch) => {
         const options = {
             method: 'DELETE',
             headers: {
@@ -59,7 +57,7 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then(() => disptach(deletingTable(id)))
+        .then(() => dispatch(updateStore()))
     } 
 }  
 
