@@ -57,7 +57,7 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then(() => dispatch(deletingTable(id)))
+        .then((info) => console.log(info))
     } 
 }  
 
@@ -66,8 +66,13 @@ export const updateStore = () => {
 }
 
 //**Selectors
-export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
-export const updatingTables = (payload) => ({type: UPDATING_INFO, payload});
+export const gettingTables = (payload) => {
+    console.log(payload)
+    return ({type: GETTING_INFO, payload});
+}
+export const updatingTables = (payload) => {
+   return ({type: UPDATING_INFO, payload});
+}
 export const deletingTable = (payload) => ({type: "DELETING_TABLE", payload});
 
 //Returns correct table based on url id

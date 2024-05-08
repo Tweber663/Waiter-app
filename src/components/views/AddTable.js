@@ -45,9 +45,13 @@ const AddTable = () => {
         }
     }
 
+    const submitHandler = (e) => {
+        e.preventDefault()
+    }
+
     
     return (
-        <form className={styles.addTableForm}>
+        <form onSubmit={submitHandler} className={styles.addTableForm}>
             <label>Table Number:</label>
             <input name="verify" className="form-control" onChange={verifyHandler} type="text"></input>
             <button className="btn btn-warning" onClick={addDispatch}>Add Table +</button>
