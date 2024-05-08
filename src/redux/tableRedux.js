@@ -123,7 +123,7 @@ const tablesReducer = (statePart = [], action) => {
         case GETTING_INFO:
             return {...statePart, tables: action.payload, Message: statePart.tables.Message};
         case UPDATING_INFO:
-            return statePart.forEach(table =>
+            return statePart.tables.tables.forEach(table =>
                 table.id === action.payload.id ? { ...table, ...action.payload } : table);
         default:
             return statePart
