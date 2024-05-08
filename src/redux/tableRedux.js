@@ -63,6 +63,8 @@ export const deleteTable = (id) => {
     } 
 }  
 
+export const updateStore = (payload) => ({type: "UPDATE_STORE"})
+
 //**Selectors
 export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
 export const updatingTables = (payload) => ({type: UPDATING_INFO, payload});
@@ -98,6 +100,8 @@ export const tableErrMsgCheck = (state) => {
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
+        case "UPDATE_STORE":
+        return statePart
         case "DELETING_TABLE":
          return {
             ...statePart, 

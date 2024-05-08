@@ -5,6 +5,7 @@ import { ifTableAlredyExists } from "../../redux/tableRedux";
 import { ifTableLimitReached } from "../../redux/tableRedux";
 import { tableErrMsg } from "../../redux/tableRedux";
 import styles from './AddTable.module.scss'
+import { updateStore } from "../../redux/tableRedux";
 
 const AddTable = () => {
 
@@ -44,9 +45,13 @@ const AddTable = () => {
         }
     }
 
+    const refreshHandler = () => {
+        dispatch(updateStore())
+    }
+
     
     return (
-        <form className={styles.addTableForm}>
+        <form onSubmit={refreshHandler} className={styles.addTableForm}>
             <label>Table Number:</label>
             <input name="verify" className="form-control" onChange={verifyHandler} type="text"></input>
             <button className="btn btn-warning" onClick={addDispatch}>Add Table +</button>
