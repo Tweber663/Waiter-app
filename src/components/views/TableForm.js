@@ -13,6 +13,7 @@ import Footer from "../common/Footer";
 
 const TableForm = () => {
     const disptach = useDispatch();
+    
     const navigate = useNavigate();
     
     //Sends fetch request

@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { API_URL } from "../config";
 //**actionTypes
 const actionType1 =  (type) => `app/tables/${type}`;
@@ -15,7 +16,6 @@ export const fetchingTables = () => {
         .then((tables) =>  {
             disptach(gettingTables(tables));   
         })
-        // passing info to action creaotr
         //We can add 'dispatch' above because it was passed as argu
     }
 }
@@ -51,8 +51,7 @@ export const fetchTablePost = (addedTable) => {
 }
 
 export const deleteTable = (id) => {
-    console.log(id);
-    return () => {
+    return (disptach) => {
         const options = {
             method: 'DELETE',
             headers: {
@@ -60,12 +59,15 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
+        .then(() => disptach(deletingTable(id)))
     } 
 }  
 
 //**Selectors
 export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
 export const updatingTables = (payload) => ({type: UPDATING_INFO, payload});
+export const deletingTable = (payload) => ({type: "DELETING_TABLE", payload});
+
 //Returns correct table based on url id
 export const selectedTable = ({id, state}) => {
     return state.tables.tables.filter((table) => id === table.id);   
@@ -96,6 +98,12 @@ export const tableErrMsgCheck = (state) => {
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
+        case "DELETING_TABLE":
+         return {
+            ...statePart, 
+            Messages: statePart.tables.Messages,
+            tables: statePart.tables.tables.filter((table) => table.id !== action.payload)
+         }
         case 'ERROR_MESSAGE':
             return {
                 ...statePart,

@@ -27,7 +27,7 @@ const TableError = () => {
         <div className={clsx(styles.messBlock, clickedOk && styles.messBlockDisspear)}>
         <div className={styles.messBox}>
             {error.length > 0 && (
-                <h7 className={styles.mess}>{error[0].error}</h7>
+                <h6 className={styles.mess}>{error[0].error}</h6>
             )}
            <div className={styles.messBoxInner}>
               <button onClick={() => clickHandler()} className={styles.messBtn}>OK</button>
