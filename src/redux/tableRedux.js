@@ -10,17 +10,17 @@ const UPDATING_INFO = actionType2('UPDATING_INFO')
 //**Action creatores
 //Respo for fetching the info + passing the info to action creator
 export const fetchingTables = () => {
-    return(disptach) => {  
+    return(dispatch) => {  
         fetch(`${API_URL}/tables`)
         .then((raw) => raw.json())
         .then((tables) =>  {
-            disptach(gettingTables(tables));   
+            dispatch(gettingTables(tables));   
         })
         //We can add 'dispatch' above because it was passed as argu
     }
 }
 export const fetchingTablesPUT = (updatedTable) => {
-    return (disptach) => {
+    return (dispatch) => {
         const options = {
             method: 'PUT', 
             headers: {
@@ -29,7 +29,7 @@ export const fetchingTablesPUT = (updatedTable) => {
             body: JSON.stringify(updatedTable),
         };
         fetch(`${API_URL}/tables/${updatedTable.id}`, options)
-        .then(() => disptach(updatingTables(updatedTable)));
+        .then(() => dispatch(updatingTables(updatedTable)));
     }
 }
 
@@ -57,7 +57,7 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then(() => dispatch(updateStore()))
+        .then(() => dispatch(deletingTable()))
     } 
 }  
 
@@ -103,11 +103,7 @@ const tablesReducer = (statePart = [], action) => {
         case "UPDATE_STORE":
         return statePart
         case "DELETING_TABLE":
-         return {
-            ...statePart, 
-            Messages: statePart.tables.Messages,
-            tables: statePart.tables.tables.filter((table) => table.id !== action.payload)
-         }
+         return statePart.tables.tables.filter((table) => table.id !== action.payload)
         case 'ERROR_MESSAGE':
             return {
                 ...statePart,
