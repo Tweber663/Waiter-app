@@ -57,11 +57,12 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then(() => updateStore());
+        .then(() => dispatch(updateStore()));
     } 
 }  
 
 export const updateStore = () => {
+    console.log('hello')
    return ({type: "UPDATE_STORE"})
 }
 
