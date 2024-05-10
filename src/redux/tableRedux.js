@@ -58,7 +58,7 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then((info) => dispatch(deletingTable(info)))
+        .then(() => dispatch(deletingTable(id)));
     } 
 }  
 
@@ -108,23 +108,25 @@ const tablesReducer = (statePart = [], action) => {
         case "UPDATE_STORE":
         return statePart
         case "DELETING_TABLE":
+            console.log(statePart.tables.tables.filter((table) => table.id !== action.payload))
+            debugger
          return statePart.tables.tables.filter((table) => table.id !== action.payload)
-        case 'ERROR_MESSAGE':
-            return {
-                ...statePart,
-                tables: statePart.tables.tables,
-                Message: statePart.tables.Message.map(msg =>
-                    msg.id === action.payload.id? { ...msg, notTriggered: false } : msg
-                ),
-            }
-        case 'ERROR_MESSAGE_CLEAR':
-            return {
-                ...statePart,
-                tables: statePart.tables.tables,
-                Message: statePart.tables.Message.map(msg => 
-                    msg.id !== action.payload.id? { ...msg, notTriggered: true } : msg
-                )
-            }    
+        // case 'ERROR_MESSAGE':
+        //     return {
+        //         ...statePart,
+        //         tables: statePart.tables.tables,
+        //         Message: statePart.tables.Message.map(msg =>
+        //             msg.id === action.payload.id? { ...msg, notTriggered: false } : msg
+        //         ),
+        //     }
+        // case 'ERROR_MESSAGE_CLEAR':
+        //     return {
+        //         ...statePart,
+        //         tables: statePart.tables.tables,
+        //         Message: statePart.tables.Message.map(msg => 
+        //             msg.id !== action.payload.id? { ...msg, notTriggered: true } : msg
+        //         )
+        //     }    
         case GETTING_INFO:
             if (action.payload.length > 0) {
                 return {...statePart, tables: action.payload};
