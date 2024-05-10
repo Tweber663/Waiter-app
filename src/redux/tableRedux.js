@@ -127,7 +127,7 @@ const tablesReducer = (statePart = [], action) => {
             }    
         case GETTING_INFO:
             if (action.payload.length > 0) {
-                return {...statePart, tables: action.payload, Message: statePart.tables.Message};
+                return {...statePart, tables: action.payload};
             }
             break;
         case UPDATING_INFO:

@@ -18,8 +18,7 @@ const Tables = () => {
     }, [disptach]) //Stops from erros / get's triggered once
       
     const addedTables = useSelector(state => state);
-    console.log(addedTables)
-    // if (addedTables.tables.tables.length === 0) return <p>Loading...</p>
+    if (addedTables.tables.tables.length === 0) return <p>Loading...</p>
     return (
         <div> 
             <ul>
