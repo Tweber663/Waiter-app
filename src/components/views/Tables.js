@@ -22,11 +22,11 @@ const Tables = () => {
     // if (addedTables.tables.tables.length === 0) return <p>Loading...</p>
     return (
         <div> 
-            {/* <ul>
+            <ul>
               {addedTables.tables.tables.map((table) => (
                 <Table table={table}/>
               ))}
-            </ul> */}
+            </ul>
         </div>
 
       );
