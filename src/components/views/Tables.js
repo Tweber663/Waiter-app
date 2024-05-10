@@ -17,18 +17,15 @@ const Tables = () => {
         setTableFetched(true);
     }, [disptach]) //Stops from erros / get's triggered once
       
-    const addedTables = useSelector(state => state.tables);
-    if (addedTables.tables.length === 0) return <p>Loading...</p>
+    const addedTables = useSelector(state => state);
+    if (addedTables.tables.tables.length === 0) return <p>Loading...</p>
     return (
         <div> 
-          {tableFetched && (
             <ul>
-              {addedTables.tables.map((table) => (
+              {addedTables.tables.tables.map((table) => (
                 <Table table={table}/>
               ))}
             </ul>
-          )}
-         <AddTable/>
         </div>
 
       );

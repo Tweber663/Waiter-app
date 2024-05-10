@@ -14,6 +14,7 @@ export const fetchingTables = () => {
         fetch(`${API_URL}/tables`)
         .then((raw) => raw.json())
         .then((tables) =>  {
+            console.log(tables)
             dispatch(gettingTables(tables));   
         })
         //We can add 'dispatch' above because it was passed as argu
@@ -57,7 +58,7 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then((info) => console.log(info))
+        .then((info) => dispatch(deletingTable(info)))
     } 
 }  
 
@@ -79,28 +80,28 @@ export const selectedTable = ({id, state}) => {
     return state.tables.tables.filter((table) => id === table.id);   
 }
 
-export const ifTableAlredyExists = (id, state) => state.tables.tables.find((table) => table.id == id);
-export const ifTableLimitReached = (state) => {
-    const tableLimit = state.tables.tables.length > 4 ? true : false
-    return tableLimit
-}
-export const tableErrMsg = (payload) => {
-return ({type: "ERROR_MESSAGE", payload})
-} ;
-export const tableErrMsgClear = (payload) => ({type: "ERROR_MESSAGE_CLEAR", payload});
+// export const ifTableAlredyExists = (id, state) => state.tables.tables.find((table) => table.id == id);
+// export const ifTableLimitReached = (state) => {
+//     const tableLimit = state.tables.tables.length > 4 ? true : false
+//     return tableLimit
+// }
+// export const tableErrMsg = (payload) => {
+// return ({type: "ERROR_MESSAGE", payload})
+// } ;
+// export const tableErrMsgClear = (payload) => ({type: "ERROR_MESSAGE_CLEAR", payload});
 
-export const tableErrMsgCheck = (state) => {
-   let errMsg = true; 
-   let errObj = [];
-    state.tables.Message.forEach((msg) => {
-        if (msg.notTriggered === false) {
-            errMsg = false; 
-            errObj.push(msg);
-        } 
+// export const tableErrMsgCheck = (state) => {
+//    let errMsg = true; 
+//    let errObj = [];
+//     state.tables.Message.forEach((msg) => {
+//         if (msg.notTriggered === false) {
+//             errMsg = false; 
+//             errObj.push(msg);
+//         } 
         
-    })
-       return {notTriggered: errMsg, error: errObj}; 
-}
+//     })
+//        return {notTriggered: errMsg, error: errObj}; 
+// }
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
