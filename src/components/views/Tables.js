@@ -19,7 +19,6 @@ const Tables = () => {
       
     const addedTables = useSelector(state => state);
 
-    console.log(addedTables)
     return (
       <div> 
           <ul>
