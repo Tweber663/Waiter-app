@@ -57,18 +57,16 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then(() => dispatch(updateStore()));
+        .then((info) => console.log(info))
     } 
 }  
 
 export const updateStore = () => {
-    console.log('hello')
    return ({type: "UPDATE_STORE"})
 }
 
 //**Selectors
 export const gettingTables = (payload) => {
-    console.log(payload)
     return ({type: GETTING_INFO, payload});
 }
 export const updatingTables = (payload) => {
@@ -127,7 +125,10 @@ const tablesReducer = (statePart = [], action) => {
                 )
             }    
         case GETTING_INFO:
-            return {...statePart, tables: action.payload, Message: statePart.tables.Message};
+            if (action.payload.length > 0) {
+                return {...statePart, tables: action.payload, Message: statePart.tables.Message};
+            }
+            break;
         case UPDATING_INFO:
             return statePart.tables.tables.forEach(table =>
                 table.id === action.payload.id ? { ...table, ...action.payload } : table);

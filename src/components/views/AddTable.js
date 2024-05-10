@@ -17,6 +17,7 @@ const AddTable = () => {
    const currentStateMess = useSelector(state => state.tables.Message);
 
    const verifyHandler = (e) => {
+    e.preventDefault();
     const regEx = /^[1-6]$/;
     if (regEx.test(e.target.value) && e.target.value < 9) {
         setVerifyInfo(true)
@@ -26,6 +27,7 @@ const AddTable = () => {
     }
    }
    const addDispatch = (e) => {
+    e.preventDefault();
     if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
         dispatch(fetchTablePost({
             id: tableNum,
@@ -44,7 +46,7 @@ const AddTable = () => {
     }
 
     const submitHandler = (e) => {
-        e.preventDefault(); 
+        e.preventDefault()
     }
 
     

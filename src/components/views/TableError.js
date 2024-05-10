@@ -23,6 +23,7 @@ const TableError = () => {
     }, [notTriggered, dispatch])
 
 
+    // if (!errorMsg) return (<div>Fuck you</div>)
     return (
         <div className={clsx(styles.messBlock, clickedOk && styles.messBlockDisspear)}>
         <div className={styles.messBox}>
