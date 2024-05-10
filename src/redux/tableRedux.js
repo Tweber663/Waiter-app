@@ -57,7 +57,7 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then((info) => console.log(info))
+        .then(() => updateStore());
     } 
 }  
 
