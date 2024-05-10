@@ -8,27 +8,28 @@ import styles from './Tables.module.scss'
 import TableDelete from "./TableDelete"
 
 const Tables = () => {
-    const disptach = useDispatch();
+    const dispatch = useDispatch();
 
     const [tableFetched, setTableFetched] = useState(false)
 
     useEffect(() => {
-        disptach(fetchingTables());
+        dispatch(fetchingTables());
         setTableFetched(true);
-    }, [disptach]) //Stops from erros / get's triggered once
+    }, [dispatch]) //Stops from erros / get's triggered once
       
     const addedTables = useSelector(state => state);
- 
-    return (
-        <div> 
-            <ul>
-              {addedTables.tables.tables.map((table) => (
-                <Table table={table}/>
-              ))}
-            </ul>
-        </div>
 
-      );
-}
+    console.log(addedTables)
+    return (
+      <div> 
+          <ul>
+              {addedTables.tables.tables && 
+              addedTables.tables.tables.map((table) => (
+                  <Table key={table.id} table={table} />
+              ))}
+          </ul>
+      </div>
+  );
+};
 
 export default Tables
