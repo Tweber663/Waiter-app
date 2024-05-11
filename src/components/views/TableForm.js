@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectedTable } from "../../redux/tableRedux";
 import { useDispatch } from "react-redux";
 import { fetchingTables } from "../../redux/tableRedux";
-// import { fetchingTablesPUT } from "../../redux/tableRedux";
+import { fetchingTablesPUT } from "../../redux/tableRedux";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import Footer from "../common/Footer";
@@ -48,18 +48,18 @@ const TableForm = () => {
         if (maxPepAmount < 1 || maxPepAmount > 10) setMaxPepAmount(1);
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
-    // const submitHandler = (e) => {
-    //     e.preventDefault();
-    //     console.log(e)
-    //     disptach(fetchingTablesPUT({
-    //         id, 
-    //         status: e.target.selectStatus.value,
-    //         peopleAmount: e.target.peopleAmount.value, 
-    //         maxPeopleAmount: e.target.maxPeopleAmount.value, 
-    //         bill: e.target.bill.value
-    //     }));
-    //     navigate("/")
-    // }
+    const submitHandler = (e) => {
+        e.preventDefault();
+        console.log(e)
+        disptach(fetchingTablesPUT({
+            id, 
+            status: e.target.selectStatus.value,
+            peopleAmount: e.target.peopleAmount.value, 
+            maxPeopleAmount: e.target.maxPeopleAmount.value, 
+            bill: e.target.bill.value
+        }));
+        navigate("/")
+    }
 
 
     const [changeStatus, setChangeStatus] = useState(false);
@@ -81,7 +81,7 @@ const TableForm = () => {
     if( id > 30 || pattern.test(id)) return <Navigate to="/"/>
     if (table.length == 0) return <p>Loading...</p>
     return (
-        <form>
+        <form onSubmit={submitHandler}>
 
            <div className={styles.formType}>
             <label className={styles.label1}>Status</label>

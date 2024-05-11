@@ -33,6 +33,7 @@ export const fetchTablePost = (addedTable) => {
         };
 
         fetch(`${API_URL}/tables`, options)
+        .then(() => dispatch(fetchingTables()));
     }
 }
 
@@ -50,6 +51,20 @@ export const deleteTable = (id) => {
     } 
 }  
 
+export const fetchingTablesPUT = (updatedTable) => {
+    return (dispatch) => {
+        const options = {
+            method: 'PUT', 
+            headers: {
+                'Content-type': 'application/json'
+            }, 
+            body: JSON.stringify(updatedTable),
+        };
+        fetch(`${API_URL}/tables/${updatedTable.id}`, options)
+        .then(() => dispatch(fetchingTables()));
+    }
+}
+
 export const updateStore = () => {
    return ({type: "UPDATE_STORE"})
 }
@@ -65,6 +80,10 @@ export const selectedTable = ({id, state}) => {
     return state.tables.tables.filter((table) => id === table.id);   
 }
 
+ export const updatingTables = (payload) => {
+                return ({type: UPDATING_INFO, payload});
+}
+
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
@@ -78,23 +97,7 @@ const tablesReducer = (statePart = [], action) => {
             }
             break;
 
-            // export const fetchingTablesPUT = (updatedTable) => {
-                //     return (dispatch) => {
-                //         const options = {
-                //             method: 'PUT', 
-                //             headers: {
-                //                 'Content-type': 'application/json'
-                //             }, 
-                //             body: JSON.stringify(updatedTable),
-                //         };
-                //         fetch(`${API_URL}/tables/${updatedTable.id}`, options)
-                //         .then(() => dispatch(updatingTables(updatedTable)));
-                //     }
-                // }
 
-            // export const updatingTables = (payload) => {
-            //     return ({type: UPDATING_INFO, payload});
-            //  }
         // case UPDATING_INFO:
         //     debugger
         //     return statePart.tables.tables.forEach(table =>
