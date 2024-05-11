@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchTablePost } from "../../redux/tableRedux";
-// import { ifTableAlredyExists } from "../../redux/tableRedux";
-// import { ifTableLimitReached } from "../../redux/tableRedux";
+import { ifTableAlredyExists } from "../../redux/tableRedux";
+import { ifTableLimitReached } from "../../redux/tableRedux";
 import { tableErrMsg } from "../../redux/tableRedux";
 import styles from './AddTable.module.scss'
 import { updateStore } from "../../redux/tableRedux";
@@ -12,8 +12,8 @@ const AddTable = () => {
    const dispatch = useDispatch();
    const [verifyInfo, setVerifyInfo] = useState(false);
    const [tableNum, setTableNum] = useState(0);
-//    const ifTableIdUsed = useSelector(state => ifTableAlredyExists(tableNum, state));
-//    const ifTableLimit = useSelector(state => ifTableLimitReached(state));
+   const ifTableIdUsed = useSelector(state => ifTableAlredyExists(tableNum, state));
+   const ifTableLimit = useSelector(state => ifTableLimitReached(state));
    const currentStateMess = useSelector(state => state.tables.Message);
 
    const verifyHandler = (e) => {
@@ -29,7 +29,7 @@ const AddTable = () => {
    
    const addDispatch = (e) => {
     e.preventDefault();
-    // if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
+    if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
         dispatch(fetchTablePost({
             id: tableNum,
             status: 'free',
@@ -37,13 +37,13 @@ const AddTable = () => {
             maxPeopleAmount: 5, 
             bill: 0,
         }))
-        // } else if (ifTableLimit){
-        //     dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
-        // } else if (tableNum === 0 || tableNum > 7){
-        //     dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
-        // } else {
-        //     dispatch(tableErrMsg({stateMessage: currentStateMess, id: 3, notTriggered: false}));
-        // }
+        } else if (ifTableLimit){
+            dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
+        } else if (tableNum === 0 || tableNum > 7){
+            dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
+        } else {
+            dispatch(tableErrMsg({stateMessage: currentStateMess, id: 3, notTriggered: false}));
+        }
     }
 
     const submitHandler = (e) => {

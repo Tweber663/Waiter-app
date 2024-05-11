@@ -69,13 +69,12 @@ export const updateStore = () => {
 export const tableErrMsgCheck = (state) => {
        let errMsg = true; 
        let errObj = [];
-       if (state.tables.fetched) {
+       if (state.tables.Message) {
             state.tables.Message.forEach((msg) => {
                 if (msg.notTriggered === false) {
                     errMsg = false; 
                     errObj.push(msg);
-                } 
-                
+                }   
         })
        }
         return {notTriggered: errMsg, error: errObj}; 
