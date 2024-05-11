@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchTablePost } from "../../redux/tableRedux";
 // import { ifTableAlredyExists } from "../../redux/tableRedux";
 // import { ifTableLimitReached } from "../../redux/tableRedux";
-// import { tableErrMsg } from "../../redux/tableRedux";
+import { tableErrMsg } from "../../redux/tableRedux";
 import styles from './AddTable.module.scss'
 import { updateStore } from "../../redux/tableRedux";
 
@@ -18,15 +18,15 @@ const AddTable = () => {
 
    const verifyHandler = (e) => {
     e.preventDefault();
-    setTableNum(e.target.value);
-    // const regEx = /^[1-6]$/;
-    // if (regEx.test(e.target.value) && e.target.value < 9) {
-    //     setVerifyInfo(true)
-    //     setTableNum(e.target.value);
-    // } else if (e.target.value > 9 && !undefined){
-    //     dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
-    // }
+    const regEx = /^[1-6]$/;
+    if (regEx.test(e.target.value) && e.target.value < 9) {
+        setVerifyInfo(true)
+        setTableNum(e.target.value);
+    } else if (e.target.value > 9 && !undefined){
+        dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
+    }
    }
+   
    const addDispatch = (e) => {
     e.preventDefault();
     // if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
