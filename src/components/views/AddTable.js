@@ -18,6 +18,7 @@ const AddTable = () => {
 
    const verifyHandler = (e) => {
     e.preventDefault();
+    setTableNum(e.target.value);
     // const regEx = /^[1-6]$/;
     // if (regEx.test(e.target.value) && e.target.value < 9) {
     //     setVerifyInfo(true)
@@ -29,20 +30,20 @@ const AddTable = () => {
    const addDispatch = (e) => {
     e.preventDefault();
     // if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
-    //     dispatch(fetchTablePost({
-    //         id: tableNum,
-    //         status: 'free',
-    //         peopleAmount: 2, 
-    //         maxPeopleAmount: 5, 
-    //         bill: 0,
-    //     }))
-    //     } else if (ifTableLimit){
-    //         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
-    //     } else if (tableNum === 0 || tableNum > 7){
-    //         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
-    //     } else {
-    //         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 3, notTriggered: false}));
-    //     }
+        dispatch(fetchTablePost({
+            id: tableNum,
+            status: 'free',
+            peopleAmount: 2, 
+            maxPeopleAmount: 5, 
+            bill: 0,
+        }))
+        // } else if (ifTableLimit){
+        //     dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
+        // } else if (tableNum === 0 || tableNum > 7){
+        //     dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
+        // } else {
+        //     dispatch(tableErrMsg({stateMessage: currentStateMess, id: 3, notTriggered: false}));
+        // }
     }
 
     const submitHandler = (e) => {

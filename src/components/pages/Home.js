@@ -3,6 +3,7 @@ import Tables from "../views/Tables"
 import styles from './Home.module.scss'
 import Footer from "../common/Footer"
 import TableError from "../views/TableError"
+import AddTable from "../views/AddTable"
 const Home = () => {
 
     return (
@@ -11,6 +12,7 @@ const Home = () => {
         <NavBar/>
         <h1>All Tables</h1>
         <Tables/>
+        <AddTable/>
         <Footer/>
        </div> 
     )

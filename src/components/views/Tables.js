@@ -17,19 +17,22 @@ const Tables = () => {
         setTableFetched(true);
     }, [dispatch]) //Stops from erros / get's triggered once
       
-    const addedTables = useSelector(state => state);
+    const addedTables = useSelector(state => state.tables);
 
-    if (addedTables.tables.tables.length < 1) return (<p>Loading</p>)
+
     return (
-      <div> 
-          <ul>
-              {addedTables.tables.tables && 
-              addedTables.tables.tables.map((table) => (
-                  <Table key={table.id} table={table} />
-              ))}
-          </ul>
-      </div>
-  );
+        <div>
+            <ul>
+                {addedTables.tables? (
+                    addedTables.tables.map((table) => (
+                        <Table key={table.id} table={table} />
+                    ))
+                ) : (
+                    <li>Loading</li>
+                )}
+            </ul>
+        </div>
+    );
 };
 
 export default Tables

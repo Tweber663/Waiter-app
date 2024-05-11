@@ -110,7 +110,7 @@ const tablesReducer = (statePart = [], action) => {
         return statePart
         case "DELETING_TABLE":
             console.log(statePart.tables.tables.filter((table) => table.id !== action.payload))
-            debugger
+    
          return statePart.tables.tables.filter((table) => table.id !== action.payload)
         // case 'ERROR_MESSAGE':
         //     return {
