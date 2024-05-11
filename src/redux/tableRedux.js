@@ -69,13 +69,15 @@ export const updateStore = () => {
 export const tableErrMsgCheck = (state) => {
        let errMsg = true; 
        let errObj = [];
-        state.tables.Message.forEach((msg) => {
-            if (msg.notTriggered === false) {
-                errMsg = false; 
-                errObj.push(msg);
-            } 
-            
-    })
+       if (state.tables.fetched) {
+            state.tables.Message.forEach((msg) => {
+                if (msg.notTriggered === false) {
+                    errMsg = false; 
+                    errObj.push(msg);
+                } 
+                
+        })
+       }
         return {notTriggered: errMsg, error: errObj}; 
 }
 
@@ -105,7 +107,7 @@ const tablesReducer = (statePart = [], action) => {
          return statePart.tables.tables.filter((table) => table.id !== action.payload)   
         case GETTING_INFO:
             if (action.payload.length > 0) {
-                return {...statePart, tables: action.payload, Message: statePart.tables.Message};
+                return {...statePart, tables: action.payload, Message: statePart.tables.Message, fetched: true};
             }
             break;
         case 'ERROR_MESSAGE':

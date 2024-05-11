@@ -8,8 +8,10 @@ import styles from './TableError.module.scss'
 
 const TableError = () => {
     const dispatch = useDispatch();
+
     const errorMsg = useSelector(state => tableErrMsgCheck(state));
     const {notTriggered, error} = errorMsg;
+
     const currentState = useSelector(state => tableErrMsgClear(state));
     const [clickedOk, setClickedOk] = useState(false);
     

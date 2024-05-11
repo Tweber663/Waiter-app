@@ -5,7 +5,8 @@ const initialState = {
         {error: 'Please pick a table number from 1-6', id: 2,  notTriggered: true},
         {error: 'Table number already in use', id: 3,  notTriggered: true},
         {error: 'Only numbers are allowed:)', id: 3,  notTriggered: true}
-    ]
+    ],
+    fetched: false
 };
 
 export default initialState
