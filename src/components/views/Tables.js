@@ -19,11 +19,11 @@ const Tables = () => {
       
     const addedTables = useSelector(state => state.tables);
 
-
+    if (addedTables.tables === undefined) return (<h5>Still loading</h5>)
     return (
         <div>
             <ul>
-                {addedTables.tables? (
+                {addedTables.tables ? (
                     addedTables.tables.map((table) => (
                         <Table key={table.id} table={table} />
                     ))

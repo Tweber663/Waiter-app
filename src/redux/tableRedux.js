@@ -20,19 +20,7 @@ export const fetchingTables = () => {
         //We can add 'dispatch' above because it was passed as argu
     }
 }
-export const fetchingTablesPUT = (updatedTable) => {
-    return (dispatch) => {
-        const options = {
-            method: 'PUT', 
-            headers: {
-                'Content-type': 'application/json'
-            }, 
-            body: JSON.stringify(updatedTable),
-        };
-        fetch(`${API_URL}/tables/${updatedTable.id}`, options)
-        .then(() => dispatch(updatingTables(updatedTable)));
-    }
-}
+// 
 
 export const fetchTablePost = (addedTable) => {
     return (dispatch) => {
@@ -45,7 +33,6 @@ export const fetchTablePost = (addedTable) => {
         };
 
         fetch(`${API_URL}/tables`, options)
-        .then(() => dispatch(updateStore()));
     }
 }
 
@@ -71,9 +58,6 @@ export const updateStore = () => {
 export const gettingTables = (payload) => {
     return ({type: GETTING_INFO, payload});
 }
-export const updatingTables = (payload) => {
-   return ({type: UPDATING_INFO, payload});
-}
 export const deletingTable = (payload) => ({type: "DELETING_TABLE", payload});
 
 //Returns correct table based on url id
@@ -85,8 +69,6 @@ export const selectedTable = ({id, state}) => {
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
         case "UPDATE_STORE":
-            console.log(action)
-            debugger
         return statePart
         case "DELETING_TABLE":
          return statePart.tables.tables.filter((table) => table.id !== action.payload)   
@@ -95,6 +77,24 @@ const tablesReducer = (statePart = [], action) => {
                 return {...statePart, tables: action.payload};
             }
             break;
+
+            // export const fetchingTablesPUT = (updatedTable) => {
+                //     return (dispatch) => {
+                //         const options = {
+                //             method: 'PUT', 
+                //             headers: {
+                //                 'Content-type': 'application/json'
+                //             }, 
+                //             body: JSON.stringify(updatedTable),
+                //         };
+                //         fetch(`${API_URL}/tables/${updatedTable.id}`, options)
+                //         .then(() => dispatch(updatingTables(updatedTable)));
+                //     }
+                // }
+
+            // export const updatingTables = (payload) => {
+            //     return ({type: UPDATING_INFO, payload});
+            //  }
         // case UPDATING_INFO:
         //     debugger
         //     return statePart.tables.tables.forEach(table =>
