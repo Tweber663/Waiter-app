@@ -19,6 +19,7 @@ const Tables = () => {
       
     const addedTables = useSelector(state => state);
 
+    if (addedTables.tables.tables.length < 1) return (<p>Loading</p>)
     return (
       <div> 
           <ul>

@@ -14,7 +14,7 @@ export const fetchingTables = () => {
         fetch(`${API_URL}/tables`)
         .then((raw) => raw.json())
         .then((tables) =>  {
-            console.log(tables)
+            console.log('fetched successful:', tables)
             dispatch(gettingTables(tables));   
         })
         //We can add 'dispatch' above because it was passed as argu
