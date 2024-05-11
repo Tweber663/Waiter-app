@@ -81,6 +81,47 @@ export const selectedTable = ({id, state}) => {
     return state.tables.tables.filter((table) => id === table.id);   
 }
 
+//**Subreducers
+const tablesReducer = (statePart = [], action) => {
+    switch (action.type) {
+        case "UPDATE_STORE":
+            console.log(action)
+            debugger
+        return statePart
+        case "DELETING_TABLE":
+         return statePart.tables.tables.filter((table) => table.id !== action.payload)   
+        case GETTING_INFO:
+            if (action.payload.length > 0) {
+                return {...statePart, tables: action.payload};
+            }
+            break;
+        // case UPDATING_INFO:
+        //     debugger
+        //     return statePart.tables.tables.forEach(table =>
+        //         table.id === action.payload.id ? { ...table, ...action.payload } : table);
+           
+                // case 'ERROR_MESSAGE':
+            //     return {
+            //         ...statePart,
+            //         tables: statePart.tables.tables,
+            //         Message: statePart.tables.Message.map(msg =>
+            //             msg.id === action.payload.id? { ...msg, notTriggered: false } : msg
+            //         ),
+            //     }
+            // case 'ERROR_MESSAGE_CLEAR':
+            //     return {
+            //         ...statePart,
+            //         tables: statePart.tables.tables,
+            //         Message: statePart.tables.Message.map(msg => 
+            //             msg.id !== action.payload.id? { ...msg, notTriggered: true } : msg
+            //         )
+            //     } 
+
+                default:
+            return statePart
+    }
+}
+
 // export const ifTableAlredyExists = (id, state) => state.tables.tables.find((table) => table.id == id);
 // export const ifTableLimitReached = (state) => {
 //     const tableLimit = state.tables.tables.length > 4 ? true : false
@@ -103,43 +144,6 @@ export const selectedTable = ({id, state}) => {
 //     })
 //        return {notTriggered: errMsg, error: errObj}; 
 // }
-//**Subreducers
-const tablesReducer = (statePart = [], action) => {
-    switch (action.type) {
-        case "UPDATE_STORE":
-        return statePart
-        case "DELETING_TABLE":
-            console.log(statePart.tables.tables.filter((table) => table.id !== action.payload))
-    
-         return statePart.tables.tables.filter((table) => table.id !== action.payload)
-        // case 'ERROR_MESSAGE':
-        //     return {
-        //         ...statePart,
-        //         tables: statePart.tables.tables,
-        //         Message: statePart.tables.Message.map(msg =>
-        //             msg.id === action.payload.id? { ...msg, notTriggered: false } : msg
-        //         ),
-        //     }
-        // case 'ERROR_MESSAGE_CLEAR':
-        //     return {
-        //         ...statePart,
-        //         tables: statePart.tables.tables,
-        //         Message: statePart.tables.Message.map(msg => 
-        //             msg.id !== action.payload.id? { ...msg, notTriggered: true } : msg
-        //         )
-        //     }    
-        case GETTING_INFO:
-            if (action.payload.length > 0) {
-                return {...statePart, tables: action.payload};
-            }
-            break;
-        case UPDATING_INFO:
-            return statePart.tables.tables.forEach(table =>
-                table.id === action.payload.id ? { ...table, ...action.payload } : table);
-        default:
-            return statePart
-    }
-}
 
 
 export default tablesReducer;
