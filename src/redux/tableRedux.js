@@ -69,7 +69,7 @@ export const updateStore = () => {
 export const tableErrMsgCheck = (state) => {
        let errMsg = true; 
        let errObj = [];
-       if (state.tables.Message) {
+       if (state.tables.tables) {
             state.tables.Message.forEach((msg) => {
                 if (msg.notTriggered === false) {
                     errMsg = false; 
@@ -81,11 +81,14 @@ export const tableErrMsgCheck = (state) => {
 }
 
 export const ifTableAlredyExists = (id, state) => {
-    return state.tables.tables.find((table) => table.id == id)
+    if (state.tables.fetched) {
+        return state.tables.tables.find((table) => table.id == id)
+    }
 }
 export const ifTableLimitReached = (state) => {
-    const tableLimit = state.tables.tables.length > 6 ? true : false
-    return tableLimit
+    if (state.tables.fetched) {
+      return state.tables.tables.length > 6 ? true : false
+    }
 }
 
 
@@ -112,23 +115,24 @@ const tablesReducer = (statePart = [], action) => {
             }
             break;
         case 'ERROR_MESSAGE':
-        return {
-            ...statePart,
-            tables: statePart.tables.tables,
-            Message: statePart.tables.Message.map(msg =>
-                msg.id === action.payload.id? { ...msg, notTriggered: false } : msg
-            ),
-        }
-
+            if (statePart.tables.fetched) {
+                return {
+                    ...statePart,
+                    tables: statePart.tables.tables,
+                    Message: statePart.tables.Message.map(msg =>
+                        msg.id === action.payload.id? { ...msg, notTriggered: false } : msg
+                    ),
+                }
+            }
+            break;
         case 'ERROR_MESSAGE_CLEAR':
-            return {
-                ...statePart,
-                tables: statePart.tables.tables,
-                Message: statePart.tables.Message.map(msg => 
-                    msg.id !== action.payload.id? { ...msg, notTriggered: true } : msg
-                )
-            } 
-
+                return {
+                    ...statePart,
+                    tables: statePart.tables.tables,
+                    Message: statePart.tables.Message.map(msg => 
+                        msg.id !== action.payload.id? { ...msg, notTriggered: true } : msg
+                    )
+                } 
             default:
         return statePart
     }
