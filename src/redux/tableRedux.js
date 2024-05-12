@@ -108,7 +108,11 @@ const tablesReducer = (statePart = [], action) => {
         case "UPDATE_STORE":
         return statePart
         case "DELETING_TABLE":
-         return statePart.tables.tables.filter((table) => table.id !== action.payload)   
+         return {
+            Message: statePart.tables.Message,
+            tables: statePart.tables.tables.filter((table) => table.id !== action.payload),
+            fetched: statePart.tables.fetched
+         }    
         case GETTING_INFO:
             if (action.payload.length > 0) {
                 return {...statePart, tables: action.payload, Message: statePart.tables.Message, fetched: true};

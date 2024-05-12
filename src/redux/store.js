@@ -7,7 +7,7 @@ const reducer = (state, action) => {
     const newState = {
         tables: tablesReducer(state, action),
     }
-    console.log(newState);
+    console.log('New state exit:', newState);
     // debugger
     return newState;
 }
