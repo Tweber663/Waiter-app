@@ -34,7 +34,7 @@ export const fetchTablePost = (addedTable) => {
     }
 }
 
-export const deleteTable = (id) => {
+export const deleteTable = (id, currentState) => {
     return (dispatch) => {
         const options = {
             method: 'DELETE',
@@ -44,7 +44,7 @@ export const deleteTable = (id) => {
         };
         fetch(`${API_URL}/tables/${id}`, options)
         // .then(() => dispatch(deletingTable(id)))
-        .then(() => dispatch(updateStore()));
+        .then(() => dispatch(updateStore(currentState)));
     } 
 }  
 
@@ -62,8 +62,8 @@ export const fetchingTablesPUT = (updatedTable) => {
     }
 }
 
-export const updateStore = () => {
-   return ({type: "UPDATE_STORE"})
+export const updateStore = (payload) => {
+   return ({type: "UPDATE_STORE", payload})
 }
 
 export const tableErrMsgCheck = (state) => {
@@ -106,7 +106,7 @@ export const tableErrMsgClear = (payload) => ({type: "ERROR_MESSAGE_CLEAR", payl
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
         case "UPDATE_STORE":
-        return statePart
+        return statePart.tables
         // case "DELETING_TABLE":
         //     console.log(action)
         //  return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
