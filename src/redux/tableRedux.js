@@ -80,7 +80,12 @@ export const tableErrMsgCheck = (state) => {
         return {notTriggered: errMsg, error: errObj}; 
 }
 
-export const ifTableAlredyExists = (id, state) => state.tables.tables.find((table) => table.id == id);
+export const ifTableAlredyExists = (id, state) => {
+    if (state.tables.fetched) {
+        return state.tables.tables.find((table) => table.id == id)
+    }
+    return state; 
+}
 export const ifTableLimitReached = (state) => {
     const tableLimit = state.tables.tables.length > 4 ? true : false
     return tableLimit
@@ -131,16 +136,6 @@ const tablesReducer = (statePart = [], action) => {
         return statePart
     }
 }
-
-
-
-// const actionType2 =  (type) => `app/tables/${type}`;
-        // const UPDATING_INFO = actionType2('UPDATING_INFO')
-
-        // case UPDATING_INFO:
-        //     debugger
-        //     return statePart.tables.tables.forEach(table =>
-        //         table.id === action.payload.id ? { ...table, ...action.payload } : table);
 
 
 export default tablesReducer;
