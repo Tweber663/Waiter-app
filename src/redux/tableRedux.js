@@ -43,7 +43,7 @@ export const deleteTable = (id) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then(() => dispatch(deletingTable(id)))
+        // .then(() => dispatch(deletingTable(id)))
         .then(() => dispatch(updateStore()));
     } 
 }  
@@ -94,7 +94,7 @@ export const ifTableLimitReached = (state) => {
 
 //**Selectors
 export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
-export const deletingTable = (payload) => ({type: "DELETING_TABLE", payload});
+// export const deletingTable = (payload) => ({type: "DELETING_TABLE", payload});
 export const selectedTable = ({id, state}) => state.tables.tables.filter((table) => id === table.id);   
 
 export const tableErrMsg = (payload) => ({type: "ERROR_MESSAGE", payload});
@@ -107,12 +107,9 @@ const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
         case "UPDATE_STORE":
         return statePart
-        case "DELETING_TABLE":
-         return {
-            Message: statePart.tables.Message,
-            tables: statePart.tables.tables.filter((table) => table.id !== action.payload),
-            fetched: statePart.tables.fetched
-         }    
+        // case "DELETING_TABLE":
+        //     console.log(action)
+        //  return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
         case GETTING_INFO:
             if (action.payload.length > 0) {
                 return {...statePart, tables: action.payload, Message: statePart.tables.Message, fetched: true};
