@@ -87,8 +87,10 @@ export const ifTableAlredyExists = (id, state) => {
     return state; 
 }
 export const ifTableLimitReached = (state) => {
-    const tableLimit = state.tables.tables.length > 4 ? true : false
-    return tableLimit
+    if (state.tables.fetched) {
+        return state.tables.tables.length > 6 ? true : false
+    }
+    return state
 }
 
 
