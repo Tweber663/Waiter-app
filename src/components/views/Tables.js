@@ -6,6 +6,7 @@ import Table from "./Table"
 import AddTable from "./AddTable"
 import styles from './Tables.module.scss'
 import TableDelete from "./TableDelete"
+import { gettingTables } from "../../redux/tableRedux"
 
 const Tables = () => {
     const dispatch = useDispatch();
@@ -17,9 +18,12 @@ const Tables = () => {
         setTableFetched(true);
     }, [dispatch]) //Stops from erros / get's triggered once
       
-    const addedTables = useSelector(state => state.tables);
+    // const addedTables = useSelector(state => gettingTables(state.tables));
+    // console.log(addedTables)
 
-    if (addedTables.tables === undefined) return (<h5>Still loading</h5>)
+    const addedTables = useSelector(state => state.tables)
+    console.log(addedTables)
+    if (!addedTables.tables) return (<h5>Still loading</h5>)
     return (
         <div>
             <ul>

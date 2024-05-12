@@ -37,12 +37,16 @@ const AddTable = () => {
             maxPeopleAmount: 5, 
             bill: 0,
         }))
+        setVerifyInfo(false);
         } else if (ifTableLimit){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
         } else if (tableNum === 0 || tableNum > 7){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
-        } else {
+        } else if (ifTableIdUsed) {
+            console.log(tableNum)
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 3, notTriggered: false}));
+        } else {
+            console.log('evrything else')
         }
     }
 

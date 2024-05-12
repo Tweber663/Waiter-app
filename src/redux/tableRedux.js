@@ -81,16 +81,11 @@ export const tableErrMsgCheck = (state) => {
 }
 
 export const ifTableAlredyExists = (id, state) => {
-    if (state.tables.fetched) {
-        return state.tables.tables.find((table) => table.id == id)
-    }
-    return state; 
+    return state.tables.tables.find((table) => table.id == id)
 }
 export const ifTableLimitReached = (state) => {
-    if (state.tables.fetched) {
-        return state.tables.tables.length > 6 ? true : false
-    }
-    return state
+    const tableLimit = state.tables.tables.length > 6 ? true : false
+    return tableLimit
 }
 
 
