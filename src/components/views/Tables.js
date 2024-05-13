@@ -23,7 +23,7 @@ const Tables = () => {
 
     const addedTables = useSelector(state => state.tables)
     console.log("before rendering:", addedTables);
-    if (!addedTables.tables) return (<h5>Still loading</h5>)
+    if (!addedTables.tables.length) return (<h5>Still loading</h5>)
     return (
         <div>
             <ul>

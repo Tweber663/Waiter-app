@@ -8,7 +8,7 @@ const reducer = (state, action) => {
         tables: tablesReducer(state, action),
     }
     console.log('New state exit:', newState);
-    debugger
+    // debugger
     return newState;
 }
 

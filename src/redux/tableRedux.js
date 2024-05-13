@@ -34,7 +34,7 @@ export const fetchTablePost = (addedTable) => {
     }
 }
 
-export const deleteTable = (id, currentState) => {
+export const deleteTable = (id) => {
     return (dispatch) => {
         const options = {
             method: 'DELETE',
@@ -43,8 +43,8 @@ export const deleteTable = (id, currentState) => {
             },
         };
         fetch(`${API_URL}/tables/${id}`, options)
-        .then(() => dispatch(gettingTables()))
-        // .then(() => dispatch(updateStore(currentState)));
+        .then((raw) => raw.json)
+        .then(() => dispatch((fetchingTables())))
     } 
 }  
 
@@ -110,6 +110,8 @@ const tablesReducer = (statePart = [], action) => {
         case "DELETING_TABLE":
          return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
         case GETTING_INFO:
+            console.log('payload:', action)
+            debugger
             if (action.payload.length > 0) {
                 return {...statePart, tables: action.payload, Message: statePart.tables.Message, fetched: true};
             }
