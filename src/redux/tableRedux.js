@@ -69,6 +69,8 @@ export const updateStore = (payload) => {
 export const tableErrMsgCheck = (state) => {
        let errMsg = true; 
        let errObj = [];
+       debugger
+       console.log(state)
        if (state.tables.tables) {
             state.tables.Message.forEach((msg) => {
                 if (msg.notTriggered === false) {
@@ -110,14 +112,11 @@ const tablesReducer = (statePart = [], action) => {
         case "DELETING_TABLE":
          return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
         case GETTING_INFO:
-            console.log('payload:', action)
-            debugger
             if (action.payload.length > 0) {
                 return {...statePart, tables: action.payload, Message: statePart.tables.Message, fetched: true};
             }
             break;
         case 'ERROR_MESSAGE':
-            if (statePart.tables.fetched) {
                 return {
                     ...statePart,
                     tables: statePart.tables.tables,
@@ -125,8 +124,6 @@ const tablesReducer = (statePart = [], action) => {
                         msg.id === action.payload.id? { ...msg, notTriggered: false } : msg
                     ),
                 }
-            }
-            break;
         case 'ERROR_MESSAGE_CLEAR':
                 return {
                     ...statePart,
