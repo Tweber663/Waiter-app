@@ -69,8 +69,6 @@ export const updateStore = (payload) => {
 export const tableErrMsgCheck = (state) => {
        let errMsg = true; 
        let errObj = [];
-       debugger
-       console.log(state)
        if (state.tables.tables) {
             state.tables.Message.forEach((msg) => {
                 if (msg.notTriggered === false) {
@@ -91,6 +89,9 @@ export const ifTableLimitReached = (state) => {
     if (state.tables.fetched) {
       return state.tables.tables.length > 6 ? true : false
     }
+}
+export const updateMenuItem = (payload) => {
+    return ({type: "UPDATING_MENU_ITEM", payload});
 }
 
 
@@ -113,7 +114,7 @@ const tablesReducer = (statePart = [], action) => {
          return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
         case GETTING_INFO:
             if (action.payload.length > 0) {
-                return {...statePart, tables: action.payload, Message: statePart.tables.Message, fetched: true};
+                return {...statePart, tables: action.payload, Message: statePart.tables.Message, menu: statePart.tables.menu, fetched: true};
             }
             break;
         case 'ERROR_MESSAGE':
@@ -132,6 +133,23 @@ const tablesReducer = (statePart = [], action) => {
                         msg.id !== action.payload.id? { ...msg, notTriggered: true } : msg
                     )
                 } 
+        case "UPDATING_MENU_ITEM": 
+               const results = statePart.tables.menu.map((item) => {
+                    if (item.id == action.payload.id) {
+                        return {
+                            title: action.payload.title, 
+                            id: action.payload.id, 
+                            photo: action.payload.photo,
+                            basePrice: action.payload.basePrice,
+                            quantity: action.payload.quantity,
+                            totalAmount: action.payload.totalAmount
+                        }
+                    } else {
+                        return item
+                    }
+                })
+    
+                return {...statePart.tables, menu: results}
             default:
         return statePart
     }

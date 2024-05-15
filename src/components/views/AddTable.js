@@ -19,17 +19,21 @@ const AddTable = () => {
    const currentStateMess = useSelector(state => state.tables.Message);
 
    const verifyHandler = (e) => {
+    let targetValue = e.target.value;
     e.preventDefault();
-    setInputValue(e.target.value)
+    setInputValue(targetValue)
     const regEx = /^[1-6]$/;
-    if (/[a-zA-Z}+]/.test(e.target.value)) {
+    if (/[a-zA-Z}+]/.test(targetValue)) {
         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 4, notTriggered: false}));
         setInputValue('')
-    } else if (regEx.test(e.target.value) && e.target.value < 9) {
+        setTableNum('');
+    } else if (regEx.test(targetValue) && targetValue <= 6) {
         setVerifyInfo(true)
-        setTableNum(e.target.value);
-    } else if (e.target.value > 9 && !undefined){
+        setTableNum(targetValue);
+    } else if (targetValue == 0  || targetValue > 9 && !undefined){
         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
+        setInputValue('')
+        setTableNum('');
     }
    }
    const addDispatch = (e) => {
@@ -45,7 +49,7 @@ const AddTable = () => {
         setVerifyInfo(false);
         } else if (ifTableLimit){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
-        } else if (tableNum === 0 || tableNum > 7){
+        } else if (tableNum === 0 || tableNum > 6){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
         } else if (ifTableIdUsed) {
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 3, notTriggered: false}));

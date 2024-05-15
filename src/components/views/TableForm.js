@@ -9,7 +9,7 @@ import { fetchingTablesPUT } from "../../redux/tableRedux";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import Footer from "../common/Footer";
-
+import MenuSelect from "../features/MenuSelect";
 
 const TableForm = () => {
     const disptach = useDispatch();
@@ -26,7 +26,7 @@ const TableForm = () => {
     //Getting table information from store
     const table = useSelector(state => selectedTable({state, id}));
 
-    let { bill, status, peopleAmount, maxPeopleAmount } = table[0] || {};
+    let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
 
     if (status !== "Busy") bill = "0";
     if (peopleAmount < 1 ||  peopleAmount > 10) peopleAmount = 1;
@@ -51,12 +51,14 @@ const TableForm = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         console.log(e)
+        debugger
         disptach(fetchingTablesPUT({
             id, 
             status: e.target.selectStatus.value,
             peopleAmount: e.target.peopleAmount.value, 
             maxPeopleAmount: e.target.maxPeopleAmount.value, 
-            bill: e.target.bill.value
+            bill: e.target.bill.value,
+            info: e.target.textInfo.value
         }));
         navigate("/")
     }
@@ -81,15 +83,15 @@ const TableForm = () => {
     if( id > 30 || pattern.test(id)) return <Navigate to="/"/>
     if (table.length == 0) return <p>Loading...</p>
     return (
+        <div>
         <form onSubmit={submitHandler}>
-
            <div className={styles.formType}>
             <label className={styles.label1}>Status</label>
             {status && (
                  <select onChange={changeHandler} name="selectStatus" defaultValue={status} className={`form-select ${styles.select}`}>
                         <option value='Free'>Free</option>
                         <option value='Reserved'>Reserved</option>
-                        <option value='Busy'>Busy</option>
+                        <option value='Busy'>Busy $</option>
                         <option value='Cleaning'>Cleaning</option>
                 </select>
             )}
@@ -108,9 +110,16 @@ const TableForm = () => {
                  type='text'>
                  </input>
             </div>
+            <div className={styles.formType}>
+                <label className={styles.label4} >Notes</label>
+                <textarea defaultValue={info} name="textInfo" className={clsx("form-control", styles.textarea)}></textarea>
+            </div>
             <button className="btn btn-primary" onClick={handleBlur}>Submit</button>
+            <MenuSelect/>
             <Footer/>
         </form>
+        </div>
+
     )
 }
 
