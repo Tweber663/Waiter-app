@@ -22,7 +22,19 @@
     top: 85%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
 
+.orderCost p {
+    padding: 0;
+    margin: 0;
+}
+
+.orderCost {
+    width: 16px;
+    position: absolute;
+    text-align: center;
+    top: 6px;
+    right: 6px;
 }
 
 .inputAmount {
@@ -41,7 +53,7 @@
     padding: 0;
 }
 
-.foodView {
+.orderView {
     margin-top: 10px;
     height: 90px;
     width: 100px;

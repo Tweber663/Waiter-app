@@ -142,7 +142,8 @@ const tablesReducer = (statePart = [], action) => {
                             photo: action.payload.photo,
                             basePrice: action.payload.basePrice,
                             quantity: action.payload.quantity,
-                            totalAmount: action.payload.totalAmount
+                            totalAmount: action.payload.totalAmount,
+                            checkbox: action.payload.checkbox
                         }
                     } else {
                         return item

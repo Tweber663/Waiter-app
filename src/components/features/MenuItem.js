@@ -7,20 +7,24 @@ import { updateMenuItem } from '../../redux/tableRedux';
 
 const MenuItem = (passed) => {
     const dispatch = useDispatch();
-    const {title, id, photo, basePrice, totalAmount} = passed.menuItem;
+    let {title, id, photo, basePrice, totalAmount, checkbox} = passed.menuItem;
     const [count, setCount] = useState(0);
 
     const [checked, setChecked] = useState(false);
-    const [price, setPrice] = useState(basePrice);
+    const [totalAmou, setTotalAmu] = useState(totalAmount)
+
 
     const onChangeAdd = (e) => {
         e.preventDefault();
         setCount(prevCount => prevCount + 1);
-        if(count >= 0) setChecked(true);
+        if(count >= 0) {
+            setChecked(true);
+        }
         dispatch(updateMenuItem({
            title, 
            id, 
            photo, 
+           checkbox: true,
            basePrice: basePrice,
            quantity: count + 1,
            totalAmount: count * basePrice + basePrice
@@ -29,20 +33,40 @@ const MenuItem = (passed) => {
 
     const onChangeMinus = (e) => {
         e.preventDefault();
-        setCount(prevCount => prevCount -1);
-        if(count <= 1) {
+        let test = false;
+        setCount(prevCount => {
+            if (prevCount < 1) {
+                return prevCount = 0;
+            } 
+
+            return prevCount - 1;
+        });
+        if(count < 2) {
             setChecked(false);
-            setCount(0);
-        }
+            test = true;
+        } 
+        dispatch(updateMenuItem({
+            title, 
+            id, 
+            photo, 
+            checkbox: checked,
+            basePrice: basePrice,
+            quantity: count + 1,
+            totalAmount: test === false? totalAmount - basePrice : 0
+         }))
     }
     const temp = () => {}
 
+    console.log(totalAmou);
     return (
         // <form onSubmit={submitHandler}>
             <div className={styles.orderBox}>
                 <input onChange={temp} checked={checked} type="checkbox"></input>
+                <div className={styles.orderCost}>
                 <p>{totalAmount}</p>
-                <div className={styles.foodView}>
+                <p>{basePrice}</p>
+                </div>
+                <div className={styles.orderView}>
                     <img className={styles.foodPicture} alt="menu" src={`${process.env.PUBLIC_URL}/images/${photo}`}/>
                     <p className={styles.foodDescription}>{title}</p>
                 </div>

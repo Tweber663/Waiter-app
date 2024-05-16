@@ -2,13 +2,21 @@
   "tables": [
     {
       "id": "1",
+      "status": "Free",
+      "peopleAmount": "1",
+      "maxPeopleAmount": "1",
+      "bill": "0",
+      "info": ""
+    },
+    {
+      "id": "3",
       "status": "free",
       "peopleAmount": 2,
       "maxPeopleAmount": 5,
       "bill": 0
     },
     {
-      "id": "3",
+      "id": "2",
       "status": "free",
       "peopleAmount": 2,
       "maxPeopleAmount": 5,

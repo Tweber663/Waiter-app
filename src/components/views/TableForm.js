@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import Footer from "../common/Footer";
 import MenuSelect from "../features/MenuSelect";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 const TableForm = () => {
     const disptach = useDispatch();
@@ -25,6 +26,8 @@ const TableForm = () => {
     const {id} = useParams();
     //Getting table information from store
     const table = useSelector(state => selectedTable({state, id}));
+    const menu = useSelector(state => state.tables.menu);
+    console.log(menu);
 
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
 
@@ -48,9 +51,9 @@ const TableForm = () => {
         if (maxPepAmount < 1 || maxPepAmount > 10) setMaxPepAmount(1);
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
+    
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(e)
         debugger
         disptach(fetchingTablesPUT({
             id, 
