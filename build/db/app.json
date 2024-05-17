@@ -1,21 +1,167 @@
 {
   "tables": [
     {
-      "id": "4",
+      "id": "1",
+      "status": "Busy",
+      "peopleAmount": "1",
+      "maxPeopleAmount": "1",
+      "bill": "0",
+      "info": "mnhgfd",
+      "menuOrder": [
+        {
+          "basePrice": "babes",
+          "checkbox": true,
+          "id": 1,
+          "photo": "cooking.png",
+          "quantity": 3,
+          "tableNum": 1,
+          "title": "Fried rice",
+          "totalAmount": "NaNbabes"
+        },
+        {
+          "basePrice": "babes",
+          "checkbox": true,
+          "id": 2,
+          "photo": "salad.png",
+          "quantity": 4,
+          "tableNum": 1,
+          "title": "Salad",
+          "totalAmount": 36
+        },
+        {
+          "basePrice": "babes",
+          "checkbox": true,
+          "id": 3,
+          "photo": "fast-food.png",
+          "quantity": 7,
+          "tableNum": 1,
+          "title": "Menu",
+          "totalAmount": 154
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "status": "Cleaning",
+      "peopleAmount": "1",
+      "maxPeopleAmount": "1",
+      "bill": "0",
+      "info": "",
+      "menuOrder": [
+        {
+          "title": "Fried rice",
+          "id": 1,
+          "tableNum": 3,
+          "photo": "cooking.png",
+          "basePrice": 5,
+          "quantity": 1,
+          "totalAmount": 5,
+          "checkbox": true
+        },
+        {
+          "basePrice": "babes",
+          "checkbox": true,
+          "id": 2,
+          "photo": "salad.png",
+          "quantity": 18,
+          "tableNum": 3,
+          "title": "Salad",
+          "totalAmount": 162
+        },
+        {
+          "basePrice": "babes",
+          "checkbox": true,
+          "id": 3,
+          "photo": "fast-food.png",
+          "quantity": 1,
+          "tableNum": 3,
+          "title": "Menu",
+          "totalAmount": 22
+        }
+      ]
+    },
+    {
+      "id": "2",
       "status": "free",
       "peopleAmount": 2,
       "maxPeopleAmount": 5,
-      "bill": 0
+      "bill": 0,
+      "info": "",
+      "menuOrder": [
+        {
+          "title": "Fried rice",
+          "id": 1,
+          "tableNum": 2,
+          "photo": "cooking.png",
+          "basePrice": 5,
+          "quantity": 1,
+          "totalAmount": 5,
+          "checkbox": true
+        },
+        {
+          "title": "Salad",
+          "id": 2,
+          "tableNum": 2,
+          "photo": "salad.png",
+          "basePrice": 9,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false
+        },
+        {
+          "title": "Menu",
+          "id": 3,
+          "tableNum": 2,
+          "photo": "fast-food.png",
+          "basePrice": 22,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false
+        }
+      ]
     },
     {
       "id": "5",
       "status": "free",
       "peopleAmount": 2,
       "maxPeopleAmount": 5,
-      "bill": 0
+      "bill": 0,
+      "info": "",
+      "menuOrder": [
+        {
+          "title": "Fried rice",
+          "id": 1,
+          "tableNum": 5,
+          "photo": "cooking.png",
+          "basePrice": 5,
+          "quantity": 1,
+          "totalAmount": 5,
+          "checkbox": true
+        },
+        {
+          "title": "Salad",
+          "id": 2,
+          "tableNum": 5,
+          "photo": "salad.png",
+          "basePrice": 9,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false
+        },
+        {
+          "title": "Menu",
+          "id": 3,
+          "tableNum": 5,
+          "photo": "fast-food.png",
+          "basePrice": 22,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false
+        }
+      ]
     },
     {
-      "id": "1",
+      "id": "6",
       "status": "free",
       "peopleAmount": 2,
       "maxPeopleAmount": 5,

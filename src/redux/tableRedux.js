@@ -106,6 +106,11 @@ export const tableErrMsg = (payload) => ({type: "ERROR_MESSAGE", payload});
 export const tableErrMsgClear = (payload) => ({type: "ERROR_MESSAGE_CLEAR", payload});
 
 export const menuOrderList = (payload) => payload.tables.tables
+export const checkMenuOrderId = (state, id) => state.tables.menuOrderTemp.filter((tableOrder) => {
+        if (tableOrder.tableId == id) {
+            return tableOrder
+        } 
+    })
 
 
 
@@ -170,8 +175,8 @@ const tablesReducer = (statePart = [], action) => {
             return table; // Return the table as is if tableId doesn't match
         });
         
-        console.log({...statePart.tables, menuOrderTemp: filtered})
-        return {...statePart.tables}
+   
+        return {...statePart.tables, menuOrderTemp: filtered}
             default:
         return statePart
     }

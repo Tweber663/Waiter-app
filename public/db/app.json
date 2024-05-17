@@ -3,40 +3,40 @@
     {
       "id": "1",
       "status": "Busy",
-      "peopleAmount": "",
-      "maxPeopleAmount": "",
+      "peopleAmount": "1",
+      "maxPeopleAmount": "1",
       "bill": "0",
       "info": "mnhgfd",
       "menuOrder": [
         {
-          "title": "Fried rice",
+          "basePrice": "babes",
+          "checkbox": true,
           "id": 1,
-          "tableNum": 1,
           "photo": "cooking.png",
-          "basePrice": 5,
-          "quantity": 1,
-          "totalAmount": 5,
-          "checkbox": true
+          "quantity": 3,
+          "tableNum": 1,
+          "title": "Fried rice",
+          "totalAmount": "NaNbabes"
         },
         {
-          "title": "Salad",
+          "basePrice": "babes",
+          "checkbox": true,
           "id": 2,
-          "tableNum": 1,
           "photo": "salad.png",
-          "basePrice": 9,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
+          "quantity": 4,
+          "tableNum": 1,
+          "title": "Salad",
+          "totalAmount": 36
         },
         {
-          "title": "Menu",
+          "basePrice": "babes",
+          "checkbox": true,
           "id": 3,
-          "tableNum": 1,
           "photo": "fast-food.png",
-          "basePrice": 22,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
+          "quantity": 7,
+          "tableNum": 1,
+          "title": "Menu",
+          "totalAmount": 154
         }
       ]
     },
@@ -59,24 +59,24 @@
           "checkbox": true
         },
         {
-          "title": "Salad",
+          "basePrice": "babes",
+          "checkbox": true,
           "id": 2,
-          "tableNum": 3,
           "photo": "salad.png",
-          "basePrice": 9,
-          "quantity": 12,
-          "totalAmount": 0,
-          "checkbox": false
+          "quantity": 18,
+          "tableNum": 3,
+          "title": "Salad",
+          "totalAmount": 162
         },
         {
-          "title": "Menu",
+          "basePrice": "babes",
+          "checkbox": true,
           "id": 3,
-          "tableNum": 3,
           "photo": "fast-food.png",
-          "basePrice": 22,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
+          "quantity": 1,
+          "tableNum": 3,
+          "title": "Menu",
+          "totalAmount": 22
         }
       ]
     },
@@ -159,6 +159,13 @@
           "checkbox": false
         }
       ]
+    },
+    {
+      "id": "6",
+      "status": "free",
+      "peopleAmount": 2,
+      "maxPeopleAmount": 5,
+      "bill": 0
     }
   ]
 }

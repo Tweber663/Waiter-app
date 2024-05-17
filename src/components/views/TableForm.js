@@ -27,7 +27,6 @@ const TableForm = () => {
     //Getting table information from store
     const table = useSelector(state => selectedTable({state, id}));
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
-    console.log(menuOrderTemp)
 
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
 
@@ -62,6 +61,7 @@ const TableForm = () => {
             maxPeopleAmount: e.target.maxPeopleAmount.value, 
             bill: e.target.bill.value,
             info: e.target.textInfo.value,
+            menuOrder: menuOrderTemp[0].orderMenu
         }));
         navigate("/")
     }
