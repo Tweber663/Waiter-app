@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import styles from './MenuItem.module.scss'
 import clsx from 'clsx'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { updateMenuItem } from '../../redux/tableRedux';
 
-const MenuItem = (passed) => {
+const MenuItem = ({selectedTable, menuItems}) => {
     const dispatch = useDispatch();
-    let {title, id, photo, basePrice, totalAmount, checkbox} = passed.menuItem;
-    const [count, setCount] = useState(0);
 
-    const [checked, setChecked] = useState(false);
+    // let {status, bill, id, info, maxPeopleAmount, peopleAmount, menuOrder} = selectedTable;
+    let {title, id, photo, basePrice, totalAmount, checkbox, quantity, tableNum} = menuItems;
+    
+    console.log(menuItems)
+
+    
+    const [count, setCount] = useState(quantity);
+    const [checked, setChecked] = useState(checkbox);
     const [totalAmou, setTotalAmu] = useState(totalAmount)
 
 
@@ -23,6 +28,7 @@ const MenuItem = (passed) => {
         dispatch(updateMenuItem({
            title, 
            id, 
+           tableNum,
            photo, 
            checkbox: true,
            basePrice: basePrice,
@@ -56,11 +62,9 @@ const MenuItem = (passed) => {
          }))
     }
     const temp = () => {}
-
-    console.log(totalAmou);
     return (
-        // <form onSubmit={submitHandler}>
-            <div className={styles.orderBox}>
+        <div>
+                <div className={styles.orderBox}>
                 <input onChange={temp} checked={checked} type="checkbox"></input>
                 <div className={styles.orderCost}>
                 <p>{totalAmount}</p>
@@ -76,7 +80,7 @@ const MenuItem = (passed) => {
                     <button onClick={onChangeMinus} className={clsx("btn btn-outline-dark", styles.btnSub)}><span>-</span></button>
                 </div>
             </div>
-    //    </form>
+        </div>
     )
 }
 

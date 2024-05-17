@@ -2,16 +2,15 @@ import styles from './MenuSelect.module.scss';
 import clsx from 'clsx';
 import MenuItem from './MenuItem';
 import { useSelector } from 'react-redux';
+import { compileString } from 'sass';
+import { menuOrderList } from '../../redux/tableRedux';
 
-const MenuSelect = () => {
-
-    const menuItems = useSelector(state => state.tables.menu);
-
+const MenuSelect = (passed) => {
 
     return (
              <div className={clsx(styles.orderMenu)}>
-                {menuItems.map((menuItem, index) => (
-                      <MenuItem key={menuItem.id} menuItem={menuItem}/>
+                {passed.selectedTable[0].menuOrder.map((order) => (
+                    <MenuItem menuItems={order} selectedTable={passed.selectedTable[0]}/>
                 ))}
             </div>
     )
@@ -19,6 +18,6 @@ const MenuSelect = () => {
 
 
 
-export default MenuSelect
+export default MenuSelect 
 
 

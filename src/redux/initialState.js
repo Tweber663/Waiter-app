@@ -8,11 +8,14 @@ const initialState = {
         {error: 'Unknown error', id: 5,  notTriggered: true},
     ],
     fetched: false,
-    menu: [
-        {title: 'Fried rice', id: 1, photo: 'cooking.png', basePrice: 5, quantity: 0, totalAmount: 0, checkbox: false},
-        {title: 'Salad', id: 2, photo: 'salad.png', basePrice: 9, quantity: 0, totalAmount: 0, checkbox: false},
-        {title: 'Menu', id: 3, photo: 'fast-food.png', basePrice: 22, quantity: 0, totalAmount: 0, checkbox: false},
-    ]
+    menuOrderTemp: []
 };
+
+
+// menuOrder: [
+//     {title: 'Fried rice', id: 1, photo: 'cooking.png', basePrice: 5, quantity: 0, totalAmount: 0, checkbox: false},
+//     {title: 'Salad', id: 2, photo: 'salad.png', basePrice: 9, quantity: 0, totalAmount: 0, checkbox: false},
+//     {title: 'Menu', id: 3, photo: 'fast-food.png', basePrice: 22, quantity: 0, totalAmount: 0, checkbox: false},
+// ]
 
 export default initialState

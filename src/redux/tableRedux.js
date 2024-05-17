@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import { API_URL } from "../config";
+import { tab } from "@testing-library/user-event/dist/tab";
+import { combineReducers } from "redux";
 //**actionTypes
 const actionType1 =  (type) => `app/tables/${type}`;
 const GETTING_INFO = actionType1('GETTING_INFO')
@@ -103,6 +105,8 @@ export const selectedTable = ({id, state}) => state.tables.tables.filter((table)
 export const tableErrMsg = (payload) => ({type: "ERROR_MESSAGE", payload});
 export const tableErrMsgClear = (payload) => ({type: "ERROR_MESSAGE_CLEAR", payload});
 
+export const menuOrderList = (payload) => payload.tables.tables
+
 
 
 //**Subreducers
@@ -113,8 +117,18 @@ const tablesReducer = (statePart = [], action) => {
         case "DELETING_TABLE":
          return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
         case GETTING_INFO:
+            console.log(action)
             if (action.payload.length > 0) {
-                return {...statePart, tables: action.payload, Message: statePart.tables.Message, menu: statePart.tables.menu, fetched: true};
+                return {
+                    ...statePart,
+                    tables: action.payload,
+                    Message: statePart.tables.Message,
+                    fetched: true,
+                    menuOrderTemp: action.payload.map((table, index) => ({
+                    tableId: table.id, // Assuming you want to set tableId to the id from the payload
+                    orderMenu: table.menuOrder
+                    }))
+                  };
             }
             break;
         case 'ERROR_MESSAGE':
@@ -134,23 +148,30 @@ const tablesReducer = (statePart = [], action) => {
                     )
                 } 
         case "UPDATING_MENU_ITEM": 
-               const results = statePart.tables.menu.map((item) => {
-                    if (item.id == action.payload.id) {
+        let filtered = statePart.tables.menuOrderTemp.map((table) => {
+            if (table.tableId == action.payload.tableNum) {
+                let updatedOrderMenu = table.orderMenu.map((order) => {
+                    if (order.title === action.payload.title) {
                         return {
-                            title: action.payload.title, 
-                            id: action.payload.id, 
+                            basePrice: 'babes',
+                            checkbox: action.payload.checkbox,
+                            id: action.payload.id,
                             photo: action.payload.photo,
-                            basePrice: action.payload.basePrice,
                             quantity: action.payload.quantity,
-                            totalAmount: action.payload.totalAmount,
-                            checkbox: action.payload.checkbox
-                        }
-                    } else {
-                        return item
+                            tableNum: action.payload.tableNum,
+                            title: action.payload.title,
+                            totalAmount: action.payload.totalAmount
+                        };
                     }
-                })
-    
-                return {...statePart.tables, menu: results}
+                    return order; // Return the order as is if it doesn't match
+                });
+                return { tableId: table.tableId, orderMenu: updatedOrderMenu }; // Return the table with the updated orderMenu
+            }
+            return table; // Return the table as is if tableId doesn't match
+        });
+        
+        console.log({...statePart.tables, menuOrderTemp: filtered})
+        return {...statePart.tables}
             default:
         return statePart
     }
