@@ -1,70 +1,71 @@
 .orderMenu {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.orderBox {
-    position: relative;
-    flex: 1;
-    height: 130px;
-    border: 1px solid blue;
-    border-radius: 8px;
-    margin: 2px
-}
+// .orderBox {
+//     position: relative;
+//     flex: 1;
+//     height: 130px;
+//     border: 1px solid blue;
+//     border-radius: 8px;
+//     margin: 2px
+// }
 
 
-.orderAmount {
-    width: 120px;
-    display: block;
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    top: 85%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+// .orderAmount {
+//     width: 120px;
+//     display: block;
+//     display: flex;
+//     position: absolute;
+//     justify-content: center;
+//     top: 85%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
 
-}
+// }
 
-.inputAmount {
-    padding: 0;
-    padding-left: 3px;
-    max-width: 25px;
-    margin: 0 5px;
-    border: 1px blue solid;
-    border-radius: 5px;
-}
+// .inputAmount {
+//     padding: 0;
+//     padding-left: 3px;
+//     max-width: 25px;
+//     margin: 0 5px;
+//     border: 1px blue solid;
+//     border-radius: 5px;
+// }
 
-.btnAdd, .btnSub {
-    position: relative;
-    height: 25px;
-    width: 25px;
-    padding: 0;
-}
+// .btnAdd, .btnSub {
+//     position: relative;
+//     height: 25px;
+//     width: 25px;
+//     padding: 0;
+// }
 
-.foodView {
-    margin-top: 10px;
-    height: 90px;
-    width: 100px;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+// .foodView {
+//     margin-top: 10px;
+//     height: 90px;
+//     width: 100px;
+//     position: absolute;
+//     top: 35%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+// }
 
-.foodPicture {
-    position: absolute;
-    max-width: 60px;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+// .foodPicture {
+//     position: absolute;
+//     max-width: 60px;
+//     top: 35%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+// }
 
-.foodDescription {
-    position: absolute;
-    color: red;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+// .foodDescription {
+//     position: absolute;
+//     color: red;
+//     top: 35%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+// }
 
 

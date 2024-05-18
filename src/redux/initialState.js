@@ -46,7 +46,38 @@ const initialState = {
           quantity: 0,
           totalAmount: 0,
           checkbox: false
-        }
+        },
+        {
+          title: "Fried rice",
+          id: 4,
+          tableNum: '',
+          photo: "biryani.png",
+          basePrice: 5,
+          quantity: 0,
+          totalAmount: 0,
+          checkbox: false,
+        },
+        {
+          title: "Salad",
+          id: 5,
+          tableNum: '',
+          photo: "spaghetti.png",
+          basePrice: 9,
+          quantity: 0,
+          totalAmount: 0,
+          checkbox: false
+        },
+        {
+          title: "Menu",
+          id: 6,
+          tableNum: '',
+          photo: "fast-pizza.png",
+          basePrice: 22,
+          quantity: 0,
+          totalAmount: 0,
+          checkbox: false
+        },
+        
       ]
     }
   ]

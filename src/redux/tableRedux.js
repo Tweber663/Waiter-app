@@ -176,6 +176,7 @@ const tablesReducer = (statePart = [], action) => {
         let filteredOrder = ''
         filteredTables = statePart.tables.menuOrderTemp.map((table) => {
             if (table.tableId == action.payload.tableNum) {
+
                 filteredOrder = table.orderMenu.map((order) => {
                     if (order.title == action.payload.title) {
                         return {
@@ -192,9 +193,8 @@ const tablesReducer = (statePart = [], action) => {
                         return order
                     }
                 })
-            } else {
-                return table
             }
+
             return {
                 ...table,
                 orderMenu: filteredOrder,
