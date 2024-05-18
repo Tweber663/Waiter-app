@@ -8,7 +8,48 @@ const initialState = {
         {error: 'Unknown error', id: 5,  notTriggered: true},
     ],
     fetched: false,
-    menuOrderTemp: []
+    menuOrderTemp: [],
+    addTableTempOrder: [ {
+      id: '',
+      status: "Busy",
+      peopleAmount: "2",
+      maxPeopleAmount: "4",
+      bill: "0",
+      info: "Type your notes here:",
+      menuOrder: [
+        {
+          title: "Fried rice",
+          id: 1,
+          tableNum: '',
+          photo: "cooking.png",
+          basePrice: 5,
+          quantity: 0,
+          totalAmount: 0,
+          checkbox: false,
+        },
+        {
+          title: "Salad",
+          id: 2,
+          tableNum: '',
+          photo: "salad.png",
+          basePrice: 9,
+          quantity: 0,
+          totalAmount: 0,
+          checkbox: false
+        },
+        {
+          title: "Menu",
+          id: 3,
+          tableNum: '',
+          photo: "fast-food.png",
+          basePrice: 22,
+          quantity: 0,
+          totalAmount: 0,
+          checkbox: false
+        }
+      ]
+    }
+  ]
 };
 
 

@@ -10,8 +10,7 @@ const MenuItem = ({selectedTable, menuItems}) => {
 
     // let {status, bill, id, info, maxPeopleAmount, peopleAmount, menuOrder} = selectedTable;
     let {title, id, photo, basePrice, totalAmount, checkbox, quantity, tableNum} = menuItems;
-    
-    console.log(menuItems)
+
 
     
     const [count, setCount] = useState(quantity);

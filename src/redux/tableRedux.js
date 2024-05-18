@@ -93,7 +93,7 @@ export const ifTableLimitReached = (state) => {
     }
 }
 export const updateMenuItem = (payload) => {
-    return ({type: "UPDATING_MENU_ITEM", payload});
+    return ({type: "UPDATING_MENU_ITEM", payload,});
 }
 
 
@@ -106,12 +106,29 @@ export const tableErrMsg = (payload) => ({type: "ERROR_MESSAGE", payload});
 export const tableErrMsgClear = (payload) => ({type: "ERROR_MESSAGE_CLEAR", payload});
 
 export const menuOrderList = (payload) => payload.tables.tables
-export const checkMenuOrderId = (state, id) => state.tables.menuOrderTemp.filter((tableOrder) => {
-        if (tableOrder.tableId == id) {
-            return tableOrder
+export const checkMenuOrderId = (state, id) => {
+    const filtered = state.tables.menuOrderTemp.filter((order) => {
+        if (order.tableId == id) {
+            return order.orderMenu
         } 
     })
+    return filtered;
+}
 
+export const addTableTemplate = (state, tableId) => {
+    let filteredTable = ''
+    let filteredMenu = ''
+    console.log(true);
+    if (tableId > 0) {
+        filteredTable = state.tables.addTableTempOrder.map((table) => {
+            filteredMenu = table.menuOrder.map((order) => {
+                return {...order, tableNum: tableId}
+            })
+            return {...table, id: tableId, menuOrder: filteredMenu}
+        })
+    }
+    return {...state.tables, addTableTempOrder: filteredTable}
+}
 
 
 //**Subreducers
@@ -122,16 +139,17 @@ const tablesReducer = (statePart = [], action) => {
         case "DELETING_TABLE":
          return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
         case GETTING_INFO:
-            console.log(action)
+
             if (action.payload.length > 0) {
                 return {
                     ...statePart,
                     tables: action.payload,
                     Message: statePart.tables.Message,
                     fetched: true,
+                    addTableTempOrder: statePart.tables.addTableTempOrder,
                     menuOrderTemp: action.payload.map((table, index) => ({
                     tableId: table.id, // Assuming you want to set tableId to the id from the payload
-                    orderMenu: table.menuOrder
+                    orderMenu: table.menuOrder,
                     }))
                   };
             }
@@ -153,12 +171,15 @@ const tablesReducer = (statePart = [], action) => {
                     )
                 } 
         case "UPDATING_MENU_ITEM": 
-        let filtered = statePart.tables.menuOrderTemp.map((table) => {
+        console.log(action.payload)
+        let filteredTables = ''
+        let filteredOrder = ''
+        filteredTables = statePart.tables.menuOrderTemp.map((table) => {
             if (table.tableId == action.payload.tableNum) {
-                let updatedOrderMenu = table.orderMenu.map((order) => {
-                    if (order.title === action.payload.title) {
+                filteredOrder = table.orderMenu.map((order) => {
+                    if (order.title == action.payload.title) {
                         return {
-                            basePrice: 'babes',
+                            basePrice: action.payload.basePrice,
                             checkbox: action.payload.checkbox,
                             id: action.payload.id,
                             photo: action.payload.photo,
@@ -166,17 +187,20 @@ const tablesReducer = (statePart = [], action) => {
                             tableNum: action.payload.tableNum,
                             title: action.payload.title,
                             totalAmount: action.payload.totalAmount
-                        };
+                        }
+                    } else {
+                        return order
                     }
-                    return order; // Return the order as is if it doesn't match
-                });
-                return { tableId: table.tableId, orderMenu: updatedOrderMenu }; // Return the table with the updated orderMenu
+                })
+            } else {
+                return table
             }
-            return table; // Return the table as is if tableId doesn't match
-        });
-        
-   
-        return {...statePart.tables, menuOrderTemp: filtered}
+            return {
+                ...table,
+                orderMenu: filteredOrder,
+            }; 
+        })
+        return {...statePart.tables, menuOrderTemp: filteredTables}
             default:
         return statePart
     }

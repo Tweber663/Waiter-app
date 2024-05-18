@@ -9,24 +9,24 @@
       "info": "mnhgfd",
       "menuOrder": [
         {
-          "basePrice": "babes",
+          "basePrice": 12,
           "checkbox": true,
           "id": 1,
           "photo": "cooking.png",
-          "quantity": 3,
+          "quantity": 10,
           "tableNum": 1,
           "title": "Fried rice",
-          "totalAmount": "NaNbabes"
+          "totalAmount": 120
         },
         {
-          "basePrice": "babes",
+          "basePrice": 8,
           "checkbox": true,
           "id": 2,
           "photo": "salad.png",
-          "quantity": 4,
+          "quantity": 7,
           "tableNum": 1,
           "title": "Salad",
-          "totalAmount": 36
+          "totalAmount": 56
         },
         {
           "basePrice": "babes",
@@ -37,46 +37,6 @@
           "tableNum": 1,
           "title": "Menu",
           "totalAmount": 154
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "status": "Cleaning",
-      "peopleAmount": "1",
-      "maxPeopleAmount": "1",
-      "bill": "0",
-      "info": "",
-      "menuOrder": [
-        {
-          "title": "Fried rice",
-          "id": 1,
-          "tableNum": 3,
-          "photo": "cooking.png",
-          "basePrice": 5,
-          "quantity": 1,
-          "totalAmount": 5,
-          "checkbox": true
-        },
-        {
-          "basePrice": "babes",
-          "checkbox": true,
-          "id": 2,
-          "photo": "salad.png",
-          "quantity": 18,
-          "tableNum": 3,
-          "title": "Salad",
-          "totalAmount": 162
-        },
-        {
-          "basePrice": "babes",
-          "checkbox": true,
-          "id": 3,
-          "photo": "fast-food.png",
-          "quantity": 1,
-          "tableNum": 3,
-          "title": "Menu",
-          "totalAmount": 22
         }
       ]
     },
@@ -121,27 +81,27 @@
       ]
     },
     {
-      "id": "5",
-      "status": "free",
-      "peopleAmount": 2,
-      "maxPeopleAmount": 5,
-      "bill": 0,
-      "info": "",
+      "id": "4",
+      "status": "Busy",
+      "peopleAmount": "2",
+      "maxPeopleAmount": "4",
+      "bill": "0",
+      "info": "Type your notes here:",
       "menuOrder": [
         {
           "title": "Fried rice",
           "id": 1,
-          "tableNum": 5,
+          "tableNum": "4",
           "photo": "cooking.png",
           "basePrice": 5,
-          "quantity": 1,
-          "totalAmount": 5,
-          "checkbox": true
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false
         },
         {
           "title": "Salad",
           "id": 2,
-          "tableNum": 5,
+          "tableNum": "4",
           "photo": "salad.png",
           "basePrice": 9,
           "quantity": 0,
@@ -151,7 +111,7 @@
         {
           "title": "Menu",
           "id": 3,
-          "tableNum": 5,
+          "tableNum": "4",
           "photo": "fast-food.png",
           "basePrice": 22,
           "quantity": 0,
@@ -159,13 +119,6 @@
           "checkbox": false
         }
       ]
-    },
-    {
-      "id": "6",
-      "status": "free",
-      "peopleAmount": 2,
-      "maxPeopleAmount": 5,
-      "bill": 0
     }
   ]
 }

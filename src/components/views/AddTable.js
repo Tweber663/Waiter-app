@@ -6,6 +6,7 @@ import { ifTableLimitReached } from "../../redux/tableRedux";
 import { tableErrMsg } from "../../redux/tableRedux";
 import styles from './AddTable.module.scss'
 import { updateStore } from "../../redux/tableRedux";
+import { addTableTemplate } from "../../redux/tableRedux";
 
 const AddTable = () => {
 
@@ -14,6 +15,7 @@ const AddTable = () => {
    const [tableNum, setTableNum] = useState(0);
    const [devault, setDefault] =useState();
    const [inputValue, setInputValue] =useState();
+   const tableTemp = useSelector(state => addTableTemplate(state, tableNum));
    const ifTableIdUsed = useSelector(state => ifTableAlredyExists(tableNum, state));
    const ifTableLimit = useSelector(state => ifTableLimitReached(state));
    const currentStateMess = useSelector(state => state.tables.Message);
@@ -36,16 +38,11 @@ const AddTable = () => {
         setTableNum('');
     }
    }
+
    const addDispatch = (e) => {
     e.preventDefault();
     if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
-        dispatch(fetchTablePost({
-            id: tableNum,
-            status: 'free',
-            peopleAmount: 2, 
-            maxPeopleAmount: 5, 
-            bill: 0,
-        }))
+        dispatch(fetchTablePost(tableTemp.addTableTempOrder[0]))
         setVerifyInfo(false);
         } else if (ifTableLimit){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
@@ -61,8 +58,6 @@ const AddTable = () => {
     const submitHandler = (e) => {
         e.preventDefault()
     }
-
-    console.log(devault)
     return (
         <form onSubmit={submitHandler} className={styles.addTableForm}>
             <label>Table Number:</label>

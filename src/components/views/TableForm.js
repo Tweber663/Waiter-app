@@ -11,7 +11,6 @@ import clsx from "clsx";
 import Footer from "../common/Footer";
 import MenuSelect from "../features/MenuSelect";
 import { checkMenuOrderId } from "../../redux/tableRedux";
-
 const TableForm = () => {
     const disptach = useDispatch();
     
@@ -27,6 +26,7 @@ const TableForm = () => {
     //Getting table information from store
     const table = useSelector(state => selectedTable({state, id}));
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
+    console.log(menuOrderTemp)
 
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
 
@@ -50,10 +50,8 @@ const TableForm = () => {
         if (maxPepAmount < 1 || maxPepAmount > 10) setMaxPepAmount(1);
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
-    
     const submitHandler = (e) => {
         e.preventDefault();
-        debugger
         disptach(fetchingTablesPUT({
             id, 
             status: e.target.selectStatus.value,
@@ -81,7 +79,6 @@ const TableForm = () => {
         }
     }
 
-    console.log(table);
     var pattern = /[a-zA-Z]/;
     if( id > 30 || pattern.test(id)) return <Navigate to="/"/>
     if (table.length == 0) return <p>Loading...</p>
