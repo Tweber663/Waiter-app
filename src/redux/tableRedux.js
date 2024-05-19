@@ -118,7 +118,6 @@ export const checkMenuOrderId = (state, id) => {
 export const addTableTemplate = (state, tableId) => {
     let filteredTable = ''
     let filteredMenu = ''
-    console.log(true);
     if (tableId > 0) {
         filteredTable = state.tables.addTableTempOrder.map((table) => {
             filteredMenu = table.menuOrder.map((order) => {
@@ -156,16 +155,14 @@ const tablesReducer = (statePart = [], action) => {
             break;
         case 'ERROR_MESSAGE':
                 return {
-                    ...statePart,
-                    tables: statePart.tables.tables,
+                    ...statePart.tables,
                     Message: statePart.tables.Message.map(msg =>
                         msg.id === action.payload.id? { ...msg, notTriggered: false } : msg
                     ),
                 }
         case 'ERROR_MESSAGE_CLEAR':
                 return {
-                    ...statePart,
-                    tables: statePart.tables.tables,
+                    ...statePart.tables,
                     Message: statePart.tables.Message.map(msg => 
                         msg.id !== action.payload.id? { ...msg, notTriggered: true } : msg
                     )

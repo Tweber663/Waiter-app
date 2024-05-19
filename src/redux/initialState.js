@@ -38,7 +38,7 @@ const initialState = {
           checkbox: false
         },
         {
-          title: "Menu",
+          title: "Menu deal",
           id: 3,
           tableNum: '',
           photo: "fast-food.png",
@@ -48,7 +48,7 @@ const initialState = {
           checkbox: false
         },
         {
-          title: "Fried rice",
+          title: "Biryani",
           id: 4,
           tableNum: '',
           photo: "biryani.png",
@@ -58,7 +58,7 @@ const initialState = {
           checkbox: false,
         },
         {
-          title: "Salad",
+          title: "Spaghetti",
           id: 5,
           tableNum: '',
           photo: "spaghetti.png",
@@ -68,10 +68,10 @@ const initialState = {
           checkbox: false
         },
         {
-          title: "Menu",
+          title: "Pizza",
           id: 6,
           tableNum: '',
-          photo: "fast-pizza.png",
+          photo: "pizza.png",
           basePrice: 22,
           quantity: 0,
           totalAmount: 0,

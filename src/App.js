@@ -4,6 +4,7 @@ import Home from "./components/pages/Home";
 import TableDetails from "./components/views/TableDetails";
 import NotFound from "./components/pages/NotFound";
 import styles from './App.module.scss'
+import Welcome from "./components/pages/Welcome";
 
 const App = ()  => {
 
@@ -11,7 +12,8 @@ const App = ()  => {
 
     <Container className={styles.cont}>
      <Routes>
-      <Route path="/" element={<Home/>}/>
+      <Route path="/" element={<Welcome/>}/>
+      <Route path="/home" element={<Home/>}/>
       <Route path="/tables/:id" element={<TableDetails/>} />
       <Route path="*" element={<NotFound/>}/>
      </Routes>

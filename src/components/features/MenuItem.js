@@ -10,8 +10,6 @@ const MenuItem = ({selectedTable, menuItems}) => {
 
     // let {status, bill, id, info, maxPeopleAmount, peopleAmount, menuOrder} = selectedTable;
     let {title, id, photo, basePrice, totalAmount, checkbox, quantity, tableNum} = menuItems;
-
-
     
     const [count, setCount] = useState(quantity);
     const [checked, setChecked] = useState(checkbox);
@@ -63,7 +61,7 @@ const MenuItem = ({selectedTable, menuItems}) => {
     const temp = () => {}
     return (
         <div>
-                <div className={styles.orderBox}>
+            <div className={styles.orderBox}>
                 <input onChange={temp} checked={checked} type="checkbox"></input>
                 <div className={styles.orderCost}>
                 <p>{totalAmount}</p>

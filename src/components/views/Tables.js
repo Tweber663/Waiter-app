@@ -7,6 +7,7 @@ import AddTable from "./AddTable"
 import styles from './Tables.module.scss'
 import TableDelete from "./TableDelete"
 import { gettingTables } from "../../redux/tableRedux"
+import { BarLoader } from "react-spinners"
 
 const Tables = () => {
     const dispatch = useDispatch();
@@ -23,9 +24,9 @@ const Tables = () => {
 
     const addedTables = useSelector(state => state.tables)
     console.log("before rendering:", addedTables);
-    if (!addedTables.tables.length) return (<h5>Still loading</h5>)
+    if (!addedTables.tables.length) return (<BarLoader/>)
     return (
-        <div>
+        <div className={styles.tables}>
             <ul>
                 {addedTables.tables ? (
                     addedTables.tables.map((table) => (

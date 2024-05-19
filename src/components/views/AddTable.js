@@ -32,7 +32,7 @@ const AddTable = () => {
     } else if (regEx.test(targetValue) && targetValue <= 6) {
         setVerifyInfo(true)
         setTableNum(targetValue);
-    } else if (targetValue == 0  || targetValue > 9 && !undefined){
+    } else if (targetValue == 0  || targetValue > 10 && !undefined){
         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
         setInputValue('')
         setTableNum('');
