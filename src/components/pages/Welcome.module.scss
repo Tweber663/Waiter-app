@@ -1,4 +1,16 @@
-.mainBox {
+.spinnerBox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 300px;
+}
+
+
+.mainBoxToggle {
+    display: none;
+}
+
+.innerBox {
     position: absolute;
     top: 35%;
     left: 50%;
@@ -6,6 +18,7 @@
     text-align: center;
     width: 210px;
 }
+
 .waiter {
     width: 190px;
 }
@@ -34,15 +47,18 @@
     top: 80%;
     left: 50%;
     transform: translate(-50%, 50%);
+    transform-origin: center;
     width: 220px;
     height: 40px;
     border-radius: 10px;
     background-color: #f49e9c;
     color: white;
+    transform-origin: center;
     box-shadow: 1px 2px 2px rgb(183, 183, 183);
 }
 
 
 .btn:hover {
-    scale: 1.1;
+    transform: translate(-50%, 50%) scale(1.03);
+    background-color: #d48483;
 }

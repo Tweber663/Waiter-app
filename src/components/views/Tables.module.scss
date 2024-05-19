@@ -1,3 +1,15 @@
 ul {
    padding-left: 0;
 }
+
+.tables {
+   max-height: 100px;
+   overflow-y: scroll;
+    /* Hide scrollbar for Webkit browsers */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.table-list::-webkit-scrollbar {
+   display: none;  /* Webkit browsers */
+}
