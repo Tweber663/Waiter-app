@@ -9,8 +9,6 @@ const Home = () => {
     return (
        <div>
         <TableError/>
-        <NavBar/>
-        <h1>All Tables</h1>
         <Tables/>
         <AddTable/>
         <Footer/>

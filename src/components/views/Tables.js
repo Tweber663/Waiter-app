@@ -26,16 +26,17 @@ const Tables = () => {
     console.log("before rendering:", addedTables);
     if (!addedTables.tables.length) return (<BarLoader/>)
     return (
+        <div>
+            <h1 className={styles.pageTitle}>All Tables</h1>
         <div className={styles.tables}>
-            <ul>
                 {addedTables.tables ? (
                     addedTables.tables.map((table) => (
                         <Table key={table.id} table={table} />
                     ))
                 ) : (
-                    <li>Loading</li>
+                    <div>Loading</div>
                 )}
-            </ul>
+        </div>
         </div>
     );
 };

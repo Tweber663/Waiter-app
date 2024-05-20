@@ -1,34 +1,84 @@
 .holder {
    position: relative;
    display: flex;
+   flex-direction: column;
    justify-content: space-between;
-   align-items: center;
-   height: 90px;
-   border-bottom: 1px solid rgb(203, 203, 203);
-
+   height: 180px;
+   max-width: 132px;
+   width: 132px;
+   border: 1px solid rgb(105, 105, 105);
+   border-radius: 20px;
+   margin: 5px 0;
+   padding: 9px 7px;
 }
 
-li {
-    position: relative;
-    list-style-type: none;
-    height: 40px;
+.top, .middle, .bottom{
+    display: block;
 }
 
-.spanOne {
+.top {
+    padding-top: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.top::after {
+    content: '';
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.411);
+    width: 115px
+}
+
+.top h2 {
+  font-family: 'Manrope', Courier, monospace;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.middle > * {
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+}
+
+.bill {
+    text-align: right;
+    font-size: 2;
     font-size: 15px;
     font-weight: 400;
-    margin-left: 15px;
 }
 
-.spanTwo {
-    font-size: 15px
-
+.bottom {
+    text-align: center;
 }
 
-@media (min-width:0px) and (max-width:420px) {
-   
-.holder {
-    height: 80px;
-    display: block;
- }
+.bottom::before {
+    content: '';
+    position: absolute;
+    width: 115px;
+    left: 50%;
+    top: 77%;
+    transform: translate(-50%, -50%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.411);
 }
+
+.navLink {
+    text-decoration: none;
+    color: black;
+    font-family: 'Manrope', Courier, monospace;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+
+
+

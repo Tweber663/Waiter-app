@@ -3,7 +3,10 @@ ul {
 }
 
 .tables {
-   max-height: 100px;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   max-height: 300px;
    overflow-y: scroll;
     /* Hide scrollbar for Webkit browsers */
     -ms-overflow-style: none;  /* IE and Edge */

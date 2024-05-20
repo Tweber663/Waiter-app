@@ -8,24 +8,26 @@ import clsx from "clsx";
 
 const Table = (table) => {
 
-    const {id,status} = table.table;
+    const {id,status, peopleAmount, maxPeopleAmount, bill} = table.table;
+    console.log(table);
     return (
-            <Row>
-                <Col className={styles.col}>
-                    <div className={styles.holder}>
-                        <li className={styles.gird} key={id}>
-                                <h2>Table {id}
-                                <span className={styles.spanOne}>Status: </span>
-                                <span className={styles.spanTwo}>{status}</span>
-                                </h2> 
-                        </li>
-                        <TableDelete id={id}/>
-                        <NavLink to={`tables/${id}`}>
-                            <button className="btn btn-primary">ShowMore</button>
-                        </NavLink>
-                    </div>
-                </Col>
-            </Row>
+            <div className={styles.holder}>
+                <div className={styles.top}>
+                    <h2>Table {id}</h2> 
+                    <TableDelete className={styles.delete} id={id}/>
+                </div>
+
+                <div className={styles.middle}>
+                <h6>14:34</h6>
+                <h6>{status}</h6>
+                <h6>{peopleAmount}/{maxPeopleAmount}</h6>
+                <h6 className={styles.bill}>${bill}</h6>
+                </div>
+
+                <div className={styles.bottom}>
+                <NavLink className={styles.navLink} to={`tables/${id}`}>Show More</NavLink>
+                </div>
+            </div>
     )
 }
 
