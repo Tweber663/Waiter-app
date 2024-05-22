@@ -9,7 +9,6 @@ import clsx from "clsx";
 const Table = (table) => {
 
     const {id,status, peopleAmount, maxPeopleAmount, bill} = table.table;
-    console.log(table);
     return (
             <div className={styles.holder}>
                 <div className={styles.top}>

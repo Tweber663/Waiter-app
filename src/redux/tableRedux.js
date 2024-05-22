@@ -129,6 +129,26 @@ export const addTableTemplate = (state, tableId) => {
     return {...state.tables, addTableTempOrder: filteredTable}
 }
 
+export const searchFilter = (state, id) => {
+    console.log(id.slice(5));
+    const regexNum = /\d/;
+    const regexLett = /[a-zA-Z]/;
+    if (id) {
+        if (id.length <= 5 && !regexNum.test(id)) {
+            return state.tables
+        } else if (regexNum.test(id) === true && regexLett.test(id) === false && id.length <= 4) {
+            return state.tables.filter((table) => table.id === id)
+        } else if (regexNum.test(id) === true && regexLett.test(id) === false) {
+            return state.filter((table) => table.id === id);
+        } else if (id.charAt(5) === " ") {
+            return state.tables.filter((table) => table.id === id.slice(6))
+        } else {
+            return state.tables.filter((table) => table.id === id.slice(5))
+        }
+    } else {
+        return state.tables
+    }
+}
 
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
