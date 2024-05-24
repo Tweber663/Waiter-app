@@ -15,9 +15,9 @@ const Table = (table) => {
 
     useEffect(() => {
         if (status === "Busy") {
-            setIsBusy(true)
-        } else {
             setIsBusy(false)
+        } else {
+            setIsBusy(true)
         }
     }, [table])
 

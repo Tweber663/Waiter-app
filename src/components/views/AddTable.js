@@ -54,16 +54,21 @@ const AddTable = () => {
             console.log('evrything else')
         }
     }
-
+    // <button className={styles.btn} onClick={addDispatch}>+</button>
     const submitHandler = (e) => {
         e.preventDefault()
     }
+
+
+    
     return (
-        <form onSubmit={submitHandler} className={styles.addTableForm}>
-            <label>Table Number:</label>
-            <input name="verify" defaultValue={devault} value={inputValue} className="form-control" onChange={verifyHandler} type="text"></input>
-            <button className="btn btn-warning" onClick={addDispatch}>Add Table +</button>
-        </form>
+        <div className={styles.mainBox}>
+            <button className={styles.btn} onClick={addDispatch}>+</button>
+            <form onSubmit={submitHandler} className={styles.addTableForm}>
+                <label>Table Number:</label>
+                <input name="verify" defaultValue={devault} value={inputValue} className="form-control" onChange={verifyHandler} type="text"></input>
+            </form>
+        </div>
     )
 }
 
