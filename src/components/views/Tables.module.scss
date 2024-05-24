@@ -1,13 +1,16 @@
-ul {
-   padding-left: 0;
-}
 
 .tables {
+   position: relative;
+   margin: 0;
+   padding: 0;
+   line-height: normal; 
    display: flex;
    justify-content: space-between;
    flex-wrap: wrap;
-   max-height: 300px;
-   overflow-y: scroll;
+   min-height: 250px;
+   max-height: 85vh; /* Set a maximum height based on viewport height */
+   overflow-y: scroll; /* Use auto to only show scrollbar when needed */
+   align-content: flex-start;
     /* Hide scrollbar for Webkit browsers */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */

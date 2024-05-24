@@ -3,6 +3,7 @@ import styles from './Welcome.module.scss'
 import { MoonLoader, ScaleLoader } from "react-spinners"
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
+import { Container } from "react-bootstrap";
 
 const Welcome = () => {
 
@@ -17,7 +18,7 @@ if (toggle === true) return (
    <MoonLoader className={styles.spinner} color="#000000"size="80"/>
 </div>)
  return (
-    <div>
+    <Container>
       <div className={clsx(styles.mainBox)}>
       <div className={clsx(styles.innerBox)}>
          <img className={styles.waiter} alt="waiterIcon" src={`${process.env.PUBLIC_URL}/images/waiter.png`}/>
@@ -28,8 +29,7 @@ if (toggle === true) return (
            <button className={styles.btn}>START</button>
       </NavLink>
       </div>
-   </div>
-
+   </Container>
  )    
 }
 

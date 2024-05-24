@@ -1,10 +1,22 @@
 .cont {
     max-width: 576px;
     width: 300px;
-    max-height: 900px;
     height: 100vh;
     border-radius: 40px;
     border: 1px solid grey;
+    padding: 0;
+    min-height: 300px;
+}
+
+.cont .background {
+    background-color: pink;
+    height: 100px;
+}
+
+
+.background {
+    background-color: pink;
+    height: 100px;
 }
 
 

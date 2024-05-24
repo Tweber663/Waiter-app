@@ -22,28 +22,24 @@ const Tables = () => {
         setTableFetched(true);
     }, [dispatch]) //Stops from erros / get's triggered once
       
-    // const addedTables = useSelector(state => gettingTables(state.tables));
-    // console.log(addedTables)
-    console.log('searchid:', searchId);
-    const Bla = useSelector(state => searchFilter(state.tables, searchId));
-    console.log('test:', Bla)
 
-    const addedTables = useSelector(state => state.tables)
-    console.log("before rendering:", addedTables);
-    // if (!addedTables.tables.length) return (<BarLoader/>)
+    const addedTables = useSelector(state => searchFilter(state.tables, searchId));
+    console.log('pre-render:', addedTables)
     return (
         <div>
-            <h1 className={styles.pageTitle}>All Tables</h1>
             <TableSearch setSearchId={setSearchId}/>
-        <div className={styles.tables}>
-                {Bla ? (
-                    Bla.map((table) => (
-                        <Table key={table.id} table={table} />
-                    ))
-                ) : (
-                    <div>Loading</div>
-                )}
-        </div>
+            <div className={styles.tables}>
+                    {addedTables.length > 0 ? (
+                        addedTables.map((table) => (
+                            <Table key={table.id} table={table}/>
+                        ))
+                    ) : (
+                        <div>
+                            <div>No tables Found</div>
+                            <BarLoader/>
+                        </div>
+                    )}
+            </div>
         </div>
     );
 };

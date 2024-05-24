@@ -5,14 +5,27 @@ import styles from './Table.module.scss'
 import { NavLink } from "react-router-dom";
 import TableDelete from "./TableDelete";
 import clsx from "clsx";
+import { useEffect, useState } from "react";
 
 const Table = (table) => {
 
     const {id,status, peopleAmount, maxPeopleAmount, bill} = table.table;
+
+    const [isBusy, setIsBusy] = useState(false);
+
+    useEffect(() => {
+        if (status === "Busy") {
+            setIsBusy(true)
+        } else {
+            setIsBusy(false)
+        }
+    }, [table])
+
     return (
             <div className={styles.holder}>
                 <div className={styles.top}>
-                    <h2>Table {id}</h2> 
+                    <h2>Table {id}</h2>
+                        <div className={clsx(styles.status, isBusy && styles.statusBusy)}></div>
                     <TableDelete className={styles.delete} id={id}/>
                 </div>
 

@@ -134,7 +134,7 @@ export const searchFilter = (state, id) => {
     const regexNum = /\d/;
     const regexLett = /[a-zA-Z]/;
     if (id) {
-        if (id.length <= 5 && !regexNum.test(id)) {
+        if (id.length <= 10 && !regexNum.test(id)) {
             return state.tables
         } else if (regexNum.test(id) === true && regexLett.test(id) === false && id.length <= 4) {
             return state.tables.filter((table) => table.id === id)
