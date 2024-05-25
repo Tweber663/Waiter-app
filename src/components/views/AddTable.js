@@ -26,18 +26,23 @@ const AddTable = () => {
     let targetValue = e.target.value;
     e.preventDefault();
     setInputValue(targetValue)
-    const regEx = /^[1-6]$/;
-    if (/[a-zA-Z}+]/.test(targetValue)) {
+    const regEx = /^[1-9]$|^10$/;
+    if (/[a-zA-Z]/.test(targetValue)) {
         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 4, notTriggered: false}));
         setInputValue('')
         setTableNum('');
-    } else if (regEx.test(targetValue) && targetValue <= 6) {
+        setVerifyInfo(false)
+    } else if (regEx.test(targetValue) && targetValue <= 10) {
+        console.log(true)
         setVerifyInfo(true)
         setTableNum(targetValue);
-    } else if (targetValue == 0  || targetValue > 10 && !undefined){
+    } else if (targetValue == 0  || targetValue > 10 || targetValue === !undefined){
+        setVerifyInfo(false)
         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
         setInputValue('')
         setTableNum('');
+    } else {
+        console.log(true)
     }
    }
 
@@ -46,12 +51,19 @@ const AddTable = () => {
     if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
         dispatch(fetchTablePost(tableTemp.addTableTempOrder[0]))
         setVerifyInfo(false);
+        setAddClicked(false);
         } else if (ifTableLimit){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
-        } else if (tableNum === 0 || tableNum > 6){
+            setInputValue('')
+            setTableNum('');
+        } else if (tableNum === 0 || tableNum > 10){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 2, notTriggered: false}));
+            setInputValue('')
+            setTableNum('');
         } else if (ifTableIdUsed) {
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 3, notTriggered: false}));
+            setInputValue('')
+            setTableNum('');
         } else {
             console.log('evrything else')
         }
@@ -68,14 +80,15 @@ const AddTable = () => {
 
     const clickOutside = (e) => {
         e.preventDefault();
-        console.log(e.target.className);
-
        if (e.target.classList.contains("AddTable_mainBox__nXfWC")) {
         setAddClicked(false)
+        setInputValue("");
        }
     }
 
-    
+    console.log('tableNum:', tableNum)
+
+
     return (
         <div onClick={clickOutside}  className={clsx(styles.mainBox, addClicked && styles.mainBoxVisible)}>
             <div className={styles.btnBox}>

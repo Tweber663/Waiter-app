@@ -9,7 +9,7 @@ import { Container } from "react-bootstrap"
 const Home = () => {
 
     return (
-       <div>
+       <div className={styles.boxEntireApp}>
         <Container>
         <TableError/>
         <Tables/>

@@ -1,13 +1,25 @@
-.messBlockDisspear {
-    display: none;
-
+.messBlock {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
 }
+
+.messBlockAppear {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 40px;
+}
+
 .messBox {
-    z-index: 2;
-    max-width: 200px;
+    width: 190px;
     text-align: center;
     position: absolute;
-    top: 100px;
+    top: 60px;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(255, 255, 255);
@@ -16,10 +28,12 @@
     padding-top: 20px;
 }
 
+
 .mess {
     color: rgb(0, 0, 0);
-    font-weight: 400px;
+    font-weight: 300;
     padding: 10px;
+    font-family:'Manrope', Courier, monospace
 }
 
 .messBtn {
@@ -43,11 +57,3 @@
     border-top: 1px solid grey;
 }
 
-.messBlock {
-    z-index: 1;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    right: 0;
-}
