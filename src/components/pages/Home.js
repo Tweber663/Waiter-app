@@ -14,7 +14,6 @@ const Home = () => {
         <TableError/>
         <Tables/>
         </Container>
-        <AddTable/>
         <Navigation/>
         {/* <Footer/> */}
        </div> 

@@ -28,7 +28,7 @@ const TableSearch = (passed) => {
                     type="text"
                     className={clsx("form-control", styles.searchInput, isVisible && styles.visible)}
                     placeholder="Search..."
-                    maxlength="10"
+                    maxLength="10"
                 />
             </form>
         </div>

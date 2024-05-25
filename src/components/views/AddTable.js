@@ -7,6 +7,7 @@ import { tableErrMsg } from "../../redux/tableRedux";
 import styles from './AddTable.module.scss'
 import { updateStore } from "../../redux/tableRedux";
 import { addTableTemplate } from "../../redux/tableRedux";
+import clsx from "clsx";
 
 const AddTable = () => {
 
@@ -19,6 +20,7 @@ const AddTable = () => {
    const ifTableIdUsed = useSelector(state => ifTableAlredyExists(tableNum, state));
    const ifTableLimit = useSelector(state => ifTableLimitReached(state));
    const currentStateMess = useSelector(state => state.tables.Message);
+   const [addClicked, setAddClicked] = useState(false);
 
    const verifyHandler = (e) => {
     let targetValue = e.target.value;
@@ -59,15 +61,34 @@ const AddTable = () => {
         e.preventDefault()
     }
 
+    const selectTableDispatch = (e) => {
+        e.preventDefault();
+        setAddClicked(true);
+    }
+
+    const clickOutside = (e) => {
+        e.preventDefault();
+        console.log(e.target.className);
+
+       if (e.target.classList.contains("AddTable_mainBox__nXfWC")) {
+        setAddClicked(false)
+       }
+    }
 
     
     return (
-        <div className={styles.mainBox}>
-            <button className={styles.btn} onClick={addDispatch}>+</button>
-            <form onSubmit={submitHandler} className={styles.addTableForm}>
-                <label>Table Number:</label>
-                <input name="verify" defaultValue={devault} value={inputValue} className="form-control" onChange={verifyHandler} type="text"></input>
-            </form>
+        <div onClick={clickOutside}  className={clsx(styles.mainBox, addClicked && styles.mainBoxVisible)}>
+            <div className={styles.btnBox}>
+                 <button className={styles.btn} onClick={selectTableDispatch}>+</button>
+            </div>
+            
+            <div className={clsx(styles.formBox, addClicked && styles.formBoxVisible)}>
+            <h1 className={styles.title}>Add Table number:</h1>
+                <form onSubmit={submitHandler} className={styles.addTableForm}>
+                    <input name="verify" defaultValue={devault} value={inputValue} className="form-control" onChange={verifyHandler} type="text"></input>
+                    <button className='btn btn-warning' onClick={addDispatch}>Add</button>
+                </form>
+            </div>
         </div>
     )
 }

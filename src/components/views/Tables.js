@@ -40,6 +40,7 @@ const Tables = () => {
                         </div>
                     )}
             </div>
+            <AddTable/>
         </div>
     );
 };
