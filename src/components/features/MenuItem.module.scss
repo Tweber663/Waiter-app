@@ -40,7 +40,7 @@
     padding-left: 3px;
     max-width: 25px;
     margin: 0 5px;
-    border: 1px blue solid;
+    border: 1px rgb(0, 0, 0) solid;
     border-radius: 5px;
 }
 
@@ -76,5 +76,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+input[type="checkbox"] {
+    margin-top: 4px;
+    margin-left: 4px;
+    width: 10px;
+    height: 10px;
+    accent-color: rgb(0, 0, 0);
+}
+
 
 

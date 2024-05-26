@@ -130,7 +130,6 @@ export const addTableTemplate = (state, tableId) => {
 }
 
 export const searchFilter = (state, id) => {
-    console.log(id.slice(5));
     const regexNum = /\d/;
     const regexLett = /[a-zA-Z]/;
     if (id) {
@@ -158,7 +157,6 @@ const tablesReducer = (statePart = [], action) => {
         case "DELETING_TABLE":
          return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
         case GETTING_INFO:
-
             if (action.payload.length > 0) {
                 return {
                     ...statePart,
@@ -167,7 +165,7 @@ const tablesReducer = (statePart = [], action) => {
                     fetched: true,
                     addTableTempOrder: statePart.tables.addTableTempOrder,
                     menuOrderTemp: action.payload.map((table, index) => ({
-                    tableId: table.id, // Assuming you want to set tableId to the id from the payload
+                    tableId: table.id, 
                     orderMenu: table.menuOrder,
                     }))
                   };

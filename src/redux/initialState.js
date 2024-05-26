@@ -11,7 +11,7 @@ const initialState = {
     menuOrderTemp: [],
     addTableTempOrder: [ {
       id: '',
-      status: "Busy",
+      status: "Free",
       peopleAmount: "2",
       maxPeopleAmount: "4",
       bill: "0",

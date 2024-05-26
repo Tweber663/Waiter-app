@@ -18,7 +18,7 @@ const Navigation = () => {
                 </NavLink>
             </div>
             <div className={clsx(styles.box3, styles.iconBox)}>
-                <NavLink to={"/home"}>
+                <NavLink to={"/orders"}>
                 <img alt='tableIcon' src={`${process.env.PUBLIC_URL}/images/nav/time.png`}/>
                 </NavLink>
             </div>

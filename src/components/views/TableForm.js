@@ -35,8 +35,8 @@ const TableForm = () => {
 
     const [pepAmount, setPepAmount] = useState(peopleAmount);
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
-    const [slider1, setSlider1] = useState(true); 
-    const [slider2, setSlider2] = useState(false);
+    const [slider1, setSlider1] = useState(false); 
+    const [slider2, setSlider2] = useState(true);
     
     const handlerChange1 = (e) => {
         setPepAmount(e.target.value)
@@ -94,10 +94,12 @@ const TableForm = () => {
     return (
         <div className={styles.formBox}>
         <form onSubmit={submitHandler}>
-
-
-        
-        <div className={clsx(styles.slider1_btn)} onClick={slider1Handler} >Table detials V</div>
+        <div  className={clsx(styles.slider1_btn, slider1 && styles.slider1_btnActive)} onClick={slider1Handler}>
+            <div className={styles.title}>Table details</div>
+            <div className={clsx(styles.vSymbolBox)}>
+                <img className={clsx(styles.vSymbol, slider1 && styles.vSymbolRotateDown, !slider1 && styles.vSymbolRotateUp)} src={`${process.env.PUBLIC_URL}/images/arrow.png`}/>
+            </div>
+        </div>
         <div className={clsx(styles.slider1_content, slider1 && styles.slider1_content_visible)}>
 
            <div className={styles.formType}>
@@ -131,7 +133,7 @@ const TableForm = () => {
             </div>
         </div>
 
-        <div onClick={slider2Handler} className={styles.slider2_btn}>
+        <div onClick={slider2Handler} className={clsx(styles.slider2_btn, slider2 && styles.slider2_btnActive)}>
             <div className={styles.title}>Menu</div>
             <div className={clsx(styles.vSymbolBox)}>
                 <img className={clsx(styles.vSymbol, slider2 && styles.vSymbolRotateDown, !slider2 && styles.vSymbolRotateUp)} src={`${process.env.PUBLIC_URL}/images/arrow.png`}/>
@@ -140,7 +142,9 @@ const TableForm = () => {
         <div className={clsx(styles.slider2_content, slider2 && styles.slider2_content_visible, !slider1 && styles.slider2_content_extended)}>
             <MenuSelect selectedTable={menuOrderTemp}/>
         </div>
-            {/* <button className="btn btn-primary" onClick={handleBlur}>Submit</button> */}
+             <div>
+                <button className={styles.btn} onClick={handleBlur}>+</button>
+            </div>
         </form>
       
         </div>

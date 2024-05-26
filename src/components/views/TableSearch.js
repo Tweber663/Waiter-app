@@ -17,8 +17,6 @@ const TableSearch = (passed) => {
         setIsVisible(!isVisible); // Toggle visibility
     }
 
-    console.log(isVisible);
-
     return (
         <div className={styles.mainBox}>
             <form>

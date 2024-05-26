@@ -42,9 +42,12 @@
 }
 
 .slider1_btn {
-    z-index: 10;
+    padding: 4px 14px;
+    display: flex;
     border: 1px solid black;
-    border-radius: 5px;
+    justify-content: space-between;
+    z-index: 10;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -54,6 +57,10 @@
     opacity: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.slider1_btnActive {
+    box-shadow: 0px 2px 3px rgb(151, 151, 151)
 }
 
 .slider1_content_visible {
@@ -71,6 +78,11 @@
     z-index: 10;
     border-radius: 10px;
     cursor: pointer;
+    margin-top: 5px;
+}
+
+.slider2_btnActive {
+    box-shadow: 0px 2px 3px rgb(151, 151, 151)
 }
 
 
@@ -89,8 +101,8 @@
 
 .title {
     font-family: 'Manrope', Courier, monospace;
-    font-size: 20px;
-    font-weight: 100;
+    font-size: 16px;
+    font-weight: 300;
     display: inline-block;
   }
 
@@ -130,12 +142,29 @@
   }
 
 
-
 .formBox {
     height: 80vh;
     overflow: hidden;
 }
 
+
+.btn {
+    position: fixed;
+    z-index: 5;
+    width: 50px;  /* Adjust button size as needed */
+    height: 50px; /* Adjust button size as needed */
+    background-color: #ff4d4d; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 50%; /* Make it a circular button */
+    font-size: 24px; /* Font size for the + sign */
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    right: 12px;
+    bottom: 85px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Add a shadow for better visibility */
+  }
 
 
 

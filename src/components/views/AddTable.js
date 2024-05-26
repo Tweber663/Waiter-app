@@ -24,10 +24,6 @@ const AddTable = () => {
    const [addClicked, setAddClicked] = useState(false);
 
    
-   const errorMsg = useSelector(state => tableErrMsgCheck(state));
-   const {notTriggered, error} = errorMsg;
-   //notTriggered = false (error activated)
-
    const verifyHandler = (e) => {
     let targetValue = e.target.value;
     e.preventDefault();
@@ -91,8 +87,6 @@ const AddTable = () => {
         setInputValue("");
        }
     }
-
-    console.log('tableNum:', tableNum)
 
 
     return (
