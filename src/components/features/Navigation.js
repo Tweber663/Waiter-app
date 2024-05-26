@@ -8,7 +8,7 @@ const Navigation = () => {
         <div className={styles.background}>
 
             <div className={styles.iconBox}>
-                <NavLink to={"/"}>
+                <NavLink to={"/home"}>
                 <img alt='tableIcon' src={`${process.env.PUBLIC_URL}/images/nav/table.png`}/>
                 </NavLink>
             </div>

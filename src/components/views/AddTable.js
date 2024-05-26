@@ -8,6 +8,7 @@ import styles from './AddTable.module.scss'
 import { updateStore } from "../../redux/tableRedux";
 import { addTableTemplate } from "../../redux/tableRedux";
 import clsx from "clsx";
+import { tableErrMsgCheck } from "../../redux/tableRedux";
 
 const AddTable = () => {
 
@@ -21,6 +22,11 @@ const AddTable = () => {
    const ifTableLimit = useSelector(state => ifTableLimitReached(state));
    const currentStateMess = useSelector(state => state.tables.Message);
    const [addClicked, setAddClicked] = useState(false);
+
+   
+   const errorMsg = useSelector(state => tableErrMsgCheck(state));
+   const {notTriggered, error} = errorMsg;
+   //notTriggered = false (error activated)
 
    const verifyHandler = (e) => {
     let targetValue = e.target.value;

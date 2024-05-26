@@ -4,16 +4,18 @@ import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { updateMenuItem } from '../../redux/tableRedux';
+import { checkMenuItem } from '../mechanisms/brains';
 
 const MenuItem = ({selectedTable, menuItems}) => {
     const dispatch = useDispatch();
+
 
     // let {status, bill, id, info, maxPeopleAmount, peopleAmount, menuOrder} = selectedTable;
     let {title, id, photo, basePrice, totalAmount, checkbox, quantity, tableNum} = menuItems;
     
     const [count, setCount] = useState(quantity);
     const [checked, setChecked] = useState(checkbox);
-    const [totalAmou, setTotalAmu] = useState(totalAmount)
+
 
 
     const onChangeAdd = (e) => {
@@ -51,10 +53,11 @@ const MenuItem = ({selectedTable, menuItems}) => {
         dispatch(updateMenuItem({
             title, 
             id, 
+            tableNum,
             photo, 
             checkbox: checked,
             basePrice: basePrice,
-            quantity: count + 1,
+            quantity: count - 1,
             totalAmount: test === false? totalAmount - basePrice : 0
          }))
     }
@@ -64,7 +67,8 @@ const MenuItem = ({selectedTable, menuItems}) => {
             <div className={styles.orderBox}>
                 <input onChange={temp} checked={checked} type="checkbox"></input>
                 <div className={styles.orderCost}>
-                <p>{totalAmount}</p>
+
+                <p>${totalAmount}</p>
                 <p>{basePrice}</p>
                 </div>
                 <div className={styles.orderView}>

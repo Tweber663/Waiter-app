@@ -38,12 +38,103 @@
 }
 
 .textarea {
-   height: 80px;
-   max-height: 80px;
+   height: 20px;
+}
+
+.slider1_btn {
+    z-index: 10;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.slider1_content {
+    z-index: 5;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.slider1_content_visible {
+    opacity: 1;
+    max-height: 500px; /* Adjust this value based on the maximum height needed */
 }
 
 
 
+.slider2_btn {
+    padding: 4px 14px;
+    display: flex;
+    border: 1px solid black;
+    justify-content: space-between;
+    z-index: 10;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.slider2_content {
+    z-index: 5;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.slider2_content_visible {
+    opacity: 1;
+    max-height: 100vh;
+}
+
+.title {
+    font-family: 'Manrope', Courier, monospace;
+    font-size: 20px;
+    font-weight: 100;
+    display: inline-block;
+  }
+
+  .vSymbolBox{
+    display: flex;
+    align-items: center;
+  }
+
+  .vSymbol {
+    display: inline-block;
+    width: 15px;
+    height: 7px;
+  } 
+
+  .vSymbolRotateDown {
+    animation: flipDown 300ms forwards;
+    @keyframes flipDown {
+        from {
+            transform: rotateX(0deg);
+        }
+        to {
+            transform: rotateX(180deg);
+        }
+    }
+  }
+
+  .vSymbolRotateUp {
+    animation: flipUp 300ms forwards;
+    @keyframes flipUp {
+        from {
+            transform: rotateX(180deg);
+        }
+        to {
+            transform: rotateX(0deg);
+        }
+    }
+  }
+
+
+
+.formBox {
+    height: 80vh;
+    overflow: hidden;
+}
 
 
 

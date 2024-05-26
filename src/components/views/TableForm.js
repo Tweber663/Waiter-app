@@ -8,9 +8,10 @@ import { fetchingTables } from "../../redux/tableRedux";
 import { fetchingTablesPUT } from "../../redux/tableRedux";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
-import Footer from "../common/Footer";
 import MenuSelect from "../features/MenuSelect";
 import { checkMenuOrderId } from "../../redux/tableRedux";
+import Navigation from "../features/Navigation";
+
 const TableForm = () => {
     const disptach = useDispatch();
     
@@ -26,8 +27,6 @@ const TableForm = () => {
     //Getting table information from store
     const table = useSelector(state => selectedTable({state, id}));
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
-    console.log(menuOrderTemp)
-
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
 
     if (status !== "Busy") bill = "0";
@@ -36,6 +35,8 @@ const TableForm = () => {
 
     const [pepAmount, setPepAmount] = useState(peopleAmount);
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
+    const [slider1, setSlider1] = useState(true); 
+    const [slider2, setSlider2] = useState(false);
     
     const handlerChange1 = (e) => {
         setPepAmount(e.target.value)
@@ -79,12 +80,26 @@ const TableForm = () => {
         }
     }
 
+
+    const slider1Handler = () => {
+        setSlider1(current => !current)
+    }
+    const slider2Handler = () => {
+        setSlider2(current => !current)
+    }
+
     var pattern = /[a-zA-Z]/;
     if( id > 30 || pattern.test(id)) return <Navigate to="/"/>
     if (table.length == 0) return <p>Loading...</p>
     return (
-        <div>
+        <div className={styles.formBox}>
         <form onSubmit={submitHandler}>
+
+
+        
+        <div className={clsx(styles.slider1_btn)} onClick={slider1Handler} >Table detials V</div>
+        <div className={clsx(styles.slider1_content, slider1 && styles.slider1_content_visible)}>
+
            <div className={styles.formType}>
             <label className={styles.label1}>Status</label>
             {status && (
@@ -114,10 +129,20 @@ const TableForm = () => {
                 <label className={styles.label4} >Notes</label>
                 <textarea defaultValue={info} name="textInfo" className={clsx("form-control", styles.textarea)}></textarea>
             </div>
-            <button className="btn btn-primary" onClick={handleBlur}>Submit</button>
-            <MenuSelect selectedTable={table}/>
-            <Footer/>
+        </div>
+
+        <div onClick={slider2Handler} className={styles.slider2_btn}>
+            <div className={styles.title}>Menu</div>
+            <div className={clsx(styles.vSymbolBox)}>
+                <img className={clsx(styles.vSymbol, slider2 && styles.vSymbolRotateDown, !slider2 && styles.vSymbolRotateUp)} src={`${process.env.PUBLIC_URL}/images/arrow.png`}/>
+            </div>
+        </div>
+        <div className={clsx(styles.slider2_content, slider2 && styles.slider2_content_visible, !slider1 && styles.slider2_content_extended)}>
+            <MenuSelect selectedTable={menuOrderTemp}/>
+        </div>
+            {/* <button className="btn btn-primary" onClick={handleBlur}>Submit</button> */}
         </form>
+      
         </div>
 
     )
