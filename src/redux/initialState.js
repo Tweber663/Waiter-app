@@ -9,6 +9,7 @@ const initialState = {
     ],
     fetched: false,
     menuOrderTemp: [],
+    placedOrders: [],
     addTableTempOrder: [ {
       id: '',
       status: "Free",

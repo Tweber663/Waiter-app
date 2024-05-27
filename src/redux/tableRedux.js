@@ -2,11 +2,50 @@ import { useSelector } from "react-redux";
 import { API_URL } from "../config";
 import { tab } from "@testing-library/user-event/dist/tab";
 import { combineReducers } from "redux";
+import Orders from "../components/pages/Orders";
 //**actionTypes
 const actionType1 =  (type) => `app/tables/${type}`;
 const GETTING_INFO = actionType1('GETTING_INFO')
 
 //**Action creatores
+export const orderPlacedPost = (orders) => {
+   return (dispatch) => {
+    orders.forEach((order) => {
+        const options = {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: {order.map((menuItem) => {})
+        }
+        fetch(`${API_URL}/placedOrders`, options);
+        console.log(options);
+    })
+   } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Respo for fetching the info + passing the info to action creator
 export const fetchingTables = () => {
     return(dispatch) => {  
@@ -114,7 +153,6 @@ export const checkMenuOrderId = (state, id) => {
     })
     return filtered;
 }
-
 export const addTableTemplate = (state, tableId) => {
     let filteredTable = ''
     let filteredMenu = ''
@@ -148,6 +186,21 @@ export const searchFilter = (state, id) => {
         return state.tables
     }
 }
+export const checkingforOrders = (state) => {
+
+ const orders = state.tables.tables.map((table) => table.menuOrder.filter((menuItem) => menuItem.quantity > 0))
+ 
+ const activeOrders = orders.filter((order) => {
+    if (order.length) {
+        return order; 
+    } 
+ })
+    if (activeOrders.length) {
+    return activeOrders
+    } 
+
+    return [];
+}
 
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
@@ -167,6 +220,7 @@ const tablesReducer = (statePart = [], action) => {
                     menuOrderTemp: action.payload.map((table, index) => ({
                     tableId: table.id, 
                     orderMenu: table.menuOrder,
+                    placedOrders: [],
                     }))
                   };
             }
@@ -191,7 +245,6 @@ const tablesReducer = (statePart = [], action) => {
         let filteredOrder = ''
         filteredTables = statePart.tables.menuOrderTemp.map((table) => {
             if (table.tableId == action.payload.tableNum) {
-
                 filteredOrder = table.orderMenu.map((order) => {
                     if (order.title == action.payload.title) {
                         return {
