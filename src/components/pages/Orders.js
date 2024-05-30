@@ -21,20 +21,14 @@ const Orders = () => {
 
     const activeOrders = useSelector(state => (checkingforOrders(state)));
 
-    
-    useEffect(() => {
-        dispatch(orderPlacedPost(activeOrders))
-    }, [activeOrders]);
 
     return (
         <div>
              <Container>
-                 <h1 className={styles.title}>Orders</h1>
-                 {activeOrders.map((table) => (
-                    table.map((order) => (
-                        <h1>{order.title}, {order.totalAmount}, {order.tableNum}</h1>
-                    ))
-                 ))}
+                 <h4 className={styles.title}>Orders</h4>
+                 {activeOrders.map((order) => (
+                        <h4>{order.title}, {order.totalAmount}, {order.tableNum}</h4>
+                    ))}
              </Container>
             <Navigation/>
         </div>

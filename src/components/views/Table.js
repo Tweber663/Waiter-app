@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const Table = (table) => {
 
-    const {id,status, peopleAmount, maxPeopleAmount, bill} = table.table;
+    const {id,status, peopleAmount, maxPeopleAmount, bill, timeStamp} = table.table;
 
     const [isBusy, setIsBusy] = useState(false);
 
@@ -30,7 +30,7 @@ const Table = (table) => {
                 </div>
 
                 <div className={styles.middle}>
-                <h6>14:34</h6>
+                <h6>{timeStamp}</h6>
                 <h6>{status}</h6>
                 <h6>{peopleAmount}/{maxPeopleAmount}</h6>
                 <h6 className={styles.bill}>${bill}</h6>

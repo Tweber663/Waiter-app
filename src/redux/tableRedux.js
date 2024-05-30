@@ -9,20 +9,31 @@ const GETTING_INFO = actionType1('GETTING_INFO')
 
 //**Action creatores
 export const orderPlacedPost = (orders) => {
-   return (dispatch) => {
-    orders.forEach((order) => {
+
+   return () => {
+   
         const options = {
-            method: 'PUT', 
+            method: 'POST', 
             headers: {
                 'Content-Type': 'application/json'
             }, 
-            body: {order.map((menuItem) => {})
+            body: JSON.stringify(
+                orders.map((menu) => {
+                    return {
+                        tableNumber: menu.tableNum,
+                        title: menu.base,
+                        menuId: menu.id,
+                        quantity: menu.quantity, 
+                        totalAmount: menu.totalAmount, 
+                        basePrice: menu.basePrice, 
+                        photo: menu.photo
+                    }
+                })
+            )
         }
         fetch(`${API_URL}/placedOrders`, options);
-        console.log(options);
-    })
+    }
    } 
-}
 
 
 
@@ -187,19 +198,20 @@ export const searchFilter = (state, id) => {
     }
 }
 export const checkingforOrders = (state) => {
+    let newArr = [];
+    const orders = state.tables.tables.map((table) => table.menuOrder.filter((menuItem) => menuItem.quantity > 0))
+    
+    orders.forEach((table) => {
+        table.forEach((orderItem) => {
+            newArr.push(orderItem);
+        })
+    })
 
- const orders = state.tables.tables.map((table) => table.menuOrder.filter((menuItem) => menuItem.quantity > 0))
- 
- const activeOrders = orders.filter((order) => {
-    if (order.length) {
-        return order; 
-    } 
- })
-    if (activeOrders.length) {
-    return activeOrders
-    } 
-
-    return [];
+    if (newArr.length) {
+        return newArr
+    } else {
+        return [];
+    }
 }
 
 //**Subreducers

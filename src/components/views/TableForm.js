@@ -10,17 +10,18 @@ import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import MenuSelect from "../features/MenuSelect";
 import { checkMenuOrderId } from "../../redux/tableRedux";
-import Navigation from "../features/Navigation";
+import { checkingforOrders } from "../../redux/tableRedux";
+import { orderPlacedPost } from "../../redux/tableRedux";
 
 const TableForm = () => {
-    const disptach = useDispatch();
+    const dispatch = useDispatch();
     
     const navigate = useNavigate();
     
     //Sends fetch request
     useEffect(() => {
-        disptach(fetchingTables());
-    }, [disptach]) //Stops from erros / get's triggered once
+        dispatch(fetchingTables());
+    }, [dispatch]) //Stops from erros / get's triggered once
 
     //Current table id
     const {id} = useParams();
@@ -37,7 +38,14 @@ const TableForm = () => {
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
-    
+    const activeOrders = useSelector(state => (checkingforOrders(state)));
+
+    const now = new Date();
+
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+
+
     const handlerChange1 = (e) => {
         setPepAmount(e.target.value)
     }
@@ -53,16 +61,18 @@ const TableForm = () => {
     }
     const submitHandler = (e) => {
         e.preventDefault();
-        disptach(fetchingTablesPUT({
+        dispatch(fetchingTablesPUT({
             id, 
             status: e.target.selectStatus.value,
             peopleAmount: e.target.peopleAmount.value, 
             maxPeopleAmount: e.target.maxPeopleAmount.value, 
             bill: e.target.bill.value,
             info: e.target.textInfo.value,
-            menuOrder: menuOrderTemp[0].orderMenu
+            menuOrder: menuOrderTemp[0].orderMenu,
+            timeStamp: now.toLocaleTimeString().slice(0, 5)
         }));
         navigate("/")
+        dispatch(orderPlacedPost(activeOrders))
     }
 
 
