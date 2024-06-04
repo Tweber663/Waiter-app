@@ -6,14 +6,12 @@ import { checkingforOrders } from "../../redux/tableRedux"
 import { useEffect } from "react"
 import { fetchingTables } from "../../redux/tableRedux"
 import { useDispatch } from "react-redux"
-import { orderPlacedPost } from "../../redux/tableRedux"
 import { useState } from "react"
+import Order from "../features/order"
 
 const Orders = () => {
 
     const dispatch = useDispatch(); 
-
-    const [active, setActive] = useState([]);
 
     useEffect(() => {
         dispatch(fetchingTables());
@@ -21,14 +19,17 @@ const Orders = () => {
 
     const activeOrders = useSelector(state => (checkingforOrders(state)));
 
-
     return (
         <div>
              <Container>
-                 <h4 className={styles.title}>Orders</h4>
-                 {activeOrders.map((order) => (
-                        <h4>{order.title}, {order.totalAmount}, {order.tableNum}</h4>
-                    ))}
+                 <h4 className={styles.title}>Active Orders</h4>
+                    <div className={styles.orderBox}>
+                        <ul>
+                            {activeOrders.map((table) => (
+                                <Order id={table.tableId} table={table}/>
+                            ))}
+                        </ul>
+                    </div>
              </Container>
             <Navigation/>
         </div>

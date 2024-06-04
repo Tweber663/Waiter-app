@@ -22,9 +22,8 @@ const Tables = () => {
         setTableFetched(true);
     }, [dispatch]) //Stops from erros / get's triggered once
       
-
     const addedTables = useSelector(state => searchFilter(state.tables, searchId));
-    console.log('pre-render:', addedTables)
+
     return (
         <div>
             <TableSearch setSearchId={setSearchId}/>

@@ -8,8 +8,8 @@ import shortid from 'shortid';
 
 const MenuSelect = (passed) => {
     return (
-             <div className={clsx(styles.orderMenu)}>
-                {passed.selectedTable[0].orderMenu.map((order) => (
+             <div className={clsx(styles.menuOrder)}>
+                {passed.selectedTable[0].menuOrder.map((order) => (
                     <MenuItem id={shortid} menuItems={order} selectedTable={passed.selectedTable[0]}/>
                 ))}
             </div>

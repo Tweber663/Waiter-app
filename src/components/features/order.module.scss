@@ -1,0 +1,76 @@
+
+.orderBox {
+    border-bottom: 1px solid black;
+}
+.outerBox {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+}
+
+// .outerBox::after {
+//     content: '';
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     width: 200px;
+//     height: 1px;
+//     border: 1px solid black;
+// }
+
+.outerBox div {
+    display: inline-block;
+    font-size: 18px
+}
+
+
+.orderBox ul {
+    padding: 0;
+}
+
+.innerBox {
+    position: relative;
+    opacity: 1;
+    overflow: hidden;
+    max-height: 100vh;
+    transition: opacity 400ms ease, max-height 400ms ease;
+    margin: 10px 0;
+}
+
+.innerBoxHidden {
+    opacity: 0;
+    max-height: 0;
+}
+
+.arrowImg {
+    display: inline-block;
+    height: 7px;
+    width: 15px;
+}
+
+.arrowFlipDown {
+    animation: flipUp 300ms forwards;
+    @keyframes flipUp {
+        from {
+            transform: rotateX(180deg)
+        }
+        to {
+            transform: rotateX(0deg)
+        }
+    }
+}
+
+.arrowFlipUp {
+    animation: flipDown 300ms forwards;
+    @keyframes flipDown {
+        from {
+            transform: rotateX(0deg);
+        }
+        to {
+            transform: rotateX(180deg)
+        }
+    }
+}

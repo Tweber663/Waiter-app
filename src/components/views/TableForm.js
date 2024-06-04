@@ -12,6 +12,7 @@ import MenuSelect from "../features/MenuSelect";
 import { checkMenuOrderId } from "../../redux/tableRedux";
 import { checkingforOrders } from "../../redux/tableRedux";
 import { orderPlacedPost } from "../../redux/tableRedux";
+import { orderPlacedPut } from "../../redux/tableRedux";
 
 const TableForm = () => {
     const dispatch = useDispatch();
@@ -25,7 +26,6 @@ const TableForm = () => {
 
     //Current table id
     const {id} = useParams();
-    //Getting table information from store
     const table = useSelector(state => selectedTable({state, id}));
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
@@ -38,13 +38,11 @@ const TableForm = () => {
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
+    const [fetchType, setFetchType] = useState(fetchingTablesPUT)
     const activeOrders = useSelector(state => (checkingforOrders(state)));
+    console.log('Active Orders:', activeOrders)
 
     const now = new Date();
-
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-
 
     const handlerChange1 = (e) => {
         setPepAmount(e.target.value)
@@ -59,6 +57,8 @@ const TableForm = () => {
         if (maxPepAmount < 1 || maxPepAmount > 10) setMaxPepAmount(1);
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
+
+
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(fetchingTablesPUT({
@@ -68,11 +68,13 @@ const TableForm = () => {
             maxPeopleAmount: e.target.maxPeopleAmount.value, 
             bill: e.target.bill.value,
             info: e.target.textInfo.value,
-            menuOrder: menuOrderTemp[0].orderMenu,
+            orderPlaced: true,
+            menuOrder: menuOrderTemp[0].menuOrder,
             timeStamp: now.toLocaleTimeString().slice(0, 5)
         }));
         navigate("/")
-        dispatch(orderPlacedPost(activeOrders))
+        if (activeOrders && !table[0].orderPlaced) dispatch(orderPlacedPost(activeOrders, id))
+        if (activeOrders && table[0].orderPlaced) dispatch(orderPlacedPut(activeOrders, id))
     }
 
 
@@ -153,7 +155,11 @@ const TableForm = () => {
             <MenuSelect selectedTable={menuOrderTemp}/>
         </div>
              <div>
-                <button className={styles.btn} onClick={handleBlur}>+</button>
+                {!table[0].orderPlaced? (
+                <button className={styles.btn} onClick={handleBlur}>++</button>
+                ) : (
+                <button className={styles.btn} onClick={handleBlur}>🔄️</button>) 
+                }
             </div>
         </form>
       

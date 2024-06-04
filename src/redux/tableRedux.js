@@ -3,57 +3,85 @@ import { API_URL } from "../config";
 import { tab } from "@testing-library/user-event/dist/tab";
 import { combineReducers } from "redux";
 import Orders from "../components/pages/Orders";
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import { Container } from "react-bootstrap";
 //**actionTypes
 const actionType1 =  (type) => `app/tables/${type}`;
 const GETTING_INFO = actionType1('GETTING_INFO')
 
 //**Action creatores
-export const orderPlacedPost = (orders) => {
-
+export const orderPlacedPost = (activeOrders, id) => {
    return () => {
-   
-        const options = {
+    let options = ''
+    activeOrders.forEach((table) => {
+        options = {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json'
             }, 
-            body: JSON.stringify(
-                orders.map((menu) => {
-                    return {
-                        tableNumber: menu.tableNum,
-                        title: menu.base,
-                        menuId: menu.id,
-                        quantity: menu.quantity, 
-                        totalAmount: menu.totalAmount, 
-                        basePrice: menu.basePrice, 
-                        photo: menu.photo
-                    }
-                })
-            )
+            body: JSON.stringify({
+                id, 
+                order: 
+                    table.menuOrder.map((menu) => {
+                        return {
+                            id: menu.tableNum,
+                            title: menu.title,
+                            quantity: menu.quantity, 
+                            totalAmount: menu.totalAmount, 
+                            basePrice: menu.basePrice, 
+                            photo: menu.photo
+                        }
+                    })
+            })
         }
-        fetch(`${API_URL}/placedOrders`, options);
+    })
+        fetch(`${API_URL}/placedOrders/`, options);
     }
-   } 
+} 
 
+export const orderPlacedPut = (activeOrders, id) => {
+     return () => {
+      let options = ''
+      activeOrders.forEach((table) => {
+          options = {
+              method: 'PUT', 
+              headers: {
+                  'Content-Type': 'application/json'
+              }, 
+              body: JSON.stringify({
+                  id, 
+                  order: 
+                      table.menuOrder.map((menu) => {
+                          return {
+                              id: menu.tableNum,
+                              title: menu.title,
+                              quantity: menu.quantity, 
+                              totalAmount: menu.totalAmount, 
+                              basePrice: menu.basePrice, 
+                              photo: menu.photo
+                          }
+                      })
+              })
+          }
+      })
+          fetch(`${API_URL}/placedOrders/${id}`, options);
+      }
+  } 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  export const orderPlacedPutReset = (deletedOrder, id) => {
+    console.log(deletedOrder)
+    debugger
+    return () => {
+        const options = {
+            method: "PUT", 
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify(deletedOrder)
+        }
+        fetch(`${API_URL}/placedOrders/${id}`, options);
+    }
+  }
 
 
 
@@ -102,6 +130,8 @@ export const deleteTable = (id) => {
 
 export const fetchingTablesPUT = (updatedTable) => {
     return (dispatch) => {
+        debugger
+        console.log(updatedTable)
         const options = {
             method: 'PUT', 
             headers: {
@@ -159,7 +189,7 @@ export const menuOrderList = (payload) => payload.tables.tables
 export const checkMenuOrderId = (state, id) => {
     const filtered = state.tables.menuOrderTemp.filter((order) => {
         if (order.tableId == id) {
-            return order.orderMenu
+            return order.menuOrder
         } 
     })
     return filtered;
@@ -198,20 +228,21 @@ export const searchFilter = (state, id) => {
     }
 }
 export const checkingforOrders = (state) => {
-    let newArr = [];
-    const orders = state.tables.tables.map((table) => table.menuOrder.filter((menuItem) => menuItem.quantity > 0))
-    
-    orders.forEach((table) => {
-        table.forEach((orderItem) => {
-            newArr.push(orderItem);
-        })
-    })
+    const tables = state.tables.menuOrderTemp.map((table) => {
+        return  {
+          ...table, 
+          menuOrder: table.menuOrder.filter((order) => order.quantity > 0)
+        };
+      });
 
-    if (newArr.length) {
-        return newArr
-    } else {
-        return [];
-    }
+      const activeOrders = tables.filter((order) => {
+        if (order.menuOrder.length) {
+            return order
+        }
+      })
+      return activeOrders
+
+
 }
 
 //**Subreducers
@@ -231,8 +262,7 @@ const tablesReducer = (statePart = [], action) => {
                     addTableTempOrder: statePart.tables.addTableTempOrder,
                     menuOrderTemp: action.payload.map((table, index) => ({
                     tableId: table.id, 
-                    orderMenu: table.menuOrder,
-                    placedOrders: [],
+                    menuOrder: table.menuOrder,
                     }))
                   };
             }
@@ -252,12 +282,11 @@ const tablesReducer = (statePart = [], action) => {
                     )
                 } 
         case "UPDATING_MENU_ITEM": 
-        console.log(action.payload)
         let filteredTables = ''
         let filteredOrder = ''
         filteredTables = statePart.tables.menuOrderTemp.map((table) => {
             if (table.tableId == action.payload.tableNum) {
-                filteredOrder = table.orderMenu.map((order) => {
+                filteredOrder = table.menuOrder.map((order) => {
                     if (order.title == action.payload.title) {
                         return {
                             basePrice: action.payload.basePrice,
@@ -267,17 +296,25 @@ const tablesReducer = (statePart = [], action) => {
                             quantity: action.payload.quantity,
                             tableNum: action.payload.tableNum,
                             title: action.payload.title,
-                            totalAmount: action.payload.totalAmount
+                            totalAmount: action.payload.totalAmount,
                         }
                     } else {
                         return order
                     }
                 })
+            } else {
+                return table
             }
+
+            console.log({
+                ...table,
+                menuOrder: filteredOrder,
+            })
+            // debugger
 
             return {
                 ...table,
-                orderMenu: filteredOrder,
+                menuOrder: filteredOrder,
             }; 
         })
         return {...statePart.tables, menuOrderTemp: filteredTables}
