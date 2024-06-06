@@ -17,8 +17,6 @@ import { orderPlacedPut } from "../../redux/tableRedux";
 const TableForm = (passed) => {
     const dispatch = useDispatch();
     
-    const navigate = useNavigate();
-    
     //Sends fetch request
     useEffect(() => {
         dispatch(fetchingTables());
@@ -38,16 +36,17 @@ const TableForm = (passed) => {
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
-    const [fetchType, setFetchType] = useState(fetchingTablesPUT)
     const activeOrders = useSelector(state => (checkingforOrders(state)));
     console.log('Active Orders:', activeOrders)
 
 
     const handlerChange1 = (e) => {
+        e.preventDefault();
         setPepAmount(e.target.value)
     }
 
     const handlerChange2 = (e) => {
+        e.preventDefault();
         setMaxPepAmount(e.target.value)
     }
 
@@ -73,7 +72,6 @@ const TableForm = (passed) => {
             menuOrder: menuOrderTemp[0].menuOrder,
             timeStamp: timeStamp,
         }));
-        navigate("/")
         if (activeOrders && !table[0].orderPlaced) dispatch(orderPlacedPost(activeOrders, id, timeStamp))
         if (activeOrders && table[0].orderPlaced) dispatch(orderPlacedPut(activeOrders, id, timeStamp))
         passed.passedTriggerFunc('subimted');
@@ -95,10 +93,12 @@ const TableForm = (passed) => {
     }
 
 
-    const slider1Handler = () => {
+    const slider1Handler = (e) => {
+        e.preventDefault();
         setSlider1(current => !current)
     }
-    const slider2Handler = () => {
+    const slider2Handler = (e) => {
+        e.preventDefault();
         setSlider2(current => !current)
     }
 
