@@ -10,6 +10,12 @@ const actionType1 =  (type) => `app/tables/${type}`;
 const GETTING_INFO = actionType1('GETTING_INFO')
 
 //**Action creatores
+export const orderPlacedGet = () => {
+    return (dispatch) => {
+        fetch(`${API_URL}/placedOrders`).then((raw) => raw.json()).then((converted) => dispatch(getOrderPlaced(converted)))
+    }
+}
+
 export const orderPlacedPost = (activeOrders, id) => {
    return () => {
     let options = ''
@@ -20,8 +26,8 @@ export const orderPlacedPost = (activeOrders, id) => {
                 'Content-Type': 'application/json'
             }, 
             body: JSON.stringify({
-                id, 
-                order: 
+                id: id,
+                menuOrder: 
                     table.menuOrder.map((menu) => {
                         return {
                             id: menu.tableNum,
@@ -49,8 +55,8 @@ export const orderPlacedPut = (activeOrders, id) => {
                   'Content-Type': 'application/json'
               }, 
               body: JSON.stringify({
-                  id, 
-                  order: 
+                  id: id,
+                  menuOrder: 
                       table.menuOrder.map((menu) => {
                           return {
                               id: menu.tableNum,
@@ -68,9 +74,19 @@ export const orderPlacedPut = (activeOrders, id) => {
       }
   } 
 
-  export const orderPlacedPutReset = (deletedOrder, id) => {
-    console.log(deletedOrder)
-    debugger
+  export const orderPlacedDelete = (id) => {
+    return () => {
+        const options = {
+            method: "Delete", 
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+        }
+        fetch(`${API_URL}/placedOrders/${id}`, options)
+    }
+  }
+
+  export const orderPlacedTableReset = (deletedOrder, id) => {
     return () => {
         const options = {
             method: "PUT", 
@@ -79,7 +95,7 @@ export const orderPlacedPut = (activeOrders, id) => {
             }, 
             body: JSON.stringify(deletedOrder)
         }
-        fetch(`${API_URL}/placedOrders/${id}`, options);
+        fetch(`${API_URL}/tables/${id}`, options);
     }
   }
 
@@ -130,8 +146,6 @@ export const deleteTable = (id) => {
 
 export const fetchingTablesPUT = (updatedTable) => {
     return (dispatch) => {
-        debugger
-        console.log(updatedTable)
         const options = {
             method: 'PUT', 
             headers: {
@@ -228,6 +242,8 @@ export const searchFilter = (state, id) => {
     }
 }
 export const checkingforOrders = (state) => {
+    // console.log(state)
+    // debugger
     const tables = state.tables.menuOrderTemp.map((table) => {
         return  {
           ...table, 
@@ -241,13 +257,21 @@ export const checkingforOrders = (state) => {
         }
       })
       return activeOrders
-
-
 }
 
+export const getOrderPlaced = (payload) => {
+    return ({type: "GETTING_ORDERS", payload: payload.map((order) => {
+        return {
+            id: order.id, 
+            menuOrder: order.menuOrder
+        }
+    })})
+} 
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
+        case "GETTING_ORDERS":
+        return {...statePart.tables, ordersServer: action.payload}
         case "UPDATE_STORE":
         return statePart.tables
         case "DELETING_TABLE":
@@ -260,9 +284,10 @@ const tablesReducer = (statePart = [], action) => {
                     Message: statePart.tables.Message,
                     fetched: true,
                     addTableTempOrder: statePart.tables.addTableTempOrder,
+                    ordersServer: statePart.tables.ordersServer,
                     menuOrderTemp: action.payload.map((table, index) => ({
-                    tableId: table.id, 
-                    menuOrder: table.menuOrder,
+                        tableId: table.id, 
+                        menuOrder: table.menuOrder,
                     }))
                   };
             }

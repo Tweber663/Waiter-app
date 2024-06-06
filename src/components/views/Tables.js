@@ -10,6 +10,7 @@ import { gettingTables } from "../../redux/tableRedux"
 import { BarLoader } from "react-spinners"
 import TableSearch from "./TableSearch"
 import { searchFilter } from "../../redux/tableRedux"
+import { orderPlacedGet } from "../../redux/tableRedux"
 
 const Tables = () => {
     const dispatch = useDispatch();

@@ -8,16 +8,18 @@ import { fetchingTables } from "../../redux/tableRedux"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import Order from "../features/order"
+import { orderPlacedGet } from "../../redux/tableRedux"
 
 const Orders = () => {
-
     const dispatch = useDispatch(); 
 
     useEffect(() => {
         dispatch(fetchingTables());
+        dispatch(orderPlacedGet());
     }, [dispatch]) //Stops from erros / get's triggered once
 
-    const activeOrders = useSelector(state => (checkingforOrders(state)));
+    const activeOrdersServer = useSelector(state => state.tables.ordersServer);
+    console.log(activeOrdersServer)
 
     return (
         <div>
@@ -25,9 +27,9 @@ const Orders = () => {
                  <h4 className={styles.title}>Active Orders</h4>
                     <div className={styles.orderBox}>
                         <ul>
-                            {activeOrders.map((table) => (
-                                <Order id={table.tableId} table={table}/>
-                            ))}
+                            {activeOrdersServer ?  activeOrdersServer.map((table) => (
+                                <Order id={table.id} table={table}/>
+                            )) : <h1>Loading</h1>}
                         </ul>
                     </div>
              </Container>

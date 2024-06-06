@@ -4,12 +4,12 @@ import clsx from 'clsx';
 import shortid from 'shortid';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { orderPlacedPutReset } from '../../redux/tableRedux';
+import { orderPlacedTableReset } from '../../redux/tableRedux';
+import { orderPlacedDelete } from '../../redux/tableRedux';
 
 const Order = ({id, table}) => {
     const dispatch = useDispatch();
     const tableId = id; 
-    console.log(id)
     const tableTemp = useSelector(state => state.tables.addTableTempOrder)
     const [innerHidden, setInnerHidden] = useState(true);
     const [arrowDown, setArrowDown] = useState(true);
@@ -21,18 +21,20 @@ const Order = ({id, table}) => {
         setArrowUp(prev => !prev);
     }
 
+    console.log(id);
+
     const deleteHandler = (e) => {
-        dispatch(orderPlacedPutReset({
+        dispatch(orderPlacedTableReset({
             bill: "0", 
             id: tableId, 
             info: "Type your notes here:", 
             maxPeopleAmount: "4", 
-            menuOrder: tableTemp.menuOrder, 
+            menuOrder: tableTemp[0].menuOrder, 
             peopleAmount: "2", 
             status: 'Free', 
             timeStamp: "00:00"
-        }, tableId))
-
+        }, id))
+        dispatch(orderPlacedDelete(id));
     }
 
     return (
