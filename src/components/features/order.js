@@ -1,5 +1,5 @@
 import styles from './order.module.scss'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import shortid from 'shortid';
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,13 @@ const Order = ({id, table}) => {
     const dispatch = useDispatch();
     const tableId = id; 
     const tableTemp = useSelector(state => state.tables.addTableTempOrder)
+    const [timer, setTimer] = useState(() => {
+        const timeNow = new Date();
+        const timePast = table.menuOrder[0].timeStamp;
+        const difference = timeNow.getTime() - timePast;
+        return Math.round(difference / 1000 / 60);
+    });
+
     const [innerHidden, setInnerHidden] = useState(true);
     const [arrowDown, setArrowDown] = useState(true);
     const [arrowUp, setArrowUp] = useState(false);
@@ -21,7 +28,18 @@ const Order = ({id, table}) => {
         setArrowUp(prev => !prev);
     }
 
-    console.log(id);
+    const timeNow = new Date();
+    const timePast = table.menuOrder[0].timeStamp;
+    const difference = timeNow.getTime() - timePast;
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setTimer(prev => prev + 1);
+        }, 60000);
+
+        return () => clearInterval(intervalId);
+    }, []);
+
 
     const deleteHandler = (e) => {
         dispatch(orderPlacedTableReset({
@@ -48,7 +66,7 @@ const Order = ({id, table}) => {
                 <ul>
                     <h6>Items: {table.menuOrder.map((order) => <span key={id}>{order.title}, </span>)}</h6>
                     <h6>Order Status: cooking;</h6>
-                    <h6>Order placed 60min ago</h6>
+                    <h6>{timer} min ago</h6>
                     <button>Food served</button>
                     <button onClick={deleteHandler}>Delete order</button>
                 </ul>

@@ -14,7 +14,7 @@ import { checkingforOrders } from "../../redux/tableRedux";
 import { orderPlacedPost } from "../../redux/tableRedux";
 import { orderPlacedPut } from "../../redux/tableRedux";
 
-const TableForm = () => {
+const TableForm = (passed) => {
     const dispatch = useDispatch();
     
     const navigate = useNavigate();
@@ -42,7 +42,6 @@ const TableForm = () => {
     const activeOrders = useSelector(state => (checkingforOrders(state)));
     console.log('Active Orders:', activeOrders)
 
-    const now = new Date();
 
     const handlerChange1 = (e) => {
         setPepAmount(e.target.value)
@@ -58,6 +57,8 @@ const TableForm = () => {
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
 
+    const now = new Date();
+    const timeStamp = now.getTime();
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -70,11 +71,12 @@ const TableForm = () => {
             info: e.target.textInfo.value,
             orderPlaced: true,
             menuOrder: menuOrderTemp[0].menuOrder,
-            timeStamp: now.toLocaleTimeString().slice(0, 5)
+            timeStamp: timeStamp,
         }));
         navigate("/")
-        if (activeOrders && !table[0].orderPlaced) dispatch(orderPlacedPost(activeOrders, id))
-        if (activeOrders && table[0].orderPlaced) dispatch(orderPlacedPut(activeOrders, id))
+        if (activeOrders && !table[0].orderPlaced) dispatch(orderPlacedPost(activeOrders, id, timeStamp))
+        if (activeOrders && table[0].orderPlaced) dispatch(orderPlacedPut(activeOrders, id, timeStamp))
+        passed.passedTriggerFunc('subimted');
     }
 
 

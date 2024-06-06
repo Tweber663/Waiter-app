@@ -1,150 +1,7 @@
 {
   "tables": [
     {
-      "bill": "0",
-      "id": "7",
-      "info": "Type your notes here:",
-      "maxPeopleAmount": "4",
-      "menuOrder": [
-        {
-          "title": "Fried rice",
-          "id": 1,
-          "tableNum": "",
-          "photo": "cooking.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Salad",
-          "id": 2,
-          "tableNum": "",
-          "photo": "salad.png",
-          "basePrice": 9,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Menu deal",
-          "id": 3,
-          "tableNum": "",
-          "photo": "fast-food.png",
-          "basePrice": 22,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Biryani",
-          "id": 4,
-          "tableNum": "",
-          "photo": "biryani.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Spaghetti",
-          "id": 5,
-          "tableNum": "",
-          "photo": "spaghetti.png",
-          "basePrice": 9,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Pizza",
-          "id": 6,
-          "tableNum": "",
-          "photo": "pizza.png",
-          "basePrice": 22,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        }
-      ],
-      "peopleAmount": "2",
-      "status": "Free",
-      "timeStamp": "00:00"
-    },
-    {
-      "id": "6",
-      "orderPlaced": false,
-      "status": "Free",
-      "peopleAmount": "2",
-      "maxPeopleAmount": "4",
-      "timeStamp": "00:00",
-      "bill": "0",
-      "info": "Type your notes here:",
-      "menuOrder": [
-        {
-          "title": "Fried rice",
-          "id": 1,
-          "tableNum": "6",
-          "photo": "cooking.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Salad",
-          "id": 2,
-          "tableNum": "6",
-          "photo": "salad.png",
-          "basePrice": 9,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Menu deal",
-          "id": 3,
-          "tableNum": "6",
-          "photo": "fast-food.png",
-          "basePrice": 22,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Biryani",
-          "id": 4,
-          "tableNum": "6",
-          "photo": "biryani.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Spaghetti",
-          "id": 5,
-          "tableNum": "6",
-          "photo": "spaghetti.png",
-          "basePrice": 9,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        },
-        {
-          "title": "Pizza",
-          "id": 6,
-          "tableNum": "6",
-          "photo": "pizza.png",
-          "basePrice": 22,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
-        }
-      ]
-    },
-    {
-      "id": "4",
+      "id": "1",
       "status": "Free",
       "peopleAmount": "2",
       "maxPeopleAmount": "4",
@@ -153,19 +10,19 @@
       "orderPlaced": true,
       "menuOrder": [
         {
-          "title": "Fried rice",
-          "id": 1,
-          "tableNum": "4",
-          "photo": "cooking.png",
           "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false
+          "checkbox": true,
+          "id": 1,
+          "photo": "cooking.png",
+          "quantity": 2,
+          "tableNum": "1",
+          "title": "Fried rice",
+          "totalAmount": 10
         },
         {
           "title": "Salad",
           "id": 2,
-          "tableNum": "4",
+          "tableNum": "1",
           "photo": "salad.png",
           "basePrice": 9,
           "quantity": 0,
@@ -173,19 +30,19 @@
           "checkbox": false
         },
         {
-          "basePrice": 22,
-          "checkbox": true,
-          "id": 3,
-          "photo": "fast-food.png",
-          "quantity": 1,
-          "tableNum": "4",
           "title": "Menu deal",
-          "totalAmount": 22
+          "id": 3,
+          "tableNum": "1",
+          "photo": "fast-food.png",
+          "basePrice": 22,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false
         },
         {
           "title": "Biryani",
           "id": 4,
-          "tableNum": "4",
+          "tableNum": "1",
           "photo": "biryani.png",
           "basePrice": 5,
           "quantity": 0,
@@ -193,19 +50,19 @@
           "checkbox": false
         },
         {
-          "basePrice": 9,
-          "checkbox": true,
-          "id": 5,
-          "photo": "spaghetti.png",
-          "quantity": 0,
-          "tableNum": "4",
           "title": "Spaghetti",
-          "totalAmount": 0
+          "id": 5,
+          "tableNum": "1",
+          "photo": "spaghetti.png",
+          "basePrice": 9,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false
         },
         {
           "title": "Pizza",
           "id": 6,
-          "tableNum": "4",
+          "tableNum": "1",
           "photo": "pizza.png",
           "basePrice": 22,
           "quantity": 0,
@@ -213,20 +70,44 @@
           "checkbox": false
         }
       ],
-      "timeStamp": "13:20"
+      "timeStamp": 1717699915889
     }
   ],
   "placedOrders": [
     {
-      "id": "4",
+      "id": "10",
       "menuOrder": [
         {
-          "id": "4",
-          "title": "Menu deal",
+          "id": "10",
+          "title": "Salad",
+          "quantity": 2,
+          "totalAmount": 18,
+          "basePrice": 9,
+          "photo": "salad.png",
+          "timeStamp": 1717698106772
+        },
+        {
+          "id": "10",
+          "title": "Pizza",
           "quantity": 1,
           "totalAmount": 22,
           "basePrice": 22,
-          "photo": "fast-food.png"
+          "photo": "pizza.png",
+          "timeStamp": 1717698106772
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "menuOrder": [
+        {
+          "id": "1",
+          "title": "Fried rice",
+          "quantity": 2,
+          "totalAmount": 10,
+          "basePrice": 5,
+          "photo": "cooking.png",
+          "timeStamp": 1717699915889
         }
       ]
     }

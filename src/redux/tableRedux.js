@@ -16,7 +16,7 @@ export const orderPlacedGet = () => {
     }
 }
 
-export const orderPlacedPost = (activeOrders, id) => {
+export const orderPlacedPost = (activeOrders, id, timeStamp) => {
    return () => {
     let options = ''
     activeOrders.forEach((table) => {
@@ -35,7 +35,8 @@ export const orderPlacedPost = (activeOrders, id) => {
                             quantity: menu.quantity, 
                             totalAmount: menu.totalAmount, 
                             basePrice: menu.basePrice, 
-                            photo: menu.photo
+                            photo: menu.photo,
+                            timeStamp: timeStamp
                         }
                     })
             })
@@ -45,7 +46,7 @@ export const orderPlacedPost = (activeOrders, id) => {
     }
 } 
 
-export const orderPlacedPut = (activeOrders, id) => {
+export const orderPlacedPut = (activeOrders, id, timeStamp) => {
      return () => {
       let options = ''
       activeOrders.forEach((table) => {
@@ -64,7 +65,8 @@ export const orderPlacedPut = (activeOrders, id) => {
                               quantity: menu.quantity, 
                               totalAmount: menu.totalAmount, 
                               basePrice: menu.basePrice, 
-                              photo: menu.photo
+                              photo: menu.photo,
+                              timeStamp: timeStamp
                           }
                       })
               })

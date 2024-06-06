@@ -18,6 +18,42 @@
     transition: width 500ms ease;
 }
 
+.iconBoxJump img {
+    animation: notify 900ms forwards;
+    @keyframes notify {
+        10% {
+            transform: translateY(0) rotateZ(0deg);
+        }
+        20% {
+            transform:  translateY(-10px) rotateZ(-20deg) ;
+        }
+        30% {
+            transform:  translateY(-10px) rotateZ(20deg);
+        }
+        40% {
+            transform:  translateY(-10px) rotateZ(-25deg)
+        }
+        50% {
+            transform:  translateY(-10px) rotateZ(25deg)
+        }
+        60% {
+            transform:  translateY(-10px) rotateZ(-30deg)
+        }
+        70% {
+            transform: translateY(-10px) rotateZ(30deg)
+        }
+        80% {
+            transform: translateY(-10px) rotateZ(-45deg)
+        }
+        90% {
+            transform: rotateZ(45deg)
+        }
+        100% {
+            transform: rotateZ(0deg)
+        }
+    }
+}
+
 
 .iconBox {
     display: flex;
