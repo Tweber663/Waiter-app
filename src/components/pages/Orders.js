@@ -19,7 +19,6 @@ const Orders = () => {
     }, [dispatch]) //Stops from erros / get's triggered once
 
     const activeOrdersServer = useSelector(state => state.tables.ordersServer);
-    console.log(activeOrdersServer)
 
     return (
         <div>

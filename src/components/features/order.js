@@ -21,16 +21,13 @@ const Order = ({id, table}) => {
     const [innerHidden, setInnerHidden] = useState(true);
     const [arrowDown, setArrowDown] = useState(true);
     const [arrowUp, setArrowUp] = useState(false);
+    const [refresh, setRefresh] = useState(true);
 
     const sliderHandler = () => {
         setInnerHidden(prev => !prev);
         setArrowDown(prev => !prev);
         setArrowUp(prev => !prev);
     }
-
-    const timeNow = new Date();
-    const timePast = table.menuOrder[0].timeStamp;
-    const difference = timeNow.getTime() - timePast;
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -53,6 +50,7 @@ const Order = ({id, table}) => {
             timeStamp: "00:00"
         }, id))
         dispatch(orderPlacedDelete(id));
+        setRefresh(prev => !prev)
     }
 
     return (
