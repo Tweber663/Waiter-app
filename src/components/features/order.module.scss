@@ -1,6 +1,6 @@
 
 .orderBox {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.411);
 }
 .outerBox {
     position: relative;
@@ -10,16 +10,80 @@
     padding-top: 14px;
 }
 
-// .outerBox::after {
-//     content: '';
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     width: 200px;
-//     height: 1px;
-//     border: 1px solid black;
-// }
+.imgTimeLeft {
+    position: absolute;
+    width: 20px;
+    margin-right: 1px;
+    right: 25px;
+}
+
+.imgDelete {
+    font-size: 17px;
+    margin-left: 10px;
+}
+
+.orderStats {
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+}
+
+.innerBox h6 {
+    font-family: 'Manrope', Courier, monospace;
+    font-size: 12px;
+    font-weight: 200;
+}
+
+.title {
+    font-family: 'Manrope', Courier, monospace;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 0;
+}
+
+.btnFoodServed {
+    display: inline-block;
+    border-radius: 3px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 3px 7px;
+    color: black;
+    box-shadow: 0px 2px 1px rgb(110, 110, 110);
+    transition: box-shadow 150ms;
+    width: 100px;
+    margin-bottom: 5px;
+}
+
+
+.btnFoodServed:hover {
+    color: rgb(0, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: 0px 0px 0px black;
+    animation: press 150ms forwards;
+    @keyframes press {
+        0% {
+            transform: translateY(-1px);
+        }
+
+        100%{
+            transform: translateY(1px);
+        }
+    }
+}
+
+.green {
+    color: rgb(0, 169, 0);
+    font-weight: 400;
+}
+
+.yellow {
+    color: rgb(255, 170, 0);
+    font-weight: 400;
+}
+
+.red {
+    color: red; 
+    font-weight: 400;
+}
 
 .outerBox div {
     display: inline-block;
@@ -34,10 +98,13 @@
 .innerBox {
     position: relative;
     opacity: 1;
-    overflow: hidden;
     max-height: 100vh;
     transition: opacity 400ms ease, max-height 400ms ease;
     margin: 10px 0;
+}
+
+.finished {
+    display: none;
 }
 
 .innerBoxHidden {

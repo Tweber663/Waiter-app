@@ -32,7 +32,7 @@ const MenuItem = ({selectedTable, menuItems}) => {
            checkbox: true,
            basePrice: basePrice,
            quantity: count + 1,
-           totalAmount: count * basePrice + basePrice
+           totalAmount: count * basePrice + basePrice,
         }))
     }
 

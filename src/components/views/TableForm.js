@@ -63,17 +63,17 @@ const TableForm = (passed) => {
         e.preventDefault();
         dispatch(fetchingTablesPUT({
             id, 
+            orderPlaced: true,
             status: e.target.selectStatus.value,
             peopleAmount: e.target.peopleAmount.value, 
             maxPeopleAmount: e.target.maxPeopleAmount.value, 
+            timeStamp: timeStamp,
             bill: e.target.bill.value,
             info: e.target.textInfo.value,
-            orderPlaced: true,
             menuOrder: menuOrderTemp[0].menuOrder,
-            timeStamp: timeStamp,
         }));
         if (activeOrders && !table[0].orderPlaced) dispatch(orderPlacedPost(activeOrders, id, timeStamp))
-        if (activeOrders && table[0].orderPlaced) dispatch(orderPlacedPut(activeOrders, id, timeStamp))
+        if (activeOrders && table[0].orderPlaced) dispatch(orderPlacedPut(activeOrders, id, timeStamp, false))
         passed.passedTriggerFunc('subimted');
     }
 

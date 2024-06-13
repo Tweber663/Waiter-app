@@ -36,7 +36,8 @@ export const orderPlacedPost = (activeOrders, id, timeStamp) => {
                             totalAmount: menu.totalAmount, 
                             basePrice: menu.basePrice, 
                             photo: menu.photo,
-                            timeStamp: timeStamp
+                            timeStamp: timeStamp,
+                            orderPlaced: false, 
                         }
                     })
             })
@@ -46,7 +47,7 @@ export const orderPlacedPost = (activeOrders, id, timeStamp) => {
     }
 } 
 
-export const orderPlacedPut = (activeOrders, id, timeStamp) => {
+export const orderPlacedPut = (activeOrders, id, timeStamp, orderPlaced) => {
      return () => {
       let options = ''
       activeOrders.forEach((table) => {
@@ -60,13 +61,14 @@ export const orderPlacedPut = (activeOrders, id, timeStamp) => {
                   menuOrder: 
                       table.menuOrder.map((menu) => {
                           return {
-                              id: menu.tableNum,
+                              id: id,
                               title: menu.title,
                               quantity: menu.quantity, 
                               totalAmount: menu.totalAmount, 
                               basePrice: menu.basePrice, 
                               photo: menu.photo,
-                              timeStamp: timeStamp
+                              timeStamp: timeStamp, 
+                              orderPlaced: orderPlaced, 
                           }
                       })
               })
@@ -316,14 +318,14 @@ const tablesReducer = (statePart = [], action) => {
                 filteredOrder = table.menuOrder.map((order) => {
                     if (order.title == action.payload.title) {
                         return {
-                            basePrice: action.payload.basePrice,
-                            checkbox: action.payload.checkbox,
-                            id: action.payload.id,
-                            photo: action.payload.photo,
-                            quantity: action.payload.quantity,
-                            tableNum: action.payload.tableNum,
                             title: action.payload.title,
+                            id: action.payload.id,
+                            tableNum: action.payload.tableNum,
+                            photo: action.payload.photo,
+                            basePrice: action.payload.basePrice,
+                            quantity: action.payload.quantity,
                             totalAmount: action.payload.totalAmount,
+                            checkbox: action.payload.checkbox,
                         }
                     } else {
                         return order

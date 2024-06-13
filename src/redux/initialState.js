@@ -28,6 +28,7 @@ const initialState = {
           quantity: 0,
           totalAmount: 0,
           checkbox: false,
+          orderServed: false, 
         },
         {
           title: "Salad",
@@ -37,7 +38,8 @@ const initialState = {
           basePrice: 9,
           quantity: 0,
           totalAmount: 0,
-          checkbox: false
+          checkbox: false,
+          orderServed: false, 
         },
         {
           title: "Menu deal",
@@ -47,7 +49,8 @@ const initialState = {
           basePrice: 22,
           quantity: 0,
           totalAmount: 0,
-          checkbox: false
+          checkbox: false,
+          orderServed: false, 
         },
         {
           title: "Biryani",
@@ -58,6 +61,7 @@ const initialState = {
           quantity: 0,
           totalAmount: 0,
           checkbox: false,
+          orderServed: false, 
         },
         {
           title: "Spaghetti",
@@ -67,7 +71,8 @@ const initialState = {
           basePrice: 9,
           quantity: 0,
           totalAmount: 0,
-          checkbox: false
+          checkbox: false,
+          orderServed: false, 
         },
         {
           title: "Pizza",
@@ -77,7 +82,8 @@ const initialState = {
           basePrice: 22,
           quantity: 0,
           totalAmount: 0,
-          checkbox: false
+          checkbox: false,
+          orderServed: false, 
         },
         
       ]

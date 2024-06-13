@@ -11,11 +11,10 @@ const Home = () => {
     return (
        <div className={styles.boxEntireApp}>
         <Container>
-        <TableError/>
-        <Tables/>
+            <TableError/>
+            <Tables/>
         </Container>
         <Navigation/>
-        {/* <Footer/> */}
        </div> 
     )
 } 
