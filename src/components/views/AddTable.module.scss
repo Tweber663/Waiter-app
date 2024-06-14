@@ -43,6 +43,14 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Add a shadow for better visibility */
 }
 
+.btn i {
+    font-size: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+  }
+
 .formBox {
     display: none;
     position: absolute;

@@ -177,7 +177,7 @@ const TableForm = (passed) => {
             </div>
                     <div>
                         {!table[0].orderPlaced? (
-                        <button className={styles.btn} onClick={handleBlur}>++</button>
+                        <button className={styles.btn} onClick={handleBlur}><i class="fa-solid fa-plus"></i></button>
                         ) : (
                         <button className={styles.btn} onClick={handleBlur}><i class="fa-solid fa-arrows-rotate"></i></button>) 
                         }

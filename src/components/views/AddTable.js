@@ -92,7 +92,7 @@ const AddTable = () => {
     return (
         <div onClick={clickOutside}  className={clsx(styles.mainBox, addClicked && styles.mainBoxVisible)}>
             <div className={styles.btnBox}>
-                 <button className={styles.btn} onClick={selectTableDispatch}>+</button>
+                 <button className={styles.btn} onClick={selectTableDispatch}><i class="fa-solid fa-plus"></i></button>
             </div>
             
             <div className={clsx(styles.formBox, addClicked && styles.formBoxVisible)}>
