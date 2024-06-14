@@ -16,7 +16,6 @@ import { orderPlacedPut } from "../../redux/tableRedux";
 
 const TableForm = (passed) => {
     const dispatch = useDispatch();
-    
     //Sends fetch request
     useEffect(() => {
         dispatch(fetchingTables());
@@ -36,8 +35,8 @@ const TableForm = (passed) => {
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
-    const activeOrders = useSelector(state => (checkingforOrders(state)));
-    console.log('Active Orders:', activeOrders)
+    const [busyStatus, setBusyStatus] = useState('Free')
+    const activeOrders = useSelector(state => (checkingforOrders(state, id)));
 
 
     const handlerChange1 = (e) => {
@@ -56,25 +55,43 @@ const TableForm = (passed) => {
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
 
+    console.log(activeOrders.length);
+
     const now = new Date();
     const timeStamp = now.getTime();
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(fetchingTablesPUT({
-            id, 
-            orderPlaced: true,
-            status: e.target.selectStatus.value,
-            peopleAmount: e.target.peopleAmount.value, 
-            maxPeopleAmount: e.target.maxPeopleAmount.value, 
-            timeStamp: timeStamp,
-            bill: e.target.bill.value,
-            info: e.target.textInfo.value,
-            menuOrder: menuOrderTemp[0].menuOrder,
-        }));
-        if (activeOrders && !table[0].orderPlaced) dispatch(orderPlacedPost(activeOrders, id, timeStamp))
-        if (activeOrders && table[0].orderPlaced) dispatch(orderPlacedPut(activeOrders, id, timeStamp, false))
-        passed.passedTriggerFunc('subimted');
+        if (busyStatus === "Busy" && activeOrders.length) {
+            dispatch(fetchingTablesPUT({
+                id, 
+                orderPlaced: true,
+                status: e.target.selectStatus.value,
+                peopleAmount: e.target.peopleAmount.value, 
+                maxPeopleAmount: e.target.maxPeopleAmount.value, 
+                timeStamp: timeStamp,
+                time: `${now.getHours()}:${now.getMinutes()}`,
+                bill: e.target.bill.value,
+                info: e.target.textInfo.value,
+                menuOrder: menuOrderTemp[0].menuOrder,
+            }));
+            if (activeOrders && !table[0].orderPlaced) dispatch(orderPlacedPost(activeOrders, id, timeStamp))
+            if (activeOrders && table[0].orderPlaced) dispatch(orderPlacedPut(activeOrders, id, timeStamp, false))
+            passed.passedTriggerFunc('subimted');
+        } else if (busyStatus !== "Busy" && !activeOrders.length) {
+            passed.setBlurOn(true)
+            passed.setBlurInfo(
+            <ul className={styles.blurInfo}>
+                <li><h1>1. Order not send! Ensure that table status is switched to "Busy"</h1></li>
+                <li><h1>2. Ensure you have at least 1 item selected in your "Menu"</h1></li>
+            </ul>)
+        } else if (busyStatus === "Busy" && !activeOrders.length) {
+            passed.setBlurOn(true); 
+            passed.setBlurInfo(<h1>1. Ensure you have at least 1 item selected in your "Menu"</h1>)
+        } else {
+            passed.setBlurOn(true);
+            passed.setBlurInfo(<h1>1. Order not send! Ensure that table status is switched to "Busy"</h1>)
+        }
     }
 
 
@@ -108,61 +125,64 @@ const TableForm = (passed) => {
     return (
         <div className={styles.formBox}>
         <form onSubmit={submitHandler}>
-        <div  className={clsx(styles.slider1_btn, slider1 && styles.slider1_btnActive)} onClick={slider1Handler}>
-            <div className={styles.title}>Table details</div>
-            <div className={clsx(styles.vSymbolBox)}>
-                <img className={clsx(styles.vSymbol, slider1 && styles.vSymbolRotateDown, !slider1 && styles.vSymbolRotateUp)} src={`${process.env.PUBLIC_URL}/images/arrow.png`}/>
+        <div className={styles.orderBox}>
+            <div onClick={slider1Handler}  className={clsx(styles.slider1_btn)}>
+            <div><h2 className={styles.title}>Table details</h2></div>
+                <div className={clsx(styles.vSymbolBox)}>
+                    <img className={clsx(styles.vSymbol, slider1 && styles.vSymbolRotateDown, !slider1 && styles.vSymbolRotateUp)} src={`${process.env.PUBLIC_URL}/images/arrow.png`}/>
+                </div>
             </div>
-        </div>
-        <div className={clsx(styles.slider1_content, slider1 && styles.slider1_content_visible)}>
+            <div className={clsx(styles.slider1_content, slider1 && styles.slider1_content_visible)}>
 
-           <div className={styles.formType}>
-            <label className={styles.label1}>Status</label>
-            {status && (
-                 <select onChange={changeHandler} name="selectStatus" defaultValue={status} className={`form-select ${styles.select}`}>
-                        <option value='Free'>Free</option>
-                        <option value='Reserved'>Reserved</option>
-                        <option value='Busy'>Busy $</option>
-                        <option value='Cleaning'>Cleaning</option>
-                </select>
-            )}
-            </div> 
-            <div className={styles.formType}>
-                <label className={styles.label2}>People</label>
-                <input onChange={(e) => handlerChange1(e)} onBlur={handleBlur} name="peopleAmount" value={pepAmount} className={`form-control ${styles.input}`} type="text"></input>
-                /
-                <input onChange={(e) => handlerChange2(e)} onBlur={handleBlur} name="maxPeopleAmount" value={maxPepAmount} className={`form-control ${styles.input}`} type="text"></input> 
-            </div>
-            <div className={clsx(styles.formType, 
-                changeStatus === true || currentStatus !== 'Busy' && styles.hide )}>
-                 <label className={styles.label3}>Bill  $</label>
-                 <input name='bill' defaultValue={bill} 
-                 className={`form-control ${styles.input}`} 
-                 type='text'>
-                 </input>
-            </div>
-            <div className={styles.formType}>
-                <label className={styles.label4} >Notes</label>
-                <textarea defaultValue={info} name="textInfo" className={clsx("form-control", styles.textarea)}></textarea>
-            </div>
-        </div>
-
-        <div onClick={slider2Handler} className={clsx(styles.slider2_btn, slider2 && styles.slider2_btnActive)}>
-            <div className={styles.title}>Menu</div>
-            <div className={clsx(styles.vSymbolBox)}>
-                <img className={clsx(styles.vSymbol, slider2 && styles.vSymbolRotateDown, !slider2 && styles.vSymbolRotateUp)} src={`${process.env.PUBLIC_URL}/images/arrow.png`}/>
+                <div className={styles.formType}>
+                <label className={styles.label1}>Status</label>
+                {status && (
+                        <select onChange={(e) => clsx(changeHandler, setBusyStatus(e.target.value))} name="selectStatus" defaultValue={status} className={`form-select ${styles.select}`}>
+                            <option value='Free'>Free</option>
+                            <option value='Reserved'>Reserved</option>
+                            <option value='Busy'>Busy $</option>
+                            <option value='Cleaning'>Cleaning</option>
+                    </select>
+                )}
+                </div> 
+                <div className={styles.formType}>
+                    <label className={styles.label2}>People</label>
+                    <input onChange={(e) => handlerChange1(e)} onBlur={handleBlur} name="peopleAmount" value={pepAmount} className={`form-control ${styles.input}`} type="text"></input>
+                    /
+                    <input onChange={(e) => handlerChange2(e)} onBlur={handleBlur} name="maxPeopleAmount" value={maxPepAmount} className={`form-control ${styles.input}`} type="text"></input> 
+                </div>
+                <div className={clsx(styles.formType, 
+                    changeStatus === true || currentStatus !== 'Busy' && styles.hide )}>
+                        <label className={styles.label3}>Bill  $</label>
+                        <input name='bill' defaultValue={bill} 
+                        className={`form-control ${styles.input}`} 
+                        type='text'>
+                        </input>
+                </div>
+                <div className={styles.formType}>
+                    <label className={styles.label4} >Notes</label>
+                    <textarea defaultValue={info} name="textInfo" className={clsx("form-control", styles.textarea)}></textarea>
+                </div>
             </div>
         </div>
-        <div className={clsx(styles.slider2_content, slider2 && styles.slider2_content_visible, !slider1 && styles.slider2_content_extended)}>
-            <MenuSelect selectedTable={menuOrderTemp}/>
-        </div>
-             <div>
-                {!table[0].orderPlaced? (
-                <button className={styles.btn} onClick={handleBlur}>++</button>
-                ) : (
-                <button className={styles.btn} onClick={handleBlur}>🔄️</button>) 
-                }
+        <div className={styles.orderBox}>
+            <div onClick={slider2Handler} className={clsx(styles.slider2_btn)}>
+                <div><h2 className={styles.title}>Menu</h2></div>
+                <div className={clsx(styles.vSymbolBox)}>
+                    <img className={clsx(styles.vSymbol, slider2 && styles.vSymbolRotateDown, !slider2 && styles.vSymbolRotateUp)} src={`${process.env.PUBLIC_URL}/images/arrow.png`}/>
+                </div>
             </div>
+            <div className={clsx(styles.slider2_content, slider2 && styles.slider2_content_visible, !slider1 && styles.slider2_content_extended)}>
+                <MenuSelect selectedTable={menuOrderTemp}/>
+            </div>
+                    <div>
+                        {!table[0].orderPlaced? (
+                        <button className={styles.btn} onClick={handleBlur}>++</button>
+                        ) : (
+                        <button className={styles.btn} onClick={handleBlur}><i class="fa-solid fa-arrows-rotate"></i></button>) 
+                        }
+                    </div>
+        </div>
         </form>
       
         </div>

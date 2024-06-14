@@ -245,7 +245,7 @@ export const searchFilter = (state, id) => {
         return state.tables
     }
 }
-export const checkingforOrders = (state) => {
+export const checkingforOrders = (state, id) => {
     // console.log(state)
     // debugger
     const tables = state.tables.menuOrderTemp.map((table) => {
@@ -255,8 +255,10 @@ export const checkingforOrders = (state) => {
         };
       });
 
+      console.log("Redux:", tables);
+
       const activeOrders = tables.filter((order) => {
-        if (order.menuOrder.length) {
+        if (order.menuOrder.length && order.tableId == id) {
             return order
         }
       })

@@ -6,3 +6,42 @@
     margin-bottom: 20px
 }
 
+.blurWindow {
+    display: none;
+}
+
+.blurWindow.blurWindowOn {
+    display: block;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(102, 102, 102, 0.33);
+    backdrop-filter: blur(5px);
+    height: 100%;
+    z-index: 30;
+    border-radius: 40px;
+}
+
+.infoWindow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.infoWindow h1 {
+    margin: 0;
+    font-family: 'Manrope', Courier, monospace;
+    font-size: 14px;
+    display: inline-block;
+    font-weight: 400;
+    padding: 10px;
+}
+
+.infoWindow button {
+    margin-bottom: 7px;
+}
+

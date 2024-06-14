@@ -16,6 +16,7 @@ const initialState = {
       peopleAmount: "2",
       maxPeopleAmount: "4",
       timeStamp: "00:00",
+      time: "00:00",
       bill: "0",
       info: "Type your notes here:",
       menuOrder: [

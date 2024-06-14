@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styles from './Welcome.module.scss'
-import { MoonLoader, ScaleLoader } from "react-spinners"
+import { MoonLoader} from "react-spinners"
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { Container } from "react-bootstrap";
@@ -15,7 +15,7 @@ setTimeout(() => {
  
 if (toggle === true) return (
 <div className={styles.spinnerBox}>
-   <MoonLoader className={styles.spinner} color="#000000"size="80"/>
+   <MoonLoader className={styles.spinner} color="#000000"size="70"/>
 </div>)
  return (
     <Container>

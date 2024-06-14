@@ -72,7 +72,6 @@ const Order = forwardRef(({id, table, activeOrders, setBlurOn}, ref) => {
 
 
     const deletes = (e) => {
-        e.preventDefault();
         setBlurOn(false)
         dispatch(orderPlacedTableReset({
             id: tableId, 
@@ -139,7 +138,7 @@ const Order = forwardRef(({id, table, activeOrders, setBlurOn}, ref) => {
                         Order placed: <span className={clsx(green && styles.green, yellow && styles.yellow, red && styles.red)}>{timer} min ago</span>
                     </h6>
                     <button onClick={foodServedHandler} className={styles.btnFoodServed}><span>{foodServed}</span></button>
-                    <i className={clsx("fa-regular fa-trash-can", styles.imgDelete)} onClick={deletes}></i>
+                    <i className={clsx("fa-regular fa-trash-can", styles.imgDelete)} onClick={() => setBlurOn(false)}></i>
                 </ul>
             </div>
         </div>

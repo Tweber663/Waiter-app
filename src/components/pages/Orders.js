@@ -9,6 +9,7 @@ import Order from "../features/order"
 import { orderPlacedGet } from "../../redux/tableRedux"
 import { useRef} from "react"
 import clsx from "clsx"
+import { MoonLoader } from "react-spinners"
 
 const Orders = () => {
     const dispatch = useDispatch(); 
@@ -28,15 +29,17 @@ const Orders = () => {
         }
     }
 
+    console.log(activeOrdersServer);
     return (
         <div>
              <Container>
-                 <h4 className={styles.title}>Active Orders</h4>
+                 <h1 className={styles.title}>Active Orders</h1>
                     <div className={styles.orderBox}>
                         <ul>
-                            {activeOrdersServer ?  activeOrdersServer.map((table) => (
+                            {activeOrdersServer? <div> {activeOrdersServer.length ?  activeOrdersServer.map((table) => (
                                 <Order ref={orderRef} setBlurOn={setBlurOn} id={table.id} table={table} activeOrders={activeOrdersServer}/>
-                            )) : <h1>Loading</h1>}
+                            )) : <img alt="meme" className={styles.meme} src={`${process.env.PUBLIC_URL}/images/meme.png`} />}</div>
+                             :  <div>Loading</div>}
                         </ul>
                     </div>
              </Container>
@@ -47,10 +50,10 @@ const Orders = () => {
              }} className={clsx(styles.windowBlur, blurOn && styles.blurOff)}>
                 <div className={styles.infoWindow}>
                     <div className={styles.infoMessage}>
-                        <h1 className={styles.title}>Deleting order will also restart the "table" it belongs to. Are you sure you want to proceed?</h1>
+                        <h1 className={styles.infoText}>Deleting order will also restart the "table" it belongs to. Are you sure you want to proceed?</h1>
                         <div className={styles.buttons}>
                             <button onClick={deleteHandler} className="btn btn-warning">Yes</button>
-                            <button onClick={e => setBlurOn(true)} className="btn">No</button>
+                            <button onClick={() => setBlurOn(true)} className="btn">No</button>
                         </div>
                    </div>
                 </div>

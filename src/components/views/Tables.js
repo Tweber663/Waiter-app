@@ -7,7 +7,7 @@ import AddTable from "./AddTable"
 import styles from './Tables.module.scss'
 import TableDelete from "./TableDelete"
 import { gettingTables } from "../../redux/tableRedux"
-import { BarLoader } from "react-spinners"
+import { MoonLoader } from "react-spinners"
 import TableSearch from "./TableSearch"
 import { searchFilter } from "../../redux/tableRedux"
 import { orderPlacedGet } from "../../redux/tableRedux"
@@ -34,9 +34,8 @@ const Tables = () => {
                             <Table key={table.id} table={table}/>
                         ))
                     ) : (
-                        <div>
-                            <div>No tables Found</div>
-                            <BarLoader/>
+                        <div className={styles.spinnerBox}>
+                            <MoonLoader className={styles.spinner} color="#000000"size="70"/>
                         </div>
                     )}
             </div>
