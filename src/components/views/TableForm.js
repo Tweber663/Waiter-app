@@ -26,6 +26,9 @@ const TableForm = (passed) => {
     const table = useSelector(state => selectedTable({state, id}));
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
+    if (table[0]) {
+        console.log(table[0].status)
+    }
 
     if (status !== "Busy") bill = "0";
     if (peopleAmount < 1 ||  peopleAmount > 10) peopleAmount = 1;
@@ -35,7 +38,11 @@ const TableForm = (passed) => {
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
-    const [busyStatus, setBusyStatus] = useState('Free')
+    const [busyStatus, setBusyStatus] = useState(() => {
+        if (table[0]) {
+            return table[0].status
+        }
+    })
     const activeOrders = useSelector(state => (checkingforOrders(state, id)));
 
 

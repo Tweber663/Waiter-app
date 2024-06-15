@@ -6,6 +6,7 @@ import NotFound from "./components/pages/NotFound";
 import styles from './App.module.scss'
 import Welcome from "./components/pages/Welcome";
 import Orders from "./components/pages/Orders";
+import Menu from "./components/pages/Menu";
 
 const App = ()  => {
 
@@ -17,6 +18,7 @@ const App = ()  => {
       <Route path="/home" element={<Home/>}/>
       <Route path="home/tables/:id" element={<TableDetails/>} />
       <Route path="/orders" element={<Orders/>} />
+      <Route path="/menu" element={<Menu/>}/>
       <Route path="*" element={<NotFound/>}/>
      </Routes>
     </Container>

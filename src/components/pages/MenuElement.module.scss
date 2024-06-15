@@ -1,0 +1,26 @@
+.imgFoodItem {
+    width: 40px;
+}
+
+.itemMainBox {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 2px;
+}
+
+.mainBoxItems {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    text-align: center;
+}
+
+.mainBoxItems li {
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+}

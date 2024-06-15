@@ -1,0 +1,25 @@
+.btn {
+    position: fixed;
+    z-index: 5;
+    width: 50px;  /* Adjust button size as needed */
+    height: 50px; /* Adjust button size as needed */
+    background-color: #ff4d4d; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 50%; /* Make it a circular button */
+    font-size: 24px; /* Font size for the + sign */
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    right: 12px;
+    bottom: 85px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Add a shadow for better visibility */
+}
+
+.btn i {
+    font-size: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}

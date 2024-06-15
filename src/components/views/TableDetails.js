@@ -1,4 +1,3 @@
-import NavBar from "../common/NavBar"
 import styles from './TableDetails.module.scss'
 import { useEffect, useState } from "react"
 import TableForm from "./TableForm"

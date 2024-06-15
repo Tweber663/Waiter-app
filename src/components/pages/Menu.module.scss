@@ -1,0 +1,81 @@
+
+
+.ulList {
+   list-style: none; 
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+.title {
+    font-family: 'Manrope', Courier, monospace;
+    font-size: 25px;
+    display: inline-block;
+    font-weight: 300;
+    margin-bottom: 20px
+}
+
+.windowBlur {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(88, 88, 88, 0.506);
+    z-index: 1;
+    backdrop-filter: blur(5px);
+}
+
+.windowBox {
+    border-radius: 5px;
+    position: absolute;
+    background-color: white;
+    width: 240px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 20px;
+}
+
+.windowBlur.windowBlurOff {
+    display: none;
+}
+
+.form label{
+    margin: 4px 0;
+}
+
+.label1 {
+    display: inline-block;
+}
+
+.input1 {
+    display: inline-block;
+    width: 100px;
+    margin-left: 12px;
+}
+
+.input2 {
+    display: inline-block;
+    width: 45px;
+    margin-left: 19px;
+    margin-top: 10px
+}
+
+.windowBox form button {
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.windowBox h1 {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: 'Manrope', Courier, monospace;
+    font-size: 15px;
+    font-weight: 300;
+}

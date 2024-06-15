@@ -25,7 +25,7 @@ const Navigation = ({passed}) => {
                 </NavLink>
             </div>
             <div className={styles.iconBox}>
-                <NavLink to={"/home"}>
+                <NavLink to={"/menu"}>
                 <img alt='tableIcon' src={`${process.env.PUBLIC_URL}/images/nav/menu.png`}/>
                 </NavLink>
             </div>

@@ -1,10 +1,7 @@
-import { useSelector } from "react-redux";
+
 import { API_URL } from "../config";
-import { tab } from "@testing-library/user-event/dist/tab";
-import { combineReducers } from "redux";
-import Orders from "../components/pages/Orders";
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
-import { Container } from "react-bootstrap";
+import shortid from "shortid";
+
 //**actionTypes
 const actionType1 =  (type) => `app/tables/${type}`;
 const GETTING_INFO = actionType1('GETTING_INFO')
@@ -15,7 +12,6 @@ export const orderPlacedGet = () => {
         fetch(`${API_URL}/placedOrders`).then((raw) => raw.json()).then((converted) => dispatch(getOrderPlaced(converted)))
     }
 }
-
 export const orderPlacedPost = (activeOrders, id, timeStamp) => {
    return () => {
     let options = ''
@@ -194,6 +190,20 @@ export const updateMenuItem = (payload) => {
     return ({type: "UPDATING_MENU_ITEM", payload,});
 }
 
+export const newMenuListItem = (name, price, id) => {
+   return ({type: "ADDING_ITEM_MENU", payload: {
+    basePrice: price, 
+    checkbox: false, 
+    id: id, 
+    orderServed: false, 
+    photo: "fork.png",
+    quantity: 0,
+    tableNum: "",
+    title: name,
+    totalAmount: 0,
+   }, id}); 
+}
+
 
 //**Selectors
 export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
@@ -254,9 +264,6 @@ export const checkingforOrders = (state, id) => {
           menuOrder: table.menuOrder.filter((order) => order.quantity > 0)
         };
       });
-
-      console.log("Redux:", tables);
-
       const activeOrders = tables.filter((order) => {
         if (order.menuOrder.length && order.tableId == id) {
             return order
@@ -273,9 +280,19 @@ export const getOrderPlaced = (payload) => {
         }
     })})
 } 
+
+
+
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
+        case "ADDING_ITEM_MENU":
+            const {id, payload} = action;
+            console.log( {
+                ...statePart.tables,
+                addTableTempOrder: {...statePart.tables.addTableTempOrder.map((table) => [...table.menuOrder, payload])}
+              })
+            return {...statePart.tables}
         case "GETTING_ORDERS":
         return {...statePart.tables, ordersServer: action.payload}
         case "UPDATE_STORE":
