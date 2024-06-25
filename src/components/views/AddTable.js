@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchTablePost } from "../../redux/tableRedux";
 import { ifTableAlredyExists } from "../../redux/tableRedux";
@@ -9,6 +9,7 @@ import { updateStore } from "../../redux/tableRedux";
 import { addTableTemplate } from "../../redux/tableRedux";
 import clsx from "clsx";
 import { tableErrMsgCheck } from "../../redux/tableRedux";
+import { menuPlacedGet } from "../../redux/tableRedux";
 
 const AddTable = () => {
 
@@ -23,7 +24,10 @@ const AddTable = () => {
    const currentStateMess = useSelector(state => state.tables.Message);
    const [addClicked, setAddClicked] = useState(false);
 
-   
+   useEffect(() => {
+    dispatch(menuPlacedGet()); 
+   }, [])
+
    const verifyHandler = (e) => {
     let targetValue = e.target.value;
     e.preventDefault();
@@ -70,7 +74,7 @@ const AddTable = () => {
             console.log('evrything else')
         }
     }
-    // <button className={styles.btn} onClick={addDispatch}>+</button>
+  
     const submitHandler = (e) => {
         e.preventDefault()
     }

@@ -25,6 +25,7 @@ const TableForm = (passed) => {
     const {id} = useParams();
     const table = useSelector(state => selectedTable({state, id}));
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
+    console.log(menuOrderTemp);
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
     if (table[0]) {
         console.log(table[0].status)

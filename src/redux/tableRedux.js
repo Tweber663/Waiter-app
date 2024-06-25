@@ -7,11 +7,58 @@ const actionType1 =  (type) => `app/tables/${type}`;
 const GETTING_INFO = actionType1('GETTING_INFO')
 
 //**Action creatores
+
+export const menuPlacedPut = (state, name, price, id) => {
+    const payload = {
+        title: name.trim(),
+        id: id, 
+        tableNum: "",
+        photo: "fork.png",
+        basePrice: Number(price), 
+        quantity: 0,
+        totalAmount: 0,
+        checkbox: false, 
+        orderServed: false, 
+       }
+
+    return (dispatch) => {
+        const options = {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({
+                    id: 77,
+                    orderPlaced: false,
+                    status: "Free",
+                    peopleAmount: "2",
+                    maxPeopleAmount: "4",
+                    timeStamp: "00:00",
+                    time: "00:00",
+                    bill: "0",
+                    info: "Type your notes here:",
+                    menuOrder: [...state.tables.addTableTempOrder[0].menuOrder, payload]
+            })
+        }
+        fetch(`${API_URL}/addTableTempOrderServer/77`, options)
+        dispatch(menuPlacedGet())
+    }
+}
+
+export const menuPlacedGet = () => {
+    return(dispatch) => {  
+        fetch(`${API_URL}/addTableTempOrderServer`).then((raw) => raw.json()).then((converted) => {
+            dispatch(updateMenuOrderTemp(converted))
+        })
+    }
+}
+
 export const orderPlacedGet = () => {
     return (dispatch) => {
         fetch(`${API_URL}/placedOrders`).then((raw) => raw.json()).then((converted) => dispatch(getOrderPlaced(converted)))
     }
 }
+
 export const orderPlacedPost = (activeOrders, id, timeStamp) => {
    return () => {
     let options = ''
@@ -117,6 +164,8 @@ export const fetchingTables = () => {
 
 export const fetchTablePost = (addedTable) => {
     return (dispatch) => {
+        console.log(addedTable)
+        debugger
         const options = {
             method: 'POST',
             headers: {
@@ -192,18 +241,17 @@ export const updateMenuItem = (payload) => {
 
 export const newMenuListItem = (name, price, id) => {
    return ({type: "ADDING_ITEM_MENU", payload: {
-    basePrice: price, 
+    basePrice: Number(price), 
     checkbox: false, 
     id: id, 
     orderServed: false, 
     photo: "fork.png",
     quantity: 0,
     tableNum: "",
-    title: name,
+    title: name.trim(),
     totalAmount: 0,
    }, id}); 
 }
-
 
 //**Selectors
 export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
@@ -283,16 +331,36 @@ export const getOrderPlaced = (payload) => {
 
 
 
+export const updateMenuOrderTemp = (payload) => {
+    return ({type: "UPDATE_MENU_ORDER_TEMP", payload})
+}
+
+
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
+        case "UPDATE_MENU_ORDER_TEMP":
+            return {
+                ...statePart.tables, 
+                addTableTempOrder: action.payload, 
+            }
         case "ADDING_ITEM_MENU":
-            const {id, payload} = action;
-            console.log( {
+            const {payload} = action;
+            // console.log([...statePart.tables.addTableTempOrder[0].menuOrder, payload])
+            return {
                 ...statePart.tables,
-                addTableTempOrder: {...statePart.tables.addTableTempOrder.map((table) => [...table.menuOrder, payload])}
-              })
-            return {...statePart.tables}
+                addTableTempOrder: [{
+                    id: '',
+                    orderPlaced: false,
+                    status: "Free",
+                    peopleAmount: "2",
+                    maxPeopleAmount: "4",
+                    timeStamp: "00:00",
+                    time: "00:00",
+                    bill: "0",
+                    info: "Type your notes here:",
+                    menuOrder: [...statePart.tables.addTableTempOrder[0].menuOrder, payload]
+                }]}
         case "GETTING_ORDERS":
         return {...statePart.tables, ordersServer: action.payload}
         case "UPDATE_STORE":

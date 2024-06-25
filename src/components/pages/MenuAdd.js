@@ -1,9 +1,9 @@
 import styles from './MenuAdd.module.scss'
-const MenuAdd = () => {
+const MenuAdd = (passed) => {
 
     return (
         <div>
-            <button className={styles.btn}><i class="fa-solid fa-plus"></i></button>
+            <button onClick={() => passed.blur(false)} className={styles.btn}><i class="fa-solid fa-plus"></i></button>
         </div>
     )
 }

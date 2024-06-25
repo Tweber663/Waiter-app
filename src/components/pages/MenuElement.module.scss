@@ -3,11 +3,20 @@
 }
 
 .itemMainBox {
+    text-align: right;
     position: relative;
     display: inline-block;
     width: 80px;
     height: 80px;
     margin: 2px;
+}
+
+.settings  {
+    width: 16px;
+    cursor: pointer;
+    z-index: 10;
+    position: absolute;
+    right: 0px;
 }
 
 .mainBoxItems {
@@ -17,6 +26,10 @@
     transform: translate(-50%, -50%);
     width: 70px;
     text-align: center;
+}
+
+.mainBoxItems img {
+    z-index: 0;
 }
 
 .mainBoxItems li {
