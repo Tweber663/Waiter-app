@@ -67,7 +67,14 @@
 
 .editInfoBox {
     background-color: white;
-    border: 5px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.buttonsBox {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
 }
 
 .form label{

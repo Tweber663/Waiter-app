@@ -1,12 +1,13 @@
 import styles from './MenuElement.module.scss'
 
 const MenuElement = (passed) => {
-    const {photo, title, basePrice} = passed.items;
+    const {photo, title, basePrice, id} = passed.items;
 
     const settingsHandler = () => {
         passed.dishName(title);
         passed.blurOn(false);
         passed.baseName(basePrice);
+        passed.idNum(id);
     }
 
 

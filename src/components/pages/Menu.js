@@ -12,6 +12,7 @@ import shortid from 'shortid'
 import { menuPlacedPut } from '../../redux/tableRedux'
 import { useEffect } from 'react'
 import { menuPlacedGet } from '../../redux/tableRedux'
+import { menuPlacedUpdate } from '../../redux/tableRedux'
 
 const Menu = () => {
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Menu = () => {
     const [blurOn, setBlurOn] = useState(true);
     const [blurEditOn, setBlurEditOn] = useState(true);
     const [dishName, setDishName] = useState('');
+    const [idNum, setIdNum] = useState('');
     const [photoName, setPhotoName] = useState(''); 
     const [basePriceName, setBasePriceName] = useState('');
 
@@ -37,14 +39,15 @@ const Menu = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(newMenuListItem(e.target[0].value, e.target[1].value, shortid()));
-        dispatch(menuPlacedPut(currentState, e.target[0].value, e.target[1].value, shortid()));
-        debugger
+        dispatch();
+        dispatch();
     }
 
-    const changeHandler = (e) => {
-        setDishName(e.target.value)
+    const submitHandlerEdit = (e) => {
+        e.preventDefault();
+        dispatch(menuPlacedUpdate(currentState, e.target[0].value, e.target[1].value, idNum, e.target[2].value))
     }
+
 
     return (
         <div className={styles.mainBox}>
@@ -65,20 +68,22 @@ const Menu = () => {
 
             <div onClick={blurHandler} className={clsx(styles.windowEditBlur, blurEditOn && styles.windowEditBlurOff)}>
                 <div className={styles.editInfoBox}>
-                    <form onChange={changeHandler}>
+                    <form onSubmit={submitHandlerEdit}>
                         <labal>Dish Name:</labal>
-                        <input className={clsx("form-control")} value={dishName}></input>
+                        <input onChange={(e) => setDishName(e.target.value)} name="dishName" className={clsx("form-control")} value={dishName}></input>
                         <label>Base price:</label>
-                        <input className={clsx("form-control")} value={basePriceName}></input>
+                        <input onchange={(e) => setBasePriceName(e.target.value)} className={clsx("form-control")} value={basePriceName}></input>
                         <label>Picture Select:</label>
-                        <select className="form-select">
-                            <option value="fork&Spoon">Fork & Spoon</option>
-                            <option value="apple">Apple</option>
-                            <option value="pizza">Pizza</option>
-                            <option value="cyder">Cyder</option>
-                            <option value="curry">Curry</option>
+                        <select onchange={(e) => setPhotoName(e.target.value)} className="form-select">
+                            <option value="fork.png">Fork & Spoon</option>
+                            <option value="pizza.png">Pizza</option>
+                            <option value="spaghetti.png">spaghetti</option>
                         </select>
                     </form>
+                       <div className={styles.buttonsBox}>
+                            <button onClick={submitHandlerEdit} className={"btn btn-warning"}>Update</button>
+                            <button className={"btn btn-light"}>Delete</button>
+                        </div>
                 </div>
             </div>
 
@@ -87,7 +92,7 @@ const Menu = () => {
                     <ul className={styles.ulList}>
                         {menuList[0] && (
                             menuList[0].menuOrder.map((item) => (
-                                <MenuElement items={item} blurOn={setBlurEditOn} dishName={setDishName} baseName={setBasePriceName}/>
+                                <MenuElement items={item} blurOn={setBlurEditOn} dishName={setDishName} baseName={setBasePriceName} idNum={setIdNum}/>
                             ))
                         )}
                     </ul>

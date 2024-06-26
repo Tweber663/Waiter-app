@@ -8,7 +8,44 @@ const GETTING_INFO = actionType1('GETTING_INFO')
 
 //**Action creatores
 
-export const menuPlacedPut = (state, name, price, id) => {
+export const menuPlacedUpdate = (state, name, price, id, photo) => {
+    const payload = {
+        title: name.trim(),
+        id: id, 
+        tableNum: "",
+        photo: photo,
+        basePrice: Number(price), 
+        quantity: 0,
+        totalAmount: 0,
+        checkbox: false, 
+        orderServed: false, 
+       }
+       return (dispatch) => {
+        const options = {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({
+                    id: 77,
+                    orderPlaced: false,
+                    status: "Free",
+                    peopleAmount: "2",
+                    maxPeopleAmount: "4",
+                    timeStamp: "00:00",
+                    time: "00:00",
+                    bill: "0",
+                    info: "Type your notes here:",
+                    menuOrder: [...state.tables.addTableTempOrder[0].menuOrder.map((order) => 
+                        order.id == id? payload : order)]
+            })
+        }
+        fetch(`${API_URL}/addTableTempOrderServer/77`, options)
+        dispatch(menuPlacedGet())
+    }
+}
+
+export const menuPlacedPut = (state, name, price, id, photo) => {
     const payload = {
         title: name.trim(),
         id: id, 
@@ -20,6 +57,8 @@ export const menuPlacedPut = (state, name, price, id) => {
         checkbox: false, 
         orderServed: false, 
        }
+       console.log(payload)
+       debugger
 
     return (dispatch) => {
         const options = {
