@@ -3,12 +3,13 @@
 }
 
 .itemMainBox {
+    flex: 0 1 calc(33.3333% - 20px); /* Adjust the percentage and margin for desired width and spacing */
     text-align: right;
     position: relative;
     display: inline-block;
     width: 80px;
     height: 80px;
-    margin: 2px;
+    margin: 10px;
 }
 
 .settings  {

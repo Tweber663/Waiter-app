@@ -401,17 +401,6 @@
       "info": "Type your notes here:",
       "menuOrder": [
         {
-          "title": "Fried rice",
-          "id": 1,
-          "tableNum": "",
-          "photo": "cooking.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
           "title": "Saladaaaaa",
           "id": 2,
           "tableNum": "",
@@ -448,19 +437,8 @@
           "title": "Drake:)",
           "id": 5,
           "tableNum": "",
-          "photo": "fork.png",
+          "photo": "spaghetti.png",
           "basePrice": 9,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Bla:)",
-          "id": 6,
-          "tableNum": "",
-          "photo": "fork.png",
-          "basePrice": 22,
           "quantity": 0,
           "totalAmount": 0,
           "checkbox": false,
@@ -470,7 +448,7 @@
           "title": "applee",
           "id": "Sbq8bui8Ht",
           "tableNum": "",
-          "photo": "pizza.png",
+          "photo": "spaghetti.png",
           "basePrice": 2,
           "quantity": 0,
           "totalAmount": 0,
@@ -478,7 +456,7 @@
           "orderServed": false
         },
         {
-          "title": "cake",
+          "title": "cakeeeeee",
           "id": "rFGQk5lZqi",
           "tableNum": "",
           "photo": "fork.png",

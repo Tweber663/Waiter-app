@@ -8,6 +8,30 @@ const GETTING_INFO = actionType1('GETTING_INFO')
 
 //**Action creatores
 
+export const menuPlacedDelete = (id, state) => {
+    return () => {
+        const options = {
+            method: 'PUT', 
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify ({
+                id: 77,
+                orderPlaced: false,
+                status: "Free",
+                peopleAmount: "2",
+                maxPeopleAmount: "4",
+                timeStamp: "00:00",
+                time: "00:00",
+                bill: "0",
+                info: "Type your notes here:",
+                menuOrder: [...state.tables.addTableTempOrder[0].menuOrder.filter((order) => order.id !== id? order : null )]
+        })
+        }
+        fetch(`${API_URL}/addTableTempOrderServer/77`, options)
+    }
+}
+
 export const menuPlacedUpdate = (state, name, price, id, photo) => {
     const payload = {
         title: name.trim(),

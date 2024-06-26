@@ -12,7 +12,8 @@ import shortid from 'shortid'
 import { menuPlacedPut } from '../../redux/tableRedux'
 import { useEffect } from 'react'
 import { menuPlacedGet } from '../../redux/tableRedux'
-import { menuPlacedUpdate } from '../../redux/tableRedux'
+import { menuPlacedUpdate, menuPlacedDelete } from '../../redux/tableRedux'
+
 
 const Menu = () => {
     const dispatch = useDispatch();
@@ -39,12 +40,14 @@ const Menu = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch();
-        dispatch();
+        dispatch(newMenuListItem(e.target[0].value, e.target[1].value, shortid()));
+        dispatch(menuPlacedPut(currentState, e.target[0].value, e.target[1].value, shortid()));
     }
 
     const submitHandlerEdit = (e) => {
         e.preventDefault();
+        console.log(e)
+        debugger
         dispatch(menuPlacedUpdate(currentState, e.target[0].value, e.target[1].value, idNum, e.target[2].value))
     }
 
@@ -79,11 +82,11 @@ const Menu = () => {
                             <option value="pizza.png">Pizza</option>
                             <option value="spaghetti.png">spaghetti</option>
                         </select>
-                    </form>
-                       <div className={styles.buttonsBox}>
-                            <button onClick={submitHandlerEdit} className={"btn btn-warning"}>Update</button>
-                            <button className={"btn btn-light"}>Delete</button>
+                        <div className={styles.buttonsBox}>
+                            <button type="submit" className={"btn btn-warning"}>Update</button>
+                            <button onClick={() => dispatch(menuPlacedDelete(idNum, currentState))} type="button" className={"btn btn-light"}>Delete</button>
                         </div>
+                    </form>
                 </div>
             </div>
 
