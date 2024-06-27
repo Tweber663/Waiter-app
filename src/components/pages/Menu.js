@@ -29,6 +29,9 @@ const Menu = () => {
     const [idNum, setIdNum] = useState('');
     const [photoName, setPhotoName] = useState(''); 
     const [basePriceName, setBasePriceName] = useState('');
+    const [error, setError] = useState(true);
+    const [blurSwitchOff, setBlurSwitchOff] = useState(false);
+    const [infoBlurOff, setInfoBlurOff] = useState(true);
 
     const blurHandler = (e) => {
         if (e.target.classList.contains('Menu_windowBlur__dqBNq') || e.target.classList.contains('Menu_windowEditBlur__dxRsn')) {
@@ -42,13 +45,28 @@ const Menu = () => {
         e.preventDefault();
         dispatch(newMenuListItem(e.target[0].value, e.target[1].value, shortid()));
         dispatch(menuPlacedPut(currentState, e.target[0].value, e.target[1].value, shortid()));
+        setBlurOn(true);
     }
+
+    const regex = /^\d*$/
 
     const submitHandlerEdit = (e) => {
         e.preventDefault();
-        console.log(e)
-        debugger
-        dispatch(menuPlacedUpdate(currentState, e.target[0].value, e.target[1].value, idNum, e.target[2].value))
+        if (regex.test(e.target[2].value)) {
+            dispatch(menuPlacedUpdate(currentState, e.target[0].value, e.target[2].value, idNum, e.target[1].value))
+            setBlurEditOn(true);
+        } else {
+
+        }
+    } 
+
+    const onChangeHandler = (e) => {
+        setBasePriceName(e.target.value)
+        if (!regex.test(e.target.value)) {
+            console.log(e.target.value) 
+            setError(false);
+            setBlurSwitchOff(true);
+        }
     }
 
 
@@ -68,20 +86,46 @@ const Menu = () => {
                 </div>
             </div>
 
+            <div className={clsx(styles.windowErrorBlur, error && styles.off)}>
+                <div className={styles.errorBox}>
+                    <h1>Must be a number</h1>
+                        <button onClick={() => {
+                            setError(true) 
+                            setBlurSwitchOff(false)
+                        }} className={clsx(styles.btnOk, "btn btn-warning")}>OK</button>
+                </div>
+            </div>
+            
+            <div className={clsx(styles.windowInfoBlur, infoBlurOff && styles.windowInfoBlurOff)}>
+                <div className={styles.infoBox}>
+                    <h1>Keep in mind that newly added menu items will "only" be available in newly created tables</h1>
+                    <button onClick={() => setInfoBlurOff(true)} className="btn btn-warning">OK</button>
+                </div>
+            </div>
 
-            <div onClick={blurHandler} className={clsx(styles.windowEditBlur, blurEditOn && styles.windowEditBlurOff)}>
+            <div onClick={blurHandler} className={clsx(styles.windowEditBlur, blurEditOn && styles.windowEditBlurOff, blurSwitchOff && styles.blurSwitchOff)}>
                 <div className={styles.editInfoBox}>
                     <form onSubmit={submitHandlerEdit}>
                         <labal>Dish Name:</labal>
                         <input onChange={(e) => setDishName(e.target.value)} name="dishName" className={clsx("form-control")} value={dishName}></input>
-                        <label>Base price:</label>
-                        <input onchange={(e) => setBasePriceName(e.target.value)} className={clsx("form-control")} value={basePriceName}></input>
                         <label>Picture Select:</label>
-                        <select onchange={(e) => setPhotoName(e.target.value)} className="form-select">
+                        <select onChange={(e) => setPhotoName(e.target.value)} value={photoName} className={clsx("form-select", styles.selectt)}>
                             <option value="fork.png">Fork & Spoon</option>
                             <option value="pizza.png">Pizza</option>
-                            <option value="spaghetti.png">spaghetti</option>
+                            <option value="spaghetti.png">Spaghetti</option>
+                            <option value="biryani.png">Biryani</option>
+                            <option value="cooking.png">Fried rice</option>
+                            <option value="fast-food.png">Meal deal</option>
+                            <option value="salad.png">Salad</option>
+                            <option value="burger&drink.png">Burger & drink</option>
+                            <option value="diet.png">Diet Menu</option>
+                            <option value="fruit.png">Fruit Salad</option>
+                            <option value="buns.png">Dumplings</option>
+                            <option value="chicken-leg.png">Fried chicken</option>
+                            <option value="chicken-leg.png">Fried chicken</option>
                         </select>
+                        <label>Base price:</label>
+                        <input maxLength="3" onChange={onChangeHandler} className={clsx("form-control", styles.priceInput)} value={basePriceName}></input>
                         <div className={styles.buttonsBox}>
                             <button type="submit" className={"btn btn-warning"}>Update</button>
                             <button onClick={() => dispatch(menuPlacedDelete(idNum, currentState))} type="button" className={"btn btn-light"}>Delete</button>
@@ -95,12 +139,12 @@ const Menu = () => {
                     <ul className={styles.ulList}>
                         {menuList[0] && (
                             menuList[0].menuOrder.map((item) => (
-                                <MenuElement items={item} blurOn={setBlurEditOn} dishName={setDishName} baseName={setBasePriceName} idNum={setIdNum}/>
+                                <MenuElement items={item} blurOn={setBlurEditOn} dishName={setDishName} baseName={setBasePriceName} idNum={setIdNum} img={setPhotoName}/>
                             ))
                         )}
                     </ul>
                 </div>
-                <MenuAdd blur={setBlurOn}/>
+                <MenuAdd blurInfo={setInfoBlurOff} blur={setBlurOn}/>
             </Container>
            
             <Navigation/>

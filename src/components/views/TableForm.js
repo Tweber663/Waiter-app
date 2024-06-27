@@ -27,9 +27,6 @@ const TableForm = (passed) => {
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
     console.log(menuOrderTemp);
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
-    if (table[0]) {
-        console.log(table[0].status)
-    }
 
     if (status !== "Busy") bill = "0";
     if (peopleAmount < 1 ||  peopleAmount > 10) peopleAmount = 1;
@@ -39,13 +36,30 @@ const TableForm = (passed) => {
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
+    const [isChecked, setIsChecked] = useState(false)
     const [busyStatus, setBusyStatus] = useState(() => {
         if (table[0]) {
+            console.log(table[0].status)
             return table[0].status
         }
     })
-    const activeOrders = useSelector(state => (checkingforOrders(state, id)));
 
+    useEffect(() => {
+        busyStatus === "Busy"? setIsChecked(true) : setIsChecked(false);
+    }, [])
+
+    const activeOrders = useSelector(state => (checkingforOrders(state, id)));
+    
+    const toggleHandler = (e) => {
+        setIsChecked(prev => !prev)
+        e.target.checked === true? setBusyStatus("Busy") : setBusyStatus("Free");
+        setBusyStatus(prev => {
+            console.log(prev)
+           if (prev === "Free") {
+            passed.setBlurOnReset(true);
+           } 
+        }); 
+    }
 
     const handlerChange1 = (e) => {
         e.preventDefault();
@@ -63,18 +77,19 @@ const TableForm = (passed) => {
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
 
-    console.log(activeOrders.length);
-
     const now = new Date();
     const timeStamp = now.getTime();
 
     const submitHandler = (e) => {
         e.preventDefault();
+        // if (busyStatus === "Free" && restartConfirmed === true) {
+        //     console.log('Table will be restarted');
+        // }
         if (busyStatus === "Busy" && activeOrders.length) {
             dispatch(fetchingTablesPUT({
                 id, 
                 orderPlaced: true,
-                status: e.target.selectStatus.value,
+                status: busyStatus,
                 peopleAmount: e.target.peopleAmount.value, 
                 maxPeopleAmount: e.target.maxPeopleAmount.value, 
                 timeStamp: timeStamp,
@@ -143,7 +158,11 @@ const TableForm = (passed) => {
             <div className={clsx(styles.slider1_content, slider1 && styles.slider1_content_visible)}>
 
                 <div className={styles.formType}>
+                <div class="form-check form-switch">
+                    <input onChange={toggleHandler} class="form-check-input" type="checkbox" role="switch" checked={isChecked} />
+                </div>
                 <label className={styles.label1}>Status</label>
+                <input type="checkbox" role="switch"></input>
                 {status && (
                         <select onChange={(e) => clsx(changeHandler, setBusyStatus(e.target.value))} name="selectStatus" defaultValue={status} className={`form-select ${styles.select}`}>
                             <option value='Free'>Free</option>
@@ -183,13 +202,13 @@ const TableForm = (passed) => {
             <div className={clsx(styles.slider2_content, slider2 && styles.slider2_content_visible, !slider1 && styles.slider2_content_extended)}>
                 <MenuSelect selectedTable={menuOrderTemp}/>
             </div>
-                    <div>
-                        {!table[0].orderPlaced? (
-                        <button className={styles.btn} onClick={handleBlur}><i class="fa-solid fa-plus"></i></button>
-                        ) : (
-                        <button className={styles.btn} onClick={handleBlur}><i class="fa-solid fa-arrows-rotate"></i></button>) 
-                        }
-                    </div>
+                <div>
+                    {!table[0].orderPlaced? (
+                    <button className={styles.btn} onClick={handleBlur}><i class="fa-solid fa-plus"></i></button>
+                    ) : (
+                    <button className={styles.btn} onClick={handleBlur}><i class="fa-solid fa-arrows-rotate"></i></button>) 
+                    }
+                </div>
         </div>
         </form>
       

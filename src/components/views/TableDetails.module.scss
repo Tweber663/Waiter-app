@@ -6,11 +6,12 @@
     margin-bottom: 20px
 }
 
-.blurWindow {
+
+.blurWindow, .blurWindowRestart {
     display: none;
 }
 
-.blurWindow.blurWindowOn {
+.blurWindow.blurWindowOn, .blurWindowRestart.blurWindowOn {
     display: block;
     position: absolute;
     width: 100%;
