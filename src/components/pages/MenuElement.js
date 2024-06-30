@@ -8,7 +8,7 @@ const MenuElement = (passed) => {
         passed.blurOn(false);
         passed.baseName(basePrice);
         passed.idNum(id);
-        passed.img(photo);
+        passed.img({photo, title});
     }
 
 

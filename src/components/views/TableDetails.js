@@ -6,6 +6,9 @@ import { Container } from "react-bootstrap"
 import Navigation from "../features/Navigation"
 import clsx from "clsx"
 import { useDispatch } from 'react-redux'
+import { orderPlacedTableReset } from '../../redux/tableRedux'
+import { useSelector } from 'react-redux'
+import { orderPlacedDelete } from '../../redux/tableRedux'
 
 const TableDetails = () => {
     const dispatch = useDispatch(); 
@@ -14,7 +17,8 @@ const TableDetails = () => {
     const [blurOn, setBlurOn] = useState(false); 
     const [blurOnRestart, setBlurOnRestart] = useState(false);
     const [blurInfo, setBlurInfo] = useState(); 
-    const [resetConfrim, setResetConfrim] = useState(false);
+    const [resetDeclined, setResetDeclined] = useState(false);
+    const tableTemp = useSelector(state => state.tables.addTableTempOrder)
 
     const orderAddedTrigger = (e) => {
         if (e === 'subimted') {
@@ -25,9 +29,32 @@ const TableDetails = () => {
         } 
     };
 
-
-    const restartHandler = () => {
-        setResetConfrim(true); 
+    const restartHandler = (e) => {
+        e.preventDefault()
+        dispatch(orderPlacedTableReset({
+            id: id, 
+            orderPlaced: false,
+            status: 'Free', 
+            peopleAmount: "2", 
+            maxPeopleAmount: "4", 
+            timeStamp: "00:00",
+            bill: "0", 
+            info: "Type your notes here:", 
+            menuOrder: tableTemp[0].menuOrder.map((order) => {
+                return {
+                   title: order.title, 
+                   id: id, 
+                   tableNum: id, 
+                   photo: order.photo, 
+                   basePrice: order.basePrice, 
+                   quantity: 0,
+                   totalAmount: 0,
+                   checkbox: order.checkbox, 
+                   orderServed: false,
+                }
+            })
+        }, id))
+        dispatch(orderPlacedDelete(id));
     }
 
     const blurOffHandler = (e) => {
@@ -45,10 +72,13 @@ const TableDetails = () => {
 
              <div onClick={blurOffHandler} className={clsx(styles.blurWindowRestart, blurOnRestart && styles.blurWindowOn)}>
                 <div className={styles.infoWindow}>
-                    <h6>
-                        Switching table to 'Free' will restart the table and all it's active orders. Are you sure you want to proceed? 
+                    <h6 className={styles.restartInfo}>
+                        Switching table to 'Free' will restart the table and delete active orders this table belongs to. Are you sure you want to proceed? 
                     </h6>
-                    <button onClick={clsx(restartHandler)} className={"btn btn-warning"}>Restart</button>
+                    <button onClick={restartHandler} className={"btn btn-warning"}>Yes</button>
+                    <button onClick={() => { 
+                        setBlurOnRestart(false) 
+                    }} className={"btn btn-outline-white"}>No</button>
                 </div>
              </div>
 

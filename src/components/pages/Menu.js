@@ -32,6 +32,18 @@ const Menu = () => {
     const [error, setError] = useState(true);
     const [blurSwitchOff, setBlurSwitchOff] = useState(false);
     const [infoBlurOff, setInfoBlurOff] = useState(true);
+    const [isSelected, setIsSelected] = useState(true);
+   
+    useEffect(() => {
+      const ulList = document.querySelectorAll(`.${styles.selectList} ul > li`);
+      Array.from(ulList).forEach((list) => {
+        const titleElement = list.querySelector('h6').innerHTML;
+        const imgElement = list.querySelector('img').getAttribute('src');
+        if (imgElement.slice(8) === photoName.photo) {
+            setPhotoName({title: titleElement, photo: imgElement.slice(8)}); 
+        }
+      });
+    }, [blurEditOn])
 
     const blurHandler = (e) => {
         if (e.target.classList.contains('Menu_windowBlur__dqBNq') || e.target.classList.contains('Menu_windowEditBlur__dxRsn')) {
@@ -52,22 +64,32 @@ const Menu = () => {
 
     const submitHandlerEdit = (e) => {
         e.preventDefault();
+        console.log(photoName)
+        debugger
         if (regex.test(e.target[2].value)) {
-            dispatch(menuPlacedUpdate(currentState, e.target[0].value, e.target[2].value, idNum, e.target[1].value))
+            dispatch(menuPlacedUpdate(currentState, e.target[0].value, e.target[2].value, idNum, photoName.photo))
             setBlurEditOn(true);
-        } else {
-
-        }
+        } 
     } 
 
     const onChangeHandler = (e) => {
         setBasePriceName(e.target.value)
         if (!regex.test(e.target.value)) {
-            console.log(e.target.value) 
             setError(false);
             setBlurSwitchOff(true);
         }
     }
+
+    const onChangeTitleHanlder = (e) => {
+        setDishName(e.target.value)
+    }
+
+    const selectorHandler = (e) => {
+        setPhotoName({title: e.target.querySelector('h6').innerHTML, photo: e.target.getAttribute('value')});
+        setIsSelected(true);
+    }
+
+
 
 
     return (
@@ -107,23 +129,22 @@ const Menu = () => {
                 <div className={styles.editInfoBox}>
                     <form onSubmit={submitHandlerEdit}>
                         <labal>Dish Name:</labal>
-                        <input onChange={(e) => setDishName(e.target.value)} name="dishName" className={clsx("form-control")} value={dishName}></input>
+                        <input onChange={onChangeTitleHanlder} name="dishNameInput" className={clsx("form-control")} value={dishName}></input>
                         <label>Picture Select:</label>
-                        <select onChange={(e) => setPhotoName(e.target.value)} value={photoName} className={clsx("form-select", styles.selectt)}>
-                            <option value="fork.png">Fork & Spoon</option>
-                            <option value="pizza.png">Pizza</option>
-                            <option value="spaghetti.png">Spaghetti</option>
-                            <option value="biryani.png">Biryani</option>
-                            <option value="cooking.png">Fried rice</option>
-                            <option value="fast-food.png">Meal deal</option>
-                            <option value="salad.png">Salad</option>
-                            <option value="burger&drink.png">Burger & drink</option>
-                            <option value="diet.png">Diet Menu</option>
-                            <option value="fruit.png">Fruit Salad</option>
-                            <option value="buns.png">Dumplings</option>
-                            <option value="chicken-leg.png">Fried chicken</option>
-                            <option value="chicken-leg.png">Fried chicken</option>
-                        </select>
+                        <input onClick={() => setIsSelected(prev => !prev)} value={photoName.title} className={clsx("form-select", styles.selectt)}>
+                        </input>
+                        <div className={clsx(styles.selectList, isSelected && styles.selectListOff)}>
+                            <ul className={styles.selectListUl} onClick={selectorHandler}>
+                                <li value="fork.png" className={styles.selectItem}>
+                                    <img name="selectPhoto" alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/fork.png`}/>
+                                    <h6>Fork</h6>
+                                </li>
+                                <li value="pizza.png" className={styles.selectItem}>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/pizza.png`}/>
+                                    <h6>Pizza</h6>
+                                </li>
+                            </ul>
+                        </div>
                         <label>Base price:</label>
                         <input maxLength="3" onChange={onChangeHandler} className={clsx("form-control", styles.priceInput)} value={basePriceName}></input>
                         <div className={styles.buttonsBox}>

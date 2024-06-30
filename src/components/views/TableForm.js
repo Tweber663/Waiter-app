@@ -25,7 +25,6 @@ const TableForm = (passed) => {
     const {id} = useParams();
     const table = useSelector(state => selectedTable({state, id}));
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
-    console.log(menuOrderTemp);
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
 
     if (status !== "Busy") bill = "0";
@@ -36,17 +35,23 @@ const TableForm = (passed) => {
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
-    const [isChecked, setIsChecked] = useState(false)
+    const [isChecked, setIsChecked] = useState(false);
+    const [offBusy, setOffBusy] = useState(false)
     const [busyStatus, setBusyStatus] = useState(() => {
         if (table[0]) {
-            console.log(table[0].status)
             return table[0].status
         }
     })
 
     useEffect(() => {
-        busyStatus === "Busy"? setIsChecked(true) : setIsChecked(false);
+        if (busyStatus === "Busy")  {
+            setIsChecked(true)
+        } else {
+            setIsChecked(false);
+            setOffBusy(true)
+        }
     }, [])
+
 
     const activeOrders = useSelector(state => (checkingforOrders(state, id)));
     
@@ -54,11 +59,15 @@ const TableForm = (passed) => {
         setIsChecked(prev => !prev)
         e.target.checked === true? setBusyStatus("Busy") : setBusyStatus("Free");
         setBusyStatus(prev => {
-            console.log(prev)
            if (prev === "Free") {
             passed.setBlurOnReset(true);
-           } 
+            setChangeStatus("Free")
+           } else {
+            setOffBusy(false)
+            setBusyStatus("Busy")
+           }
         }); 
+
     }
 
     const handlerChange1 = (e) => {
@@ -82,9 +91,6 @@ const TableForm = (passed) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        // if (busyStatus === "Free" && restartConfirmed === true) {
-        //     console.log('Table will be restarted');
-        // }
         if (busyStatus === "Busy" && activeOrders.length) {
             dispatch(fetchingTablesPUT({
                 id, 
@@ -117,21 +123,8 @@ const TableForm = (passed) => {
         }
     }
 
-
     const [changeStatus, setChangeStatus] = useState(false);
     const [currentStatus, setCurrentStauts] = useState(status);
-    const changeHandler = (e) => {
-        e.preventDefault();
-        if (e.target.value === 'Busy') {
-            setChangeStatus(true)
-        } else {
-            setChangeStatus(false);
-        }
-        if (status === 'Busy' && e.target.value !== "Busy") {
-            setCurrentStauts(e.target.value)
-        }
-    }
-
 
     const slider1Handler = (e) => {
         e.preventDefault();
@@ -158,19 +151,17 @@ const TableForm = (passed) => {
             <div className={clsx(styles.slider1_content, slider1 && styles.slider1_content_visible)}>
 
                 <div className={styles.formType}>
-                <div class="form-check form-switch">
-                    <input onChange={toggleHandler} class="form-check-input" type="checkbox" role="switch" checked={isChecked} />
-                </div>
                 <label className={styles.label1}>Status</label>
-                <input type="checkbox" role="switch"></input>
-                {status && (
-                        <select onChange={(e) => clsx(changeHandler, setBusyStatus(e.target.value))} name="selectStatus" defaultValue={status} className={`form-select ${styles.select}`}>
-                            <option value='Free'>Free</option>
-                            <option value='Reserved'>Reserved</option>
-                            <option value='Busy'>Busy $</option>
-                            <option value='Cleaning'>Cleaning</option>
-                    </select>
-                )}
+                    <div class={clsx("form-check form-switch", styles.toggleBox)}>
+                        <input onChange={toggleHandler} class={clsx("form-check-input", styles.toggle)} type="checkbox" role="switch" checked={isChecked} />
+                        <div className={styles.toggleMessage1}>Free</div>
+                        <div className={clsx(styles.toggleMessage2, offBusy && styles.toggleMessage2Off)}>Busy</div>
+                        <div onClick={() => {
+                            // setOffBusy(true)
+                            // setIsChecked(false)
+                            passed.setBlurOnReset(true);
+                        }} className={clsx(styles.toggleOverLay, !offBusy && styles.toggleOverLayOn)}></div>
+                    </div>
                 </div> 
                 <div className={styles.formType}>
                     <label className={styles.label2}>People</label>
