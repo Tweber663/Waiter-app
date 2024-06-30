@@ -8,6 +8,8 @@ const GETTING_INFO = actionType1('GETTING_INFO')
 
 //**Action creatores
 
+export const addingTotalAmountToTable = (totalAmount, tableNum) => ({type: "ADDING_TOTAL_AMOUNT", payload: totalAmount, id: tableNum})
+
 export const menuPlacedDelete = (id, state) => {
     return () => {
         const options = {
@@ -293,13 +295,16 @@ export const ifTableAlredyExists = (id, state) => {
         return state.tables.tables.find((table) => table.id == id)
     }
 }
+
+export const grabingTotalAmount = (state, id) => state.filter((table) => table.tableId === id? table.tableTotalAmount: null)
+
 export const ifTableLimitReached = (state) => {
     if (state.tables.fetched) {
       return state.tables.tables.length > 6 ? true : false
     }
 }
-export const updateMenuItem = (payload) => {
-    return ({type: "UPDATING_MENU_ITEM", payload,});
+export const updateMenuItem = (payload, total) => {
+    return ({type: "UPDATING_MENU_ITEM", payload, total});
 }
 
 export const newMenuListItem = (name, price, id) => {
@@ -402,6 +407,10 @@ export const updateMenuOrderTemp = (payload) => {
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
+        case "ADDING_TOTAL_AMOUNT": 
+        console.log(action)
+        console.log(statePart.tables.menuOrderTemp)
+        return {...statePart.tables};
         case "UPDATE_MENU_ORDER_TEMP":
             return {
                 ...statePart.tables, 
@@ -461,6 +470,7 @@ const tablesReducer = (statePart = [], action) => {
                     )
                 } 
         case "UPDATING_MENU_ITEM": 
+        console.log(action)
         let filteredTables = ''
         let filteredOrder = ''
         filteredTables = statePart.tables.menuOrderTemp.map((table) => {
@@ -484,16 +494,10 @@ const tablesReducer = (statePart = [], action) => {
             } else {
                 return table
             }
-
-            console.log({
-                ...table,
-                menuOrder: filteredOrder,
-            })
-            // debugger
-
             return {
                 ...table,
                 menuOrder: filteredOrder,
+                tableTotalAmount: action.total,
             }; 
         })
         return {...statePart.tables, menuOrderTemp: filteredTables}
