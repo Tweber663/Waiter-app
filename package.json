@@ -1,6 +1,5 @@
 {
   "name": "16-react-summary",
-  "homepage": "api/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
