@@ -14,7 +14,7 @@ const App = ()  => {
 
     <Container className={styles.cont}>
     <Routes>
-      <Route path="/" element={<Welcome />} />
+      <Route exact path="/" element={<Welcome />} />
       <Route path="/home" element={<Home />} />
       <Route path="/home/tables/:id" element={<TableDetails />} />
       <Route path="/orders" element={<Orders />} />
