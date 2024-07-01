@@ -1,4 +1,4 @@
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Home from "./components/pages/Home";
 import TableDetails from "./components/views/TableDetails";
