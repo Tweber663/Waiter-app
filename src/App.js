@@ -13,7 +13,6 @@ const App = ()  => {
   return (
 
     <Container className={styles.cont}>
-    <Router>
       <Routes>
         <Route exact path="/" element={<Welcome />} />
         <Route path="/home" element={<Home />} />
@@ -22,7 +21,6 @@ const App = ()  => {
         <Route path="/menu" element={<Menu />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </Router>
   </Container>
   )
 }
