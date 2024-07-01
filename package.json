@@ -22,6 +22,7 @@
     "redux-devtools-extension": "2.13.9",
     "redux-thunk": "2.4.2",
     "sass": "1.65.1",
+    "serve": "^14.2.3",
     "shortid": "^2.2.16",
     "web-vitals": "^2.1.4"
   },
@@ -31,7 +32,7 @@
     "start:server": "json-server --port 3130 --no-cors --delay 600 --watch public/db/app.json --routes public/db/routes.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject", 
+    "eject": "react-scripts eject",
     "serve": "serve -s build"
   },
   "eslintConfig": {
