@@ -6,6 +6,12 @@
     margin-bottom: 20px
 }
 
+.totalAmount {
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+}
+
 
 .blurWindow, .blurWindowRestart {
     display: none;

@@ -5,21 +5,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { updateMenuItem } from '../../redux/tableRedux';
 import { checkMenuItem } from '../mechanisms/brains';
+import { checkMenuOrderId } from '../../redux/tableRedux';
+import { addingTotalAmountToTable } from '../../redux/tableRedux';
 
-const MenuItem = ({selectedTable, menuItems}) => {
+const MenuItem = ({selectedTable, menuItems, setTotalAmount}) => {
     const dispatch = useDispatch();
 
 
     // let {status, bill, id, info, maxPeopleAmount, peopleAmount, menuOrder} = selectedTable;
     let {title, id, photo, basePrice, totalAmount, checkbox, quantity, tableNum} = menuItems;
-    
+
     const [count, setCount] = useState(quantity);
     const [checked, setChecked] = useState(checkbox);
-
-
-
+    const menuOrderTemp = useSelector(state => checkMenuOrderId(state, tableNum));
+    
     const onChangeAdd = (e) => {
+        let total = basePrice;
         e.preventDefault();
+        const billedItems = menuOrderTemp[0].menuOrder.filter((item) => item.quantity > 0? item : null);
+        billedItems.forEach((order) => {
+            total += order.totalAmount;
+        })
+
         setCount(prevCount => prevCount + 1);
         if(count >= 0) {
             setChecked(true);
@@ -33,11 +40,18 @@ const MenuItem = ({selectedTable, menuItems}) => {
            basePrice: basePrice,
            quantity: count + 1,
            totalAmount: count * basePrice + basePrice,
-        }))
+        }, total))
     }
 
     const onChangeMinus = (e) => {
         e.preventDefault();
+        let total = basePrice;
+        const billedItems = menuOrderTemp[0].menuOrder.filter((item) => item.quantity > 0? item : null);
+        billedItems.forEach((order) => {
+            total = order.totalAmount - total;
+        })
+        console.log(total)
+
         let test = false;
         setCount(prevCount => {
             if (prevCount < 1) {
@@ -59,7 +73,7 @@ const MenuItem = ({selectedTable, menuItems}) => {
             basePrice: basePrice,
             quantity: count - 1,
             totalAmount: test === false? totalAmount - basePrice : 0
-         }))
+         }, total))
     }
     const temp = () => {}
     return (

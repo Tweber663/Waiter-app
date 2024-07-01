@@ -47,9 +47,9 @@ const Menu = () => {
 
     const blurHandler = (e) => {
         if (e.target.classList.contains('Menu_windowBlur__dqBNq') || e.target.classList.contains('Menu_windowEditBlur__dxRsn')) {
-            console.log(true)
             setBlurOn(true);
             setBlurEditOn(true);
+            setIsSelected(true)
         }
     }
 
@@ -85,7 +85,7 @@ const Menu = () => {
     }
 
     const selectorHandler = (e) => {
-        setPhotoName({title: e.target.querySelector('h6').innerHTML, photo: e.target.getAttribute('value')});
+        setPhotoName({title: e.target.parentElement.querySelector('h6').innerHTML, photo: e.target.parentElement.getAttribute('value')});
         setIsSelected(true);
     }
 
@@ -135,13 +135,87 @@ const Menu = () => {
                         </input>
                         <div className={clsx(styles.selectList, isSelected && styles.selectListOff)}>
                             <ul className={styles.selectListUl} onClick={selectorHandler}>
-                                <li value="fork.png" className={styles.selectItem}>
-                                    <img name="selectPhoto" alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/fork.png`}/>
-                                    <h6>Fork</h6>
-                                </li>
+                                <div>
+                                    <li value="fork.png" className={styles.selectItem}>
+                                        <div className={styles.overLay}></div>
+                                        <img name="selectPhoto" alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/fork.png`}/>
+                                        <h6>Fork</h6>
+                                    </li>
+                                </div>
                                 <li value="pizza.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
                                     <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/pizza.png`}/>
                                     <h6>Pizza</h6>
+                                </li>
+                                <li value="buns.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/buns.png`}/>
+                                    <h6>Dumplings</h6>
+                                </li>
+                                <li value="burger&drink.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/burger&drink.png`}/>
+                                    <h6>Burger with drink</h6>
+                                </li>
+                                <li value="chicken-leg.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/chicken-leg.png`}/>
+                                    <h6>Chicken</h6>
+                                </li>
+                                <li value="cooking.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/cooking.png`}/>
+                                    <h6>Fried rice</h6>
+                                </li>
+                                <li value="diet.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/diet.png`}/>
+                                    <h6>Diet Menu</h6>
+                                </li>
+                                <li value="fast-food.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/fast-food.png`}/>
+                                    <h6>Meal deal</h6>
+                                </li>
+                                <li value="fish.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/fish.png`}/>
+                                    <h6>Cooked cod</h6>
+                                </li>
+                                <li value="fruit.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/fruit.png`}/>
+                                    <h6>Fruit bowl</h6>
+                                </li>
+                                <li value="salad.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/salad.png`}/>
+                                    <h6>Salad</h6>
+                                </li>
+                                <li value="spaghetti.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/spaghetti.png`}/>
+                                    <h6>Spaghetti</h6>
+                                </li>
+                                <li value="crab.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/crab.png`}/>
+                                    <h6>Crab</h6>
+                                </li>
+                                <li value="thai-food.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/thai-food.png`}/>
+                                    <h6>Shrimp</h6>
+                                </li>
+                                <li value="taco.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/taco.png`}/>
+                                    <h6>Tacos</h6>
+                                </li>
+                                <li value="ramen.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/ramen.png`}/>
+                                    <h6>Ramen</h6>
                                 </li>
                             </ul>
                         </div>

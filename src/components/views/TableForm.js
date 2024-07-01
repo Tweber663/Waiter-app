@@ -13,6 +13,7 @@ import { checkMenuOrderId } from "../../redux/tableRedux";
 import { checkingforOrders } from "../../redux/tableRedux";
 import { orderPlacedPost } from "../../redux/tableRedux";
 import { orderPlacedPut } from "../../redux/tableRedux";
+import { grabingTotalAmount } from "../../redux/tableRedux";
 
 const TableForm = (passed) => {
     const dispatch = useDispatch();
@@ -37,11 +38,13 @@ const TableForm = (passed) => {
     const [slider2, setSlider2] = useState(true);
     const [isChecked, setIsChecked] = useState(false);
     const [offBusy, setOffBusy] = useState(false)
+    const totalAmount = useSelector(state => grabingTotalAmount(state.tables.menuOrderTemp, id));
     const [busyStatus, setBusyStatus] = useState(() => {
         if (table[0]) {
             return table[0].status
         }
     })
+
 
     useEffect(() => {
         if (busyStatus === "Busy")  {
@@ -100,7 +103,7 @@ const TableForm = (passed) => {
                 maxPeopleAmount: e.target.maxPeopleAmount.value, 
                 timeStamp: timeStamp,
                 time: `${now.getHours()}:${now.getMinutes()}`,
-                bill: e.target.bill.value,
+                bill: totalAmount[0].tableTotalAmount,
                 info: e.target.textInfo.value,
                 menuOrder: menuOrderTemp[0].menuOrder,
             }));
@@ -143,7 +146,7 @@ const TableForm = (passed) => {
         <form onSubmit={submitHandler}>
         <div className={styles.orderBox}>
             <div onClick={slider1Handler}  className={clsx(styles.slider1_btn)}>
-            <div><h2 className={styles.title}>Table details</h2></div>
+            <div><h2 className={styles.title}>Table details </h2></div>
                 <div className={clsx(styles.vSymbolBox)}>
                     <img className={clsx(styles.vSymbol, slider1 && styles.vSymbolRotateDown, !slider1 && styles.vSymbolRotateUp)} src={`${process.env.PUBLIC_URL}/images/arrow.png`}/>
                 </div>
