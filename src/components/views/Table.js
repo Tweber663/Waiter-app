@@ -21,8 +21,6 @@ const Table = (table) => {
         }
     }, [table])
 
-    console.log(table);
-
     return (
             <div className={styles.holder}>
                 <div className={styles.top}>

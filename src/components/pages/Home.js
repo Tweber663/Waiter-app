@@ -8,13 +8,15 @@ import Navigation from "../features/Navigation"
 import { Container } from "react-bootstrap"
 const Home = () => {
 
+
+
     return (
        <div className={styles.boxEntireApp}>
         <Container>
             <TableError/>
             <Tables/>
         </Container>
-        <Navigation/>
+        <Navigation selected="Home"/>
        </div> 
     )
 } 

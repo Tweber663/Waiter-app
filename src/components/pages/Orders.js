@@ -58,7 +58,7 @@ const Orders = () => {
                    </div>
                 </div>
              </div>
-            <Navigation />
+            <Navigation selected="Orders" />
         </div>
     )
 }

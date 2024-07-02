@@ -94,7 +94,7 @@ const TableForm = (passed) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        if (busyStatus === "Busy" && activeOrders.length) {
+        if (busyStatus === "Busy" && activeOrders.length && totalAmount.length) {
             dispatch(fetchingTablesPUT({
                 id, 
                 orderPlaced: true,
@@ -120,6 +120,9 @@ const TableForm = (passed) => {
         } else if (busyStatus === "Busy" && !activeOrders.length) {
             passed.setBlurOn(true); 
             passed.setBlurInfo(<h1>1. Ensure you have at least 1 item selected in your "Menu"</h1>)
+        }else if (!totalAmount.length) {
+            passed.setBlurOn(true); 
+            passed.setBlurInfo(<h1>To update the order, ensure that you have made changes to the menu items</h1>)
         } else {
             passed.setBlurOn(true);
             passed.setBlurInfo(<h1>1. Order not send! Ensure that table status is switched to "Busy"</h1>)

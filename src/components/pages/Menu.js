@@ -242,7 +242,7 @@ const Menu = () => {
                 <MenuAdd blurInfo={setInfoBlurOff} blur={setBlurOn}/>
             </Container>
            
-            <Navigation/>
+            <Navigation selected="Menu"/>
         </div>
     )
 }
