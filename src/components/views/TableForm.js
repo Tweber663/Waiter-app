@@ -14,6 +14,8 @@ import { checkingforOrders } from "../../redux/tableRedux";
 import { orderPlacedPost } from "../../redux/tableRedux";
 import { orderPlacedPut } from "../../redux/tableRedux";
 import { grabingTotalAmount } from "../../redux/tableRedux";
+import Toggle from "../features/Toggle";
+import People from "../features/People";
 
 const TableForm = (passed) => {
     const dispatch = useDispatch();
@@ -25,6 +27,7 @@ const TableForm = (passed) => {
     //Current table id
     const {id} = useParams();
     const table = useSelector(state => selectedTable({state, id}));
+    
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
     let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
 
@@ -36,43 +39,12 @@ const TableForm = (passed) => {
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
-    const [isChecked, setIsChecked] = useState(false);
-    const [offBusy, setOffBusy] = useState(false)
     const totalAmount = useSelector(state => grabingTotalAmount(state.tables.menuOrderTemp, id));
-    const [busyStatus, setBusyStatus] = useState(() => {
-        if (table[0]) {
-            return table[0].status
-        }
-    })
-
-
-    useEffect(() => {
-        if (busyStatus === "Busy")  {
-            setIsChecked(true)
-        } else {
-            setIsChecked(false);
-            setOffBusy(true)
-        }
-    }, [])
-
-
+    const [busyStatus, setBusyStatus] = useState('')
+ 
     const activeOrders = useSelector(state => (checkingforOrders(state, id)));
     
-    const toggleHandler = (e) => {
-        setIsChecked(prev => !prev)
-        e.target.checked === true? setBusyStatus("Busy") : setBusyStatus("Free");
-        setBusyStatus(prev => {
-           if (prev === "Free") {
-            passed.setBlurOnReset(true);
-            setChangeStatus("Free")
-           } else {
-            setOffBusy(false)
-            setBusyStatus("Busy")
-           }
-        }); 
-
-    }
-
+ 
     const handlerChange1 = (e) => {
         e.preventDefault();
         setPepAmount(e.target.value)
@@ -122,7 +94,7 @@ const TableForm = (passed) => {
             passed.setBlurInfo(<h1>1. Ensure you have at least 1 item selected in your "Menu"</h1>)
         }else if (!totalAmount.length) {
             passed.setBlurOn(true); 
-            passed.setBlurInfo(<h1>To update the order, ensure that you have made changes to the menu items</h1>)
+            passed.setBlurInfo(<h1>To update table order ensure to change at least one menu item</h1>)
         } else {
             passed.setBlurOn(true);
             passed.setBlurInfo(<h1>1. Order not send! Ensure that table status is switched to "Busy"</h1>)
@@ -156,25 +128,15 @@ const TableForm = (passed) => {
             </div>
             <div className={clsx(styles.slider1_content, slider1 && styles.slider1_content_visible)}>
 
-                <div className={styles.formType}>
-                <label className={styles.label1}>Status</label>
-                    <div class={clsx("form-check form-switch", styles.toggleBox)}>
-                        <input onChange={toggleHandler} class={clsx("form-check-input", styles.toggle)} type="checkbox" role="switch" checked={isChecked} />
-                        <div className={styles.toggleMessage1}>Free</div>
-                        <div className={clsx(styles.toggleMessage2, offBusy && styles.toggleMessage2Off)}>Busy</div>
-                        <div onClick={() => {
-                            // setOffBusy(true)
-                            // setIsChecked(false)
-                            passed.setBlurOnReset(true);
-                        }} className={clsx(styles.toggleOverLay, !offBusy && styles.toggleOverLayOn)}></div>
-                    </div>
-                </div> 
-                <div className={styles.formType}>
+                <Toggle busyStatus={setBusyStatus} setBlurOnReset={passed.setBlurOnReset}/>
+                <People/>
+                {/* <div className={styles.formType}>
                     <label className={styles.label2}>People</label>
                     <input onChange={(e) => handlerChange1(e)} onBlur={handleBlur} name="peopleAmount" value={pepAmount} className={`form-control ${styles.input}`} type="text"></input>
                     /
                     <input onChange={(e) => handlerChange2(e)} onBlur={handleBlur} name="maxPeopleAmount" value={maxPepAmount} className={`form-control ${styles.input}`} type="text"></input> 
-                </div>
+                </div> */}
+
                 <div className={clsx(styles.formType, 
                     changeStatus === true || currentStatus !== 'Busy' && styles.hide )}>
                         <label className={styles.label3}>Bill  $</label>
@@ -201,9 +163,9 @@ const TableForm = (passed) => {
             </div>
                 <div>
                     {!table[0].orderPlaced? (
-                    <button className={styles.btn} onClick={handleBlur}><i class="fa-solid fa-plus"></i></button>
+                    <button className={styles.btn}><i class="fa-solid fa-plus"></i></button>
                     ) : (
-                    <button className={styles.btn} onClick={handleBlur}><i class="fa-solid fa-arrows-rotate"></i></button>) 
+                    <button className={styles.btn}><i class="fa-solid fa-arrows-rotate"></i></button>) 
                     }
                 </div>
         </div>
