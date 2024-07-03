@@ -45,7 +45,9 @@ const TableForm = (passed) => {
 
     const now = new Date();
     const timeStamp = now.getTime();
-
+    console.log(totalAmount[0].calculatedPrecent); 
+    console.log(totalAmount[0].totalAmount);
+    debugger
     const submitHandler = (e) => {
         e.preventDefault();
         if (busyStatus === "Busy" && activeOrders.length && totalAmount.length) {
@@ -58,6 +60,7 @@ const TableForm = (passed) => {
                 timeStamp: timeStamp,
                 time: `${now.getHours()}:${now.getMinutes()}`,
                 bill: totalAmount[0].tableTotalAmount,
+                billPlusService: totalAmount[0].calculatedPrecent < totalAmount[0].totalAmount ? totalAmount[0].calculatedPrecent : false, 
                 info: e.target.textInfo.value,
                 service: menuOrderTemp[0].service > 0? menuOrderTemp[0].service : 0, 
                 menuOrder: menuOrderTemp[0].menuOrder,

@@ -427,7 +427,7 @@ const tablesReducer = (statePart = [], action) => {
                         tableId: element.tableId,
                         tableTotalAmount: element.tableTotalAmount, 
                         service: element.tableId == action.payload.id? action.payload.precentage : 0,
-                        calculatedPrecent: (action.payload.precentage/10 * element.tableTotalAmount/10) + element.tableTotalAmount
+                        calculatedPrecent: element.tableTotalAmount != 0 ? action.payload.precentage/10 * element.tableTotalAmount/10 + element.tableTotalAmount : 0
                     }
                 })
             }
@@ -474,7 +474,7 @@ const tablesReducer = (statePart = [], action) => {
                         tableId: table.id, 
                         menuOrder: table.menuOrder,
                         tableTotalAmount: table.bill, 
-                        service: table.service
+                        service: table.service,
                     }))
                   };
             }
@@ -523,7 +523,7 @@ const tablesReducer = (statePart = [], action) => {
                 menuOrder: filteredOrder,
                 tableTotalAmount: action.total,
                 service: table.service? table.service : 0,
-                calculatedPrecent: table.service? ((action.total/10 * table.service/10) + action.total) : 0
+                calculatedPrecent: table.service? ((action.total/10 * table.service/10) + action.total) : action.total
             }; 
         })
         console.log({...statePart.tables, menuOrderTemp: filteredTables});
