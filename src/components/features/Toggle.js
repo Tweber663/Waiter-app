@@ -16,8 +16,6 @@ const Toggle = (passed) => {
     const [busyStatus, setBusyStatus] = useState(table[0].status === "Free"? true : false);
     const [overLay, setOverLay] = useState(table[0].status === "Busy"? true : false); 
     
-    console.log(activeOrders)
-    
     useEffect(() => {
         passed.busyStatus(table[0].status === "Busy"? "Busy" : "false"); 
     }, [])

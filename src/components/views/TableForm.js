@@ -16,6 +16,7 @@ import { orderPlacedPut } from "../../redux/tableRedux";
 import { grabingTotalAmount } from "../../redux/tableRedux";
 import Toggle from "../features/Toggle";
 import People from "../features/People";
+import ServiceCharge from "../features/ServiceCharge";
 
 const TableForm = (passed) => {
     const dispatch = useDispatch();
@@ -29,37 +30,18 @@ const TableForm = (passed) => {
     const table = useSelector(state => selectedTable({state, id}));
     
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
-    let { bill, status, peopleAmount, maxPeopleAmount, info} = table[0] || {};
+    let { bill, status, info} = table[0] || {};
+    console.log(menuOrderTemp); 
 
     if (status !== "Busy") bill = "0";
-    if (peopleAmount < 1 ||  peopleAmount > 10) peopleAmount = 1;
-    if (maxPeopleAmount < 1 ||  maxPeopleAmount > 10) maxPeopleAmount = 1;
 
-    const [pepAmount, setPepAmount] = useState(peopleAmount);
-    const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
     const totalAmount = useSelector(state => grabingTotalAmount(state.tables.menuOrderTemp, id));
     const [busyStatus, setBusyStatus] = useState('')
  
     const activeOrders = useSelector(state => (checkingforOrders(state, id)));
-    
- 
-    const handlerChange1 = (e) => {
-        e.preventDefault();
-        setPepAmount(e.target.value)
-    }
 
-    const handlerChange2 = (e) => {
-        e.preventDefault();
-        setMaxPepAmount(e.target.value)
-    }
-
-    const handleBlur = () => {
-        if (pepAmount < 1 || pepAmount > 10) setPepAmount(1);
-        if (maxPepAmount < 1 || maxPepAmount > 10) setMaxPepAmount(1);
-        if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
-    }
 
     const now = new Date();
     const timeStamp = now.getTime();
@@ -77,6 +59,7 @@ const TableForm = (passed) => {
                 time: `${now.getHours()}:${now.getMinutes()}`,
                 bill: totalAmount[0].tableTotalAmount,
                 info: e.target.textInfo.value,
+                service: menuOrderTemp[0].service > 0? menuOrderTemp[0].service : 0, 
                 menuOrder: menuOrderTemp[0].menuOrder,
             }));
             if (activeOrders && !table[0].orderPlaced) dispatch(orderPlacedPost(activeOrders, id, timeStamp))
@@ -130,21 +113,7 @@ const TableForm = (passed) => {
 
                 <Toggle busyStatus={setBusyStatus} setBlurOnReset={passed.setBlurOnReset}/>
                 <People/>
-                {/* <div className={styles.formType}>
-                    <label className={styles.label2}>People</label>
-                    <input onChange={(e) => handlerChange1(e)} onBlur={handleBlur} name="peopleAmount" value={pepAmount} className={`form-control ${styles.input}`} type="text"></input>
-                    /
-                    <input onChange={(e) => handlerChange2(e)} onBlur={handleBlur} name="maxPeopleAmount" value={maxPepAmount} className={`form-control ${styles.input}`} type="text"></input> 
-                </div> */}
-
-                <div className={clsx(styles.formType, 
-                    changeStatus === true || currentStatus !== 'Busy' && styles.hide )}>
-                        <label className={styles.label3}>Bill  $</label>
-                        <input name='bill' defaultValue={bill} 
-                        className={`form-control ${styles.input}`} 
-                        type='text'>
-                        </input>
-                </div>
+                <ServiceCharge/>
                 <div className={styles.formType}>
                     <label className={styles.label4} >Notes</label>
                     <textarea defaultValue={info} name="textInfo" className={clsx("form-control", styles.textarea)}></textarea>

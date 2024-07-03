@@ -83,7 +83,6 @@ export const menuPlacedPut = (state, name, price, id, photo) => {
         checkbox: false, 
         orderServed: false, 
        }
-       console.log(payload)
        debugger
 
     return (dispatch) => {
@@ -229,7 +228,6 @@ export const fetchingTables = () => {
 
 export const fetchTablePost = (addedTable) => {
     return (dispatch) => {
-        console.log(addedTable)
         debugger
         const options = {
             method: 'POST',
@@ -296,7 +294,16 @@ export const ifTableAlredyExists = (id, state) => {
     }
 }
 
-export const grabingTotalAmount = (state, id) => state.filter((table) => table.tableId === id? table.tableTotalAmount: null)
+export const grabingTotalAmount = (state, id, precent) => {
+
+const tableOrder = state.filter((table) => table.tableId === id? table.tableTotalAmount: null); 
+
+
+
+return  state.filter((table) => table.tableId === id? table.tableTotalAmount: null)
+
+
+}
 
 export const ifTableLimitReached = (state) => {
     if (state.tables.fetched) {
@@ -372,8 +379,6 @@ export const searchFilter = (state, id) => {
     }
 }
 export const checkingforOrders = (state, id) => {
-    // console.log(state)
-    // debugger
     const tables = state.tables.menuOrderTemp.map((table) => {
         return  {
           ...table, 
@@ -404,12 +409,29 @@ export const updateMenuOrderTemp = (payload) => {
 }
 
 
+export const addServiceChargeToTemp = (payload, precentage, id) => {
+    return ({type: "ADDING_SERVICE_CHARGE_TEMP", payload: {state: payload, precentage, id}})
+}
+
+
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
+        case "ADDING_SERVICE_CHARGE_TEMP":
+            console.log(action)
+            return {
+                ...statePart.tables, 
+                menuOrderTemp: action.payload.state.map((element) => {
+                    return {
+                        menuOrder: element.menuOrder, 
+                        tableId: element.tableId,
+                        tableTotalAmount: element.tableTotalAmount, 
+                        service: element.tableId == action.payload.id? action.payload.precentage : 0,
+                        calculatedPrecent: (action.payload.precentage/10 * element.tableTotalAmount/10) + element.tableTotalAmount
+                    }
+                })
+            }
         case "ADDING_TOTAL_AMOUNT": 
-        console.log(action)
-        console.log(statePart.tables.menuOrderTemp)
         return {...statePart.tables};
         case "UPDATE_MENU_ORDER_TEMP":
             return {
@@ -418,7 +440,6 @@ const tablesReducer = (statePart = [], action) => {
             }
         case "ADDING_ITEM_MENU":
             const {payload} = action;
-            // console.log([...statePart.tables.addTableTempOrder[0].menuOrder, payload])
             return {
                 ...statePart.tables,
                 addTableTempOrder: [{
@@ -440,6 +461,7 @@ const tablesReducer = (statePart = [], action) => {
         case "DELETING_TABLE":
          return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
         case GETTING_INFO:
+            console.log(action)
             if (action.payload.length > 0) {
                 return {
                     ...statePart,
@@ -451,6 +473,8 @@ const tablesReducer = (statePart = [], action) => {
                     menuOrderTemp: action.payload.map((table, index) => ({
                         tableId: table.id, 
                         menuOrder: table.menuOrder,
+                        tableTotalAmount: table.bill, 
+                        service: table.service
                     }))
                   };
             }
@@ -470,7 +494,6 @@ const tablesReducer = (statePart = [], action) => {
                     )
                 } 
         case "UPDATING_MENU_ITEM": 
-        console.log(action)
         let filteredTables = ''
         let filteredOrder = ''
         filteredTables = statePart.tables.menuOrderTemp.map((table) => {
@@ -494,12 +517,16 @@ const tablesReducer = (statePart = [], action) => {
             } else {
                 return table
             }
+            console.log(action);
             return {
                 ...table,
                 menuOrder: filteredOrder,
                 tableTotalAmount: action.total,
+                service: table.service? table.service : 0,
+                calculatedPrecent: table.service? ((action.total/10 * table.service/10) + action.total) : 0
             }; 
         })
+        console.log({...statePart.tables, menuOrderTemp: filteredTables});
         return {...statePart.tables, menuOrderTemp: filteredTables}
             default:
         return statePart

@@ -1,466 +1,16 @@
 {
   "tables": [
     {
-      "id": "2",
-      "orderPlaced": true,
-      "status": "Busy",
-      "peopleAmount": "2",
-      "maxPeopleAmount": "4",
-      "timeStamp": 1719923868923,
-      "time": "14:37",
-      "bill": 45,
-      "info": "Type your notes here:",
-      "menuOrder": [
-        {
-          "title": "no:)",
-          "id": "NzVwQaTZuO",
-          "tableNum": "2",
-          "photo": "fork.png",
-          "basePrice": 3,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "best pizza:)",
-          "id": "n1z02qPWn2",
-          "tableNum": "2",
-          "photo": "pizza.png",
-          "basePrice": 5,
-          "quantity": 9,
-          "totalAmount": 45,
-          "checkbox": true
-        },
-        {
-          "title": "Pizza",
-          "id": "BVAxR2CF52",
-          "tableNum": "2",
-          "photo": "pizza.png",
-          "basePrice": 15,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Spaghetti",
-          "id": "MmTlL8lqMy",
-          "tableNum": "2",
-          "photo": "spaghetti.png",
-          "basePrice": 23,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fried chicken",
-          "id": "XIyTEatqCr",
-          "tableNum": "2",
-          "photo": "fork.png",
-          "basePrice": 12,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fork and Spoon",
-          "id": "yx4EmNeuhp",
-          "tableNum": "2",
-          "photo": "pizza.png",
-          "basePrice": 34,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fish",
-          "id": "Hyo1OJ_q9A",
-          "tableNum": "2",
-          "photo": "fish.png",
-          "basePrice": 25,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "dumplings",
-          "id": "5bodTPWCN0",
-          "tableNum": "2",
-          "photo": "buns.png",
-          "basePrice": 26,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Salad",
-          "id": "Asv5m-wXZO",
-          "tableNum": "2",
-          "photo": null,
-          "basePrice": 0,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Roast dinner",
-          "id": "hbZe1CLN54",
-          "tableNum": "2",
-          "photo": "fork.png",
-          "basePrice": 0,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fried onion rings",
-          "id": "Aa7Ffa7cfO",
-          "tableNum": "2",
-          "photo": "fork.png",
-          "basePrice": 0,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "chicken chow mein",
-          "id": "ZZ7m4hCTkd",
-          "tableNum": "2",
-          "photo": "biryani.png",
-          "basePrice": 33,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "fruit bawl",
-          "id": "m4BGMoCeUg",
-          "tableNum": "2",
-          "photo": "pizza.png",
-          "basePrice": 12,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Biriyani",
-          "id": "OdZzZg5KjK",
-          "tableNum": "2",
-          "photo": null,
-          "basePrice": 36,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Rice",
-          "id": "1Kf5_ib_w_",
-          "tableNum": "2",
-          "photo": "fork.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "ffffff",
-          "id": "-Tqwh8z1m9",
-          "tableNum": "2",
-          "photo": "pizza.png",
-          "basePrice": 9,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "orderPlaced": true,
-      "status": "Busy",
-      "peopleAmount": "2",
-      "maxPeopleAmount": "4",
-      "timeStamp": 1719926507753,
-      "time": "15:21",
-      "bill": 133,
-      "info": "Type your notes here:",
-      "menuOrder": [
-        {
-          "title": "no:)",
-          "id": "NzVwQaTZuO",
-          "tableNum": "3",
-          "photo": "fork.png",
-          "basePrice": 3,
-          "quantity": 1,
-          "totalAmount": 3,
-          "checkbox": true
-        },
-        {
-          "title": "best pizza:)",
-          "id": "n1z02qPWn2",
-          "tableNum": "3",
-          "photo": "pizza.png",
-          "basePrice": 5,
-          "quantity": 14,
-          "totalAmount": 70,
-          "checkbox": true
-        },
-        {
-          "title": "Pizza",
-          "id": "BVAxR2CF52",
-          "tableNum": "3",
-          "photo": "pizza.png",
-          "basePrice": 15,
-          "quantity": 4,
-          "totalAmount": 60,
-          "checkbox": true
-        },
-        {
-          "title": "Spaghetti",
-          "id": "MmTlL8lqMy",
-          "tableNum": "3",
-          "photo": "spaghetti.png",
-          "basePrice": 23,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fried chicken",
-          "id": "XIyTEatqCr",
-          "tableNum": "3",
-          "photo": "fork.png",
-          "basePrice": 12,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fork and Spoon",
-          "id": "yx4EmNeuhp",
-          "tableNum": "3",
-          "photo": "pizza.png",
-          "basePrice": 34,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fish",
-          "id": "Hyo1OJ_q9A",
-          "tableNum": "3",
-          "photo": "fish.png",
-          "basePrice": 25,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "dumplings",
-          "id": "5bodTPWCN0",
-          "tableNum": "3",
-          "photo": "buns.png",
-          "basePrice": 26,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Salad",
-          "id": "Asv5m-wXZO",
-          "tableNum": "3",
-          "photo": null,
-          "basePrice": 0,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Roast dinner",
-          "id": "hbZe1CLN54",
-          "tableNum": "3",
-          "photo": "fork.png",
-          "basePrice": 0,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fried onion rings",
-          "id": "Aa7Ffa7cfO",
-          "tableNum": "3",
-          "photo": "fork.png",
-          "basePrice": 0,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "chicken chow mein",
-          "id": "ZZ7m4hCTkd",
-          "tableNum": "3",
-          "photo": "biryani.png",
-          "basePrice": 33,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "fruit bawl",
-          "id": "m4BGMoCeUg",
-          "tableNum": "3",
-          "photo": "pizza.png",
-          "basePrice": 12,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Biriyani",
-          "id": "OdZzZg5KjK",
-          "tableNum": "3",
-          "photo": null,
-          "basePrice": 36,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Rice",
-          "id": "1Kf5_ib_w_",
-          "tableNum": "3",
-          "photo": "fork.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "ffffff",
-          "id": "-Tqwh8z1m9",
-          "tableNum": "3",
-          "photo": "pizza.png",
-          "basePrice": 9,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "orderPlaced": true,
-      "status": "Busy",
-      "peopleAmount": "2",
-      "maxPeopleAmount": "4",
-      "timeStamp": 1719923206916,
-      "time": "14:26",
-      "bill": 49,
-      "info": "Type your notes here:",
-      "menuOrder": [
-        {
-          "title": "Fried rice",
-          "id": "4",
-          "tableNum": "4",
-          "photo": "cooking.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Salad",
-          "id": "4",
-          "tableNum": "4",
-          "photo": "salad.png",
-          "basePrice": 9,
-          "quantity": 3,
-          "totalAmount": 27,
-          "checkbox": true
-        },
-        {
-          "title": "Menu deal",
-          "id": "4",
-          "tableNum": "4",
-          "photo": "fast-food.png",
-          "basePrice": 22,
-          "quantity": 1,
-          "totalAmount": 22,
-          "checkbox": true
-        },
-        {
-          "title": "Biryani",
-          "id": "4",
-          "tableNum": "4",
-          "photo": "biryani.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Spaghetti",
-          "id": "4",
-          "tableNum": "4",
-          "photo": "spaghetti.png",
-          "basePrice": 9,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Pizza",
-          "id": "4",
-          "tableNum": "4",
-          "photo": "pizza.png",
-          "basePrice": 22,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        }
-      ]
-    },
-    {
       "id": "1",
       "orderPlaced": true,
       "status": "Busy",
       "peopleAmount": "2",
       "maxPeopleAmount": "4",
-      "timeStamp": 1719950998111,
-      "time": "22:9",
-      "bill": 25,
+      "timeStamp": 1720014979794,
+      "time": "15:56",
+      "bill": 45,
       "info": "Type your notes here:",
+      "service": 0,
       "menuOrder": [
         {
           "title": "no:)",
@@ -479,9 +29,10 @@
           "tableNum": "1",
           "photo": "pizza.png",
           "basePrice": 5,
-          "quantity": 2,
-          "totalAmount": 10,
-          "checkbox": true
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
         },
         {
           "title": "Pizza",
@@ -489,8 +40,8 @@
           "tableNum": "1",
           "photo": "pizza.png",
           "basePrice": 15,
-          "quantity": 1,
-          "totalAmount": 15,
+          "quantity": 3,
+          "totalAmount": 45,
           "checkbox": true
         },
         {
@@ -637,105 +188,210 @@
           "orderServed": false
         }
       ]
-    }
-  ],
-  "placedOrders": [
-    {
-      "id": "2",
-      "menuOrder": [
-        {
-          "id": "2",
-          "title": "best pizza:)",
-          "quantity": 9,
-          "totalAmount": 45,
-          "basePrice": 5,
-          "photo": "pizza.png",
-          "timeStamp": 1719923868923,
-          "orderPlaced": false
-        }
-      ]
     },
     {
       "id": "3",
+      "orderPlaced": false,
+      "status": "Free",
+      "peopleAmount": "2",
+      "maxPeopleAmount": "4",
+      "timeStamp": "00:00",
+      "time": "00:00",
+      "bill": "0",
+      "info": "Type your notes here:",
+      "Service": 0,
       "menuOrder": [
         {
-          "id": "3",
           "title": "no:)",
-          "quantity": 1,
-          "totalAmount": 3,
-          "basePrice": 3,
+          "id": "NzVwQaTZuO",
+          "tableNum": "3",
           "photo": "fork.png",
-          "timeStamp": 1719926507753,
-          "orderPlaced": false
+          "basePrice": 3,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
         },
         {
-          "id": "3",
           "title": "best pizza:)",
-          "quantity": 14,
-          "totalAmount": 70,
+          "id": "n1z02qPWn2",
+          "tableNum": "3",
+          "photo": "pizza.png",
           "basePrice": 5,
-          "photo": "pizza.png",
-          "timeStamp": 1719926507753,
-          "orderPlaced": false
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
         },
         {
-          "id": "3",
           "title": "Pizza",
-          "quantity": 4,
-          "totalAmount": 60,
-          "basePrice": 15,
+          "id": "BVAxR2CF52",
+          "tableNum": "3",
           "photo": "pizza.png",
-          "timeStamp": 1719926507753,
-          "orderPlaced": false
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "menuOrder": [
-        {
-          "id": "4",
-          "title": "Salad",
-          "quantity": 3,
-          "totalAmount": 27,
-          "basePrice": 9,
-          "photo": "salad.png",
-          "timeStamp": 1719923206916,
-          "orderPlaced": false
+          "basePrice": 15,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
         },
         {
-          "id": "4",
-          "title": "Menu deal",
-          "quantity": 1,
-          "totalAmount": 22,
-          "basePrice": 22,
-          "photo": "fast-food.png",
-          "timeStamp": 1719923206916,
-          "orderPlaced": false
+          "title": "Spaghetti",
+          "id": "MmTlL8lqMy",
+          "tableNum": "3",
+          "photo": "spaghetti.png",
+          "basePrice": 23,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "Fried chicken",
+          "id": "XIyTEatqCr",
+          "tableNum": "3",
+          "photo": "fork.png",
+          "basePrice": 12,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "Fork and Spoon",
+          "id": "yx4EmNeuhp",
+          "tableNum": "3",
+          "photo": "pizza.png",
+          "basePrice": 34,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "Fish",
+          "id": "Hyo1OJ_q9A",
+          "tableNum": "3",
+          "photo": "fish.png",
+          "basePrice": 25,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "dumplings",
+          "id": "5bodTPWCN0",
+          "tableNum": "3",
+          "photo": "buns.png",
+          "basePrice": 26,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "Salad",
+          "id": "Asv5m-wXZO",
+          "tableNum": "3",
+          "photo": "taco.png",
+          "basePrice": 13,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "Roast dinner",
+          "id": "hbZe1CLN54",
+          "tableNum": "3",
+          "photo": "fork.png",
+          "basePrice": 0,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "Fried onion rings",
+          "id": "Aa7Ffa7cfO",
+          "tableNum": "3",
+          "photo": "fork.png",
+          "basePrice": 0,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "chicken chow mein",
+          "id": "ZZ7m4hCTkd",
+          "tableNum": "3",
+          "photo": "biryani.png",
+          "basePrice": 33,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "fruit bawl",
+          "id": "m4BGMoCeUg",
+          "tableNum": "3",
+          "photo": "pizza.png",
+          "basePrice": 12,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "Biriyani",
+          "id": "OdZzZg5KjK",
+          "tableNum": "3",
+          "photo": null,
+          "basePrice": 36,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "Rice",
+          "id": "1Kf5_ib_w_",
+          "tableNum": "3",
+          "photo": "fork.png",
+          "basePrice": 5,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
+        },
+        {
+          "title": "ffffff",
+          "id": "-Tqwh8z1m9",
+          "tableNum": "3",
+          "photo": "pizza.png",
+          "basePrice": 9,
+          "quantity": 0,
+          "totalAmount": 0,
+          "checkbox": false,
+          "orderServed": false
         }
       ]
-    },
+    }
+  ],
+  "placedOrders": [
     {
       "id": "1",
       "menuOrder": [
         {
           "id": "1",
-          "title": "best pizza:)",
-          "quantity": 2,
-          "totalAmount": 10,
-          "basePrice": 5,
-          "photo": "pizza.png",
-          "timeStamp": 1719950998111,
-          "orderPlaced": false
-        },
-        {
-          "id": "1",
           "title": "Pizza",
-          "quantity": 1,
-          "totalAmount": 15,
+          "quantity": 3,
+          "totalAmount": 45,
           "basePrice": 15,
           "photo": "pizza.png",
-          "timeStamp": 1719950998111,
+          "timeStamp": 1720014979794,
           "orderPlaced": false
         }
       ]
@@ -820,6 +476,7 @@
       "time": "00:00",
       "bill": "0",
       "info": "Type your notes here:",
+      "Service": 0,
       "menuOrder": [
         {
           "title": "no:)",

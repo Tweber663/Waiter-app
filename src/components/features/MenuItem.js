@@ -2,11 +2,8 @@ import { useState } from 'react';
 import styles from './MenuItem.module.scss'
 import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { updateMenuItem } from '../../redux/tableRedux';
-import { checkMenuItem } from '../mechanisms/brains';
 import { checkMenuOrderId } from '../../redux/tableRedux';
-import { addingTotalAmountToTable } from '../../redux/tableRedux';
 
 const MenuItem = ({selectedTable, menuItems, setTotalAmount}) => {
     const dispatch = useDispatch();
@@ -50,7 +47,6 @@ const MenuItem = ({selectedTable, menuItems, setTotalAmount}) => {
         billedItems.forEach((order) => {
             total = order.totalAmount - total;
         })
-        console.log(total)
 
         let test = false;
         setCount(prevCount => {

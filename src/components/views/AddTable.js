@@ -56,6 +56,7 @@ const AddTable = () => {
     e.preventDefault();
     if (verifyInfo && !ifTableIdUsed && !ifTableLimit) {
         dispatch(fetchTablePost(tableTemp.addTableTempOrder[0]))
+
         setVerifyInfo(false);
         setAddClicked(false);
         } else if (ifTableLimit){

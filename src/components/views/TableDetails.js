@@ -19,9 +19,8 @@ const TableDetails = () => {
     const [blurOn, setBlurOn] = useState(false); 
     const [blurOnRestart, setBlurOnRestart] = useState(false);
     const [blurInfo, setBlurInfo] = useState(); 
-    const [resetDeclined, setResetDeclined] = useState(false);
     const tableTemp = useSelector(state => state.tables.addTableTempOrder)
-    const totalAmount = useSelector(state => grabingTotalAmount(state.tables.menuOrderTemp, id));
+    const totalAmount = useSelector(state => grabingTotalAmount(state.tables.menuOrderTemp, id, 0));
 
     const table = useSelector(state => selectedTable({state, id}));
     let {bill} = table[0] || {};
@@ -91,7 +90,11 @@ const TableDetails = () => {
             <Container>
                 <h1 className={styles.title}>Table {id}</h1>
                
-                {totalAmount[0]? <h1 className={styles.totalAmount}>${totalAmount[0].tableTotalAmount}</h1> :  <h1 className={styles.totalAmount}>${bill}</h1>}
+                {totalAmount[0]? 
+                <h1 className={styles.totalAmount}>${totalAmount[0].tableTotalAmount}</h1>
+                : 
+                <h1 className={styles.totalAmount}>${bill}</h1>
+                }
                 <TableForm 
                 setBlurInfo={setBlurInfo} 
                 setBlurOnReset={setBlurOnRestart} 
