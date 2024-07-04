@@ -10,7 +10,7 @@ import { orderPlacedTableReset } from '../../redux/tableRedux'
 import { useSelector } from 'react-redux'
 import { orderPlacedDelete } from '../../redux/tableRedux'
 import { grabingTotalAmount } from '../../redux/tableRedux'
-import { selectedTable } from "../../redux/tableRedux";
+
 
 const TableDetails = () => {
     const dispatch = useDispatch(); 
@@ -21,9 +21,7 @@ const TableDetails = () => {
     const [blurInfo, setBlurInfo] = useState(); 
     const tableTemp = useSelector(state => state.tables.addTableTempOrder)
     const totalAmount = useSelector(state => grabingTotalAmount(state.tables.menuOrderTemp, id, 0));
-    console.log(totalAmount)
-    const table = useSelector(state => selectedTable({state, id}));
-    let {bill} = table[0] || {};
+    console.log(totalAmount[0])
 
     const orderAddedTrigger = (e) => {
         if (e === 'subimted') {
@@ -90,10 +88,8 @@ const TableDetails = () => {
             <Container>
                 <h1 className={styles.title}>Table {id}</h1>
                
-                {totalAmount[0]? 
-                <h1 className={styles.totalAmount}>${totalAmount[0].tableTotalAmount}</h1>
-                : 
-                <h1 className={styles.totalAmount}>${bill}</h1>
+                {totalAmount.length &&  
+                <h1 className={styles.totalAmount}>${totalAmount[0].calculatedPrecent}+</h1>
                 }
                 <TableForm 
                 setBlurInfo={setBlurInfo} 

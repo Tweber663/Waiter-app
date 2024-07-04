@@ -257,6 +257,8 @@ export const deleteTable = (id) => {
 }  
 
 export const fetchingTablesPUT = (updatedTable) => {
+    console.log(updatedTable)
+    debugger
     return (dispatch) => {
         const options = {
             method: 'PUT', 
@@ -474,7 +476,8 @@ const tablesReducer = (statePart = [], action) => {
                         tableId: table.id, 
                         menuOrder: table.menuOrder,
                         tableTotalAmount: table.bill, 
-                        service: table.service,
+                        service: table.service? table.service : 0,
+                        calculatedPrecent: table.billPlusService? table.billPlusService : 0,                        
                     }))
                   };
             }
