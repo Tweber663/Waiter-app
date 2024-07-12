@@ -6,12 +6,14 @@ import { orderPlacedDelete } from '../../redux/tableRedux';
 
 const TableDelete = ({id}) => {
     const dispatch = useDispatch();
-
     const currentState = useSelector(state => state)
-
     const deleteHandler = (e) => {
-        dispatch(deleteTable(id, currentState));
-        dispatch(orderPlacedDelete(id));
+        if (currentState.tables.tables.length === 1) {
+            console.log('cannot delete last table')
+        } else {
+            dispatch(deleteTable(id, currentState));
+            dispatch(orderPlacedDelete(id));
+        }
     }
 
     return (

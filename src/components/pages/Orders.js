@@ -38,8 +38,10 @@ const Orders = () => {
                         <ul>
                             {activeOrdersServer? <div> {activeOrdersServer.length ?  activeOrdersServer.map((table) => (
                                 <Order ref={orderRef} setBlurOn={setBlurOn} id={table.id} table={table} activeOrders={activeOrdersServer}/>
-                            )) : <img alt="meme" className={styles.meme} src={`${process.env.PUBLIC_URL}/images/meme.png`} />}</div>
-                             :  <div>Loading</div>}
+                            )) : <div className={styles.noOrders}><h4>You have no active orders</h4><img alt="meme" className={styles.meme} src={`${process.env.PUBLIC_URL}/images/meme.png`} /></div>}</div>
+                             :  <div className={styles.spinnerBox}>
+                             <MoonLoader className={styles.spinner} color="#000000"size="70"/>
+                         </div>}
                         </ul>
                     </div>
              </Container>

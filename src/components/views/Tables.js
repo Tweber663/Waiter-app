@@ -17,14 +17,15 @@ const Tables = () => {
 
     const [tableFetched, setTableFetched] = useState(false);
     const [searchId, setSearchId] = useState('')
-;
+
     useEffect(() => {
         dispatch(fetchingTables());
         setTableFetched(true);
     }, [dispatch]) //Stops from erros / get's triggered once
-      
+
     const addedTables = useSelector(state => searchFilter(state.tables, searchId));
 
+    if (addedTables === 'undefined') return (<h1>No tablesyy</h1>)
     return (
         <div>
             <TableSearch setSearchId={setSearchId}/>

@@ -43,6 +43,7 @@ const TableDetails = () => {
             status: 'Free', 
             peopleAmount: "2", 
             maxPeopleAmount: "4", 
+            time: "00:00",
             timeStamp: "00:00",
             bill: "0", 
             info: "Type your notes here:", 
@@ -94,7 +95,7 @@ const TableDetails = () => {
                 <h1 className={styles.title}>Table {id}</h1>
                
                 {totalAmount.length &&  
-                <h1 className={styles.totalAmount}>${totalAmount[0].calculatedPrecent}+</h1>
+                <h1 className={styles.totalAmount}>${totalAmount[0].calculatedPrecent}</h1>
                 }
                 <TableForm 
                 setBlurInfo={setBlurInfo} 

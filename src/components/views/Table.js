@@ -11,6 +11,8 @@ const Table = (table) => {
 
     const {id,status, peopleAmount, maxPeopleAmount, bill, time} = table.table;
 
+    console.log(table)
+
     const [isBusy, setIsBusy] = useState(false);
 
     useEffect(() => {

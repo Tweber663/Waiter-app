@@ -40,6 +40,17 @@
     margin-bottom: 20px
 }
 
+.noOrders {
+    color: rgb(62, 28, 28);
+    font-family: 'Manrope', Courier, monospace;
+    text-align: center;
+    width: 240px;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
 .meme {
     width: 200px;
 }
