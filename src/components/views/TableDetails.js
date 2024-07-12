@@ -70,7 +70,7 @@ const TableDetails = () => {
     }
 
     return (
-        <div>
+        <div className={styles.mainBox}>
              <div className={clsx(styles.blurWindow, blurOn && styles.blurWindowOn)}>
                 <div className={styles.infoWindow}>
                     {blurInfo}

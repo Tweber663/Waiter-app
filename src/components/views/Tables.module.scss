@@ -7,8 +7,7 @@
    display: flex;
    justify-content: space-between;
    flex-wrap: wrap;
-   min-height: 250px;
-   max-height: 85vh; /* Set a maximum height based on viewport height */
+   height: 550px;
    overflow-y: scroll; /* Use auto to only show scrollbar when needed */
    align-content: flex-start;
     /* Hide scrollbar for Webkit browsers */
@@ -24,6 +23,6 @@
 .spinnerBox {
    position: absolute;
    left: 50%;
-   top: 50%;
+   top: 80%;
    transform: translate(-50%, -50%)
 }

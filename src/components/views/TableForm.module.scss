@@ -206,8 +206,9 @@
 
 
 .formBox {
-    height: 80vh;
-    overflow: hidden;
+    min-height: 100px;
+    max-height: 560px;
+    overflow-y: hidden;
 }
 
 .blurInfo {
