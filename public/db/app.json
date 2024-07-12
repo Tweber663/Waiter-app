@@ -614,7 +614,7 @@
           "basePrice": 49,
           "photo": "crab.png",
           "timeStamp": 1720803315454,
-          "orderPlaced": false
+          "orderPlaced": true
         },
         {
           "id": "2",
@@ -624,7 +624,7 @@
           "basePrice": 13,
           "photo": "taco.png",
           "timeStamp": 1720803315454,
-          "orderPlaced": false
+          "orderPlaced": true
         },
         {
           "id": "2",
@@ -634,7 +634,7 @@
           "basePrice": 29,
           "photo": "ramen.png",
           "timeStamp": 1720803315454,
-          "orderPlaced": false
+          "orderPlaced": true
         },
         {
           "id": "2",
@@ -644,7 +644,7 @@
           "basePrice": 44,
           "photo": "fork.png",
           "timeStamp": 1720803315454,
-          "orderPlaced": false
+          "orderPlaced": true
         }
       ]
     }
@@ -834,17 +834,6 @@
           "tableNum": "",
           "photo": "fast-food.png",
           "basePrice": 22,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "chicken chow mein",
-          "id": "ZZ7m4hCTkd",
-          "tableNum": "",
-          "photo": "biryani.png",
-          "basePrice": 33,
           "quantity": 0,
           "totalAmount": 0,
           "checkbox": false,

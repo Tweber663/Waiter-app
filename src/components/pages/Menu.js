@@ -216,6 +216,11 @@ const Menu = () => {
                                     <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/ramen.png`}/>
                                     <h6>Ramen</h6>
                                 </li>
+                                <li value="biryani.png" className={styles.selectItem}>
+                                    <div className={styles.overLay}></div>
+                                    <img alt="menuPhoto" className={styles.thumnNail} src={`${process.env.PUBLIC_URL}/images/biryani.png`}/>
+                                    <h6>Biryani</h6>
+                                </li>
                             </ul>
                         </div>
                         <label>Base price:</label>
