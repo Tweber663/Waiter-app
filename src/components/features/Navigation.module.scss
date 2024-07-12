@@ -1,14 +1,13 @@
 .background {
-    width: 298px;
+    position: absolute;
+    width: 319px;
     background-color: rgb(113, 113, 113); /* Change this to your desired background color */
     height: 70px; /* Adjust height as needed */
-    bottom: 1px;
-    position: fixed; /* Fix it at the bottom */
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    box-shadow: 1px 1px 1px dark;
+    border-bottom-left-radius: 38px;
+    border-bottom-right-radius: 38px;
     display: flex;
     z-index: 2;
+    bottom: 0;
 }
 
 .iconBox img {

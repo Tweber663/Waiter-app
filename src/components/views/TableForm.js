@@ -87,9 +87,6 @@ const TableForm = (passed) => {
         }
     }
 
-    const [changeStatus, setChangeStatus] = useState(false);
-    const [currentStatus, setCurrentStauts] = useState(status);
-
     const slider1Handler = (e) => {
         e.preventDefault();
         setSlider1(current => !current)

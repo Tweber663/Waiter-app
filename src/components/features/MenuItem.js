@@ -15,7 +15,7 @@ const MenuItem = ({selectedTable, menuItems, setTotalAmount}) => {
     const [count, setCount] = useState(quantity);
     const [checked, setChecked] = useState(checkbox);
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, tableNum));
-    
+    console.log(count.toString().padStart(2, 0));
     const onChangeAdd = (e) => {
         let total = basePrice;
         e.preventDefault();
@@ -77,9 +77,8 @@ const MenuItem = ({selectedTable, menuItems, setTotalAmount}) => {
             <div className={styles.orderBox}>
                 <input onChange={temp} checked={checked} type="checkbox"></input>
                 <div className={styles.orderCost}>
-
-                <p>${totalAmount}</p>
-                <p>{basePrice}</p>
+                    <p className={styles.totalAmount}>${totalAmount}</p>
+                    <p>${basePrice}</p>
                 </div>
                 <div className={styles.orderView}>
                     <img className={styles.foodPicture} alt="menu" src={`${process.env.PUBLIC_URL}/images/${photo}`}/>

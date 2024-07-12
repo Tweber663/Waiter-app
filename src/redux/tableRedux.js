@@ -309,7 +309,7 @@ return  state.filter((table) => table.tableId === id? table.tableTotalAmount: nu
 
 export const ifTableLimitReached = (state) => {
     if (state.tables.fetched) {
-      return state.tables.tables.length > 6 ? true : false
+      return state.tables.tables.length > 10 ? true : false
     }
 }
 export const updateMenuItem = (payload, total) => {

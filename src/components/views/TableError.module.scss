@@ -12,7 +12,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0);
-    border-radius: 40px;
+    border-radius: 40px;;
 }
 
 .messBox {
@@ -22,10 +22,11 @@
     top: 100px;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(255, 213, 0);
-    border-radius: 7px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
     padding-top: 10px;
     animation: shake 500ms ;
+    height: 80px;
 }
 
 
@@ -73,8 +74,6 @@
 
 
 
-
-
 .mess {
     color: rgb(27, 4, 4);
     font-weight: 400;
@@ -84,24 +83,11 @@
     font-family:'Manrope', Courier, monospace;
 }
 
-.messBtn {
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: transparent;
-    width: 150px;
-    border: 0px;
-}
 
 .messBoxInner {
     margin-top: 10px;
     position: relative;
     height: 35px;
     text-align: center;
-    border-top: 1px solid grey;
 }
 

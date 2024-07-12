@@ -3,7 +3,7 @@
     position: relative;
     flex: 1;
     height: 130px;
-    width: 86px;
+    width: 100px;
     max-width: 90px;
     border: 1px solid rgb(162, 162, 162);
     border-radius: 8px;
@@ -22,18 +22,19 @@
     transform: translate(-50%, -50%);
 }
 
+.orderCost {
+    max-width: 30px;
+    position: absolute;
+    text-align: right;
+    top: 6px;
+    right: 6px;
+}
+
 .orderCost p {
     padding: 0;
     margin: 0;
 }
 
-.orderCost {
-    width: 16px;
-    position: absolute;
-    text-align: center;
-    top: 6px;
-    right: 6px;
-}
 
 .inputAmount {
     padding: 0;
@@ -63,7 +64,7 @@
 
 .foodPicture {
     position: absolute;
-    max-width: 46px;
+    max-width: 35px;
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);

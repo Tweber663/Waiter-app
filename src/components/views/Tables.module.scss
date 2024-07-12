@@ -14,6 +14,7 @@
     /* Hide scrollbar for Webkit browsers */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+   padding-bottom: 100px;
 }
 
 .table-list::-webkit-scrollbar {

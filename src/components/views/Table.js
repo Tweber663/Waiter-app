@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const Table = (table) => {
 
-    const {id,status, peopleAmount, maxPeopleAmount, bill, timeStamp, time} = table.table;
+    const {id,status, peopleAmount, maxPeopleAmount, bill, time} = table.table;
 
     const [isBusy, setIsBusy] = useState(false);
 
@@ -37,7 +37,7 @@ const Table = (table) => {
                 </div>
 
                 <div className={styles.bottom}>
-                <NavLink className={styles.navLink} to={`tables/${id}`}>Show More</NavLink>
+                <NavLink className={styles.navLink} to={`tables/${id}`}>Manage table</NavLink>
                 </div>
             </div>
     )

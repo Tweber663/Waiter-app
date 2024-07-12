@@ -28,7 +28,7 @@ const TableError = () => {
                     <h6 className={styles.mess}>{error[0].error}</h6>
                 )}
                 <div className={styles.messBoxInner}>
-                    <button onClick={() => clickHandler()} className={styles.messBtn}>OK</button>
+                    <button onClick={() => clickHandler()} className="btn btn-warning">OK</button>
                 </div>
             </div>
             )}

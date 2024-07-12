@@ -11,7 +11,7 @@ const [toggle, setToggle] = useState(true);
 
 setTimeout(() => {
    setToggle(false)
-}, 2000)
+}, 1000)
  
 if (toggle === true) return (
 <div className={styles.spinnerBox}>

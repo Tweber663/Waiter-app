@@ -23,7 +23,7 @@
     display: inline-block;
     width: 0;
     opacity: 0;
-    transition: width 1s ease, padding 1s ease, opacity 1s ease;
+    transition: width 300ms ease, padding 300ms ease, opacity 300ms ease;
 }
 
 /* The styles below are applied only when the input has both 'search-input' and 'visible' classes */
