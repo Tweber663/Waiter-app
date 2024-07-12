@@ -15,7 +15,7 @@ const Menu = () => {
     const dispatch = useDispatch();
     useEffect(() => {
        dispatch(menuPlacedGet());
-    }, [])
+    }, [deleteHandler])
     
     const currentState = useSelector(state => state)
     const menuList = useSelector(state => state.tables.addTableTempOrder);
@@ -60,13 +60,17 @@ const Menu = () => {
 
     const submitHandlerEdit = (e) => {
         e.preventDefault();
-        console.log(photoName)
-        debugger
         if (regex.test(e.target[2].value)) {
             dispatch(menuPlacedUpdate(currentState, e.target[0].value, e.target[2].value, idNum, photoName.photo))
             setBlurEditOn(true);
         } 
     } 
+
+    const deleteHandler = () => {
+        dispatch(menuPlacedDelete(idNum, currentState)); 
+        setBlurEditOn(true);
+
+    }
 
     const onChangeHandler = (e) => {
         setBasePriceName(e.target.value)
@@ -214,10 +218,12 @@ const Menu = () => {
                         </div>
                         <label>Base price:</label>
                         <input maxLength="3" onChange={onChangeHandler} className={clsx("form-control", styles.priceInput)} value={basePriceName}></input>
-                        <div className={styles.buttonsBox}>
-                            <button type="submit" className={"btn btn-warning"}>Update</button>
-                            <button onClick={() => dispatch(menuPlacedDelete(idNum, currentState))} type="button" className={"btn btn-light"}>Delete</button>
-                        </div>
+                        <form>
+                            <div className={styles.buttonsBox}>
+                                <button type="submit" className={"btn btn-warning"}>Update</button>
+                                <button onClick={deleteHandler} type="button" className={"btn btn-light"}>Delete</button>
+                            </div>
+                        </form>
                     </form>
                 </div>
             </div>

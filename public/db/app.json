@@ -706,17 +706,6 @@
           "orderServed": false
         },
         {
-          "title": "Pizza",
-          "id": "n1z02qPWn2",
-          "tableNum": "",
-          "photo": "pizza.png",
-          "basePrice": 8,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
           "title": "Burger",
           "id": "BVAxR2CF52",
           "tableNum": "",
