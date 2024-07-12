@@ -34,12 +34,15 @@ const Orders = () => {
                  <h1 className={styles.title}>Active Orders</h1>
                     <div className={styles.orderBox}>
                         <ul>
-                            {activeOrdersServer? <div> {activeOrdersServer.length ?  activeOrdersServer.map((table) => (
-                                <Order ref={orderRef} setBlurOn={setBlurOn} id={table.id} table={table} activeOrders={activeOrdersServer}/>
-                            )) : <div className={styles.noOrders}><h4>You have no active orders</h4><img alt="meme" className={styles.meme} src={`${process.env.PUBLIC_URL}/images/meme.png`} /></div>}</div>
-                             :  <div className={styles.spinnerBox}>
-                             <MoonLoader className={styles.spinner} color="#000000"size="70"/>
-                         </div>}
+                            {activeOrdersServer?
+                                <div> {activeOrdersServer.length ?  activeOrdersServer.map((table) => (
+                                    <Order ref={orderRef} setBlurOn={setBlurOn} id={table.id} table={table} activeOrders={activeOrdersServer}/>
+                                )) 
+                                : 
+                                <div className={styles.noOrders}><h4>You have no active orders</h4><img alt="meme" className={styles.meme} src={`${process.env.PUBLIC_URL}/images/meme.png`} /></div>}</div> :  <div className={styles.spinnerBox}>
+                                <MoonLoader className={styles.spinner} color="#000000"size="70"/>
+                                </div>
+                             }
                         </ul>
                     </div>
              </Container>

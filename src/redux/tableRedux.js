@@ -78,7 +78,6 @@ export const menuPlacedPut = (state, name, price, id, photo) => {
         checkbox: false, 
         orderServed: false, 
        }
-       debugger
 
     return (dispatch) => {
         const options = {
@@ -211,7 +210,6 @@ export const fetchingTables = () => {
 }
 export const fetchTablePost = (addedTable) => {
     return (dispatch) => {
-        debugger
         const options = {
             method: 'POST',
             headers: {
@@ -238,8 +236,6 @@ export const deleteTable = (id) => {
     } 
 }  
 export const fetchingTablesPUT = (updatedTable) => {
-    console.log(updatedTable)
-    debugger
     return (dispatch) => {
         const options = {
             method: 'PUT', 
@@ -380,7 +376,6 @@ export const ifTableLimitReached = (state) => {
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
         case "ADDING_SERVICE_CHARGE_TEMP":
-            console.log(action)
             return {
                 ...statePart.tables, 
                 menuOrderTemp: action.payload.state.map((element) => {
@@ -423,7 +418,6 @@ const tablesReducer = (statePart = [], action) => {
         case "DELETING_TABLE":
          return {...statePart.tables.tables.filter((table) => table.id !== action.payload)}    
         case GETTING_INFO:
-            console.log(action)
             if (action.payload.length > 0) {
                 return {
                     ...statePart,
@@ -480,7 +474,6 @@ const tablesReducer = (statePart = [], action) => {
             } else {
                 return table
             }
-            console.log(action);
             return {
                 ...table,
                 menuOrder: filteredOrder,

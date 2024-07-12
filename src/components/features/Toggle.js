@@ -54,8 +54,8 @@ const Toggle = (passed) => {
     return (
         <div className={styles.formType}>
         <label className={styles.label1}>Status</label>
-            <div class={clsx("form-check form-switch", styles.toggleBox)}>
-                <input onClick={toggleToggler} class={clsx("form-check-input", styles.toggle)} type="checkbox" role="switch" checked={isChecked}/>
+            <div className={clsx("form-check form-switch", styles.toggleBox)}>
+                <input onClick={toggleToggler} className={clsx("form-check-input", styles.toggle)} type="checkbox" role="switch" checked={isChecked}/>
                 <div className={clsx(styles.toggleMessage1)}>Free</div>
                 <div className={clsx(styles.toggleMessage2, busyStatus && styles.toggleMessage2Off)}>Busy</div>        
                 <div onClick={overlayHandler} 

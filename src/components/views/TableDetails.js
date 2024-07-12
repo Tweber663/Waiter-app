@@ -65,7 +65,6 @@ const TableDetails = () => {
         if (e.target.classList.contains("TableDetails_blurWindowRestart__lC2NP")) setBlurOnRestart(false);
     }
 
-    console.log(totalAmount[0]);
     return (
         <div className={styles.mainBox}>
              <div className={clsx(styles.blurWindow, blurOn && styles.blurWindowOn)}>

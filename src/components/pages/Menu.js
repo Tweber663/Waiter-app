@@ -15,7 +15,7 @@ const Menu = () => {
     const dispatch = useDispatch();
     useEffect(() => {
        dispatch(menuPlacedGet());
-    }, [deleteHandler])
+    }, [])
     
     const currentState = useSelector(state => state)
     const menuList = useSelector(state => state.tables.addTableTempOrder);
@@ -69,7 +69,7 @@ const Menu = () => {
     const deleteHandler = () => {
         dispatch(menuPlacedDelete(idNum, currentState)); 
         setBlurEditOn(true);
-
+        dispatch(menuPlacedGet());
     }
 
     const onChangeHandler = (e) => {
@@ -88,6 +88,8 @@ const Menu = () => {
         setPhotoName({title: e.target.parentElement.querySelector('h6').innerHTML, photo: e.target.parentElement.getAttribute('value')});
         setIsSelected(true);
     }
+
+    console.log(menuList[0]);
 
     return (
         <div className={styles.mainBox}>
@@ -125,8 +127,8 @@ const Menu = () => {
             <div onClick={blurHandler} className={clsx(styles.windowEditBlur, blurEditOn && styles.windowEditBlurOff, blurSwitchOff && styles.blurSwitchOff)}>
                 <div className={styles.editInfoBox}>
                     <form onSubmit={submitHandlerEdit}>
-                        <labal>Dish Name:</labal>
-                        <input onChange={onChangeTitleHanlder} name="dishNameInput" className={clsx("form-control")} value={dishName}></input>
+                        <label>Dish Name:</label>
+                        <input maxlength="15" onChange={onChangeTitleHanlder} name="dishNameInput" className={clsx("form-control")} value={dishName}></input>
                         <label>Picture Select:</label>
                         <input onClick={() => setIsSelected(prev => !prev)} value={photoName.title} className={clsx("form-select", styles.selectt)}>
                         </input>
@@ -217,13 +219,11 @@ const Menu = () => {
                             </ul>
                         </div>
                         <label>Base price:</label>
-                        <input maxLength="3" onChange={onChangeHandler} className={clsx("form-control", styles.priceInput)} value={basePriceName}></input>
-                        <form>
-                            <div className={styles.buttonsBox}>
-                                <button type="submit" className={"btn btn-warning"}>Update</button>
-                                <button onClick={deleteHandler} type="button" className={"btn btn-light"}>Delete</button>
-                            </div>
-                        </form>
+                        <input maxlength="3" onChange={onChangeHandler} className={clsx("form-control", styles.priceInput)} value={basePriceName}></input>
+                        <div className={styles.buttonsBox}>
+                            <button type="submit" className={"btn btn-warning"}>Update</button>
+                            <button onClick={deleteHandler} type="button" className={"btn btn-light"}>Delete</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -233,7 +233,7 @@ const Menu = () => {
                     <ul className={styles.ulList}>
                         {menuList[0] && (
                             menuList[0].menuOrder.map((item) => (
-                                <MenuElement items={item} blurOn={setBlurEditOn} dishName={setDishName} baseName={setBasePriceName} idNum={setIdNum} img={setPhotoName}/>
+                                <MenuElement key={item.id} items={item} blurOn={setBlurEditOn} dishName={setDishName} baseName={setBasePriceName} idNum={setIdNum} img={setPhotoName}/>
                             ))
                         )}
                     </ul>

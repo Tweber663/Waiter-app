@@ -15,17 +15,17 @@ const TableError = () => {
     const clickHandler = () => {
         dispatch(tableErrMsgClear(currentState));
     }
-
-    if (!errorMsg) return (<div>Fuck you</div>)
     return (
         <div className={clsx(styles.messBlock, !notTriggered && styles.messBlockAppear)}>
             {(!notTriggered &&
              <div className={styles.messBox}>
-                {error.length > 0 && (
-                    <h6 className={styles.mess}>{error[0].error}</h6>
-                )}
-                <div className={styles.messBoxInner}>
-                    <button onClick={() => clickHandler()} className="btn btn-warning">OK</button>
+                <div className={styles.messHolder}>
+                    {error.length > 0 && (
+                        <h6 className={styles.mess}>{error[0].error}</h6>
+                    )}
+                    <div className={styles.messBoxInner}>
+                        <button onClick={() => clickHandler()} className="btn btn-warning">OK</button>
+                    </div>
                 </div>
             </div>
             )}
