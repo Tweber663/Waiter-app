@@ -10,10 +10,12 @@ import { orderPlacedTableReset } from '../../redux/tableRedux'
 import { useSelector } from 'react-redux'
 import { orderPlacedDelete } from '../../redux/tableRedux'
 import { grabingTotalAmount } from '../../redux/tableRedux'
+import { useNavigate } from 'react-router-dom'
 
 
 const TableDetails = () => {
     const dispatch = useDispatch(); 
+    const navigate = useNavigate();
     const { id } = useParams(); 
     const [trigger, setTrigger] = useState(false);
     const [blurOn, setBlurOn] = useState(false); 
@@ -58,6 +60,7 @@ const TableDetails = () => {
             })
         }, id))
         dispatch(orderPlacedDelete(id));
+        navigate("/home");
     }
 
     const blurOffHandler = (e) => {
