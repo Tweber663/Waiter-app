@@ -10,7 +10,8 @@ import { orderPlacedTableReset } from '../../redux/tableRedux'
 import { useSelector } from 'react-redux'
 import { orderPlacedDelete } from '../../redux/tableRedux'
 import { grabingTotalAmount } from '../../redux/tableRedux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { fetchingTables } from '../../redux/tableRedux'
 
 
 const TableDetails = () => {
@@ -61,6 +62,7 @@ const TableDetails = () => {
         }, id))
         dispatch(orderPlacedDelete(id));
         navigate("/home");
+        dispatch(fetchingTables());
     }
 
     const blurOffHandler = (e) => {
