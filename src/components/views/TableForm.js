@@ -20,8 +20,7 @@ const TableForm = (passed) => {
     
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
     let {info} = table[0] || {};
-    console.log(menuOrderTemp); 
-
+   
     const [slider1, setSlider1] = useState(false); 
     const [slider2, setSlider2] = useState(true);
     const totalAmount = useSelector(state => grabingTotalAmount(state.tables.menuOrderTemp, id));

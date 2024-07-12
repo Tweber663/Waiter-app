@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import MenuItem from './MenuItem';
 
 const MenuSelect = (passed) => {
-    console.log(passed);
     return (
              <div className={clsx(styles.menuOrder)}>
                 {passed.selectedTable[0].menuOrder.map((order) => (

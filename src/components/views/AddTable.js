@@ -30,7 +30,7 @@ const AddTable = () => {
         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 4, notTriggered: false}));
         setInputValue('')
         setTableNum('');
-        setVerifyInfo(false)
+        setVerifyInfo('')
     } else if (regEx.test(targetValue) && targetValue <= 10) {
         console.log(true)
         setVerifyInfo(true)
@@ -51,6 +51,7 @@ const AddTable = () => {
         dispatch(fetchTablePost(tableTemp.addTableTempOrder[0]))
         setVerifyInfo(false);
         setAddClicked(false);
+        setInputValue(null)
         } else if (ifTableLimit){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
             setInputValue('')
@@ -79,14 +80,17 @@ const AddTable = () => {
 
     const clickOutside = (e) => {
         e.preventDefault();
-       if (e.target.classList.contains("AddTable_mainBox__nXfWC")) {
+        console.log(e.target)
+       if (e.target.classList.contains("switchOff")) {
+        console.log('correct')
+        debugger
         setAddClicked(false)
         setInputValue("");
        }
     }
 
     return (
-        <div onClick={clickOutside}  className={clsx(styles.mainBox, addClicked && styles.mainBoxVisible)}>
+        <div onClick={clickOutside}  className={clsx("switchOff", styles.mainBox, addClicked && styles.mainBoxVisible)}>
             <div className={styles.btnBox}>
                  <button className={styles.btn} onClick={selectTableDispatch}><i className="fa-solid fa-plus"></i></button>
             </div>

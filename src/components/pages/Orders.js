@@ -16,7 +16,6 @@ const Orders = () => {
     const [blurOn, setBlurOn] = useState(true)
 
     useEffect(() => {
-        dispatch(fetchingTables());
         dispatch(orderPlacedGet());
     }, [dispatch])
     
@@ -25,6 +24,8 @@ const Orders = () => {
     const deleteHandler = () => {
         if (orderRef.current) {
             orderRef.current.deletes();
+            setBlurOn(true);
+            dispatch(fetchingTables());
         }
     }
 

@@ -19,7 +19,7 @@ const TableDetails = () => {
     const [blurInfo, setBlurInfo] = useState(); 
     const tableTemp = useSelector(state => state.tables.addTableTempOrder)
     const totalAmount = useSelector(state => grabingTotalAmount(state.tables.menuOrderTemp, id, 0));
-    console.log(totalAmount[0])
+
 
     const orderAddedTrigger = (e) => {
         if (e === 'subimted') {

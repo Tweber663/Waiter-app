@@ -13,7 +13,6 @@ const MenuItem = ({menuItems}) => {
     const [checked, setChecked] = useState(checkbox);
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, tableNum));
 
-
     const onChangeAdd = (e) => {
         let total = basePrice;
         e.preventDefault();
@@ -24,7 +23,6 @@ const MenuItem = ({menuItems}) => {
 
         setCount(prevCount => prevCount + 1);
         if(count >= 0) setChecked(true);
-
         dispatch(updateMenuItem({
            title, 
            id, 
@@ -36,15 +34,10 @@ const MenuItem = ({menuItems}) => {
            totalAmount: count * basePrice + basePrice,
         }, total))
     }
-
+    
     const onChangeMinus = (e) => {
         e.preventDefault();
-        let total = basePrice;
-        const billedItems = menuOrderTemp[0].menuOrder.filter((item) => item.quantity > 0? item : null);
-        billedItems.forEach((order) => {
-            total = order.totalAmount - total;
-        })
-
+    
         let test = false;
         setCount(prevCount => {
             if (prevCount < 1) {
@@ -58,9 +51,6 @@ const MenuItem = ({menuItems}) => {
             setChecked(false);
             test = true;
         } 
-
-        console.log(count)
-        if (!count == 0) {
             dispatch(updateMenuItem({
                 title, 
                 id, 
@@ -70,8 +60,7 @@ const MenuItem = ({menuItems}) => {
                 basePrice: basePrice,
                 quantity: count - 1,
                 totalAmount: test === false? totalAmount - basePrice : 0
-             }, total))
-        }
+             }, menuOrderTemp[0].tableTotalAmount - basePrice))
     }
     const temp = () => {}
     return (

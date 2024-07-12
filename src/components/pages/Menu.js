@@ -42,10 +42,12 @@ const Menu = () => {
     }, [blurEditOn])
 
     const blurHandler = (e) => {
-        if (e.target.classList.contains('Menu_windowBlur__dqBNq') || e.target.classList.contains('Menu_windowEditBlur__dxRsn')) {
+        console.log(e.target.classList.contains('switchOff'));
+        if (e.target.classList.contains('switchOff')) {
             setBlurOn(true);
             setBlurEditOn(true);
             setIsSelected(true)
+            setInfoBlurOff(true)
         }
     }
 
@@ -94,7 +96,7 @@ const Menu = () => {
     return (
         <div className={styles.mainBox}>
             <Container>
-            <div onClick={blurHandler} className={clsx(styles.windowBlur, blurOn && styles.windowBlurOff)}>
+            <div onClick={blurHandler} className={clsx("switchOff", styles.windowBlur, blurOn && styles.windowBlurOff)}>
                 <div className={styles.windowBox}>
                     <h1>Add new dish to menu List</h1>
                     <form onSubmit={submitHandler} className={styles.form}>
@@ -117,14 +119,14 @@ const Menu = () => {
                 </div>
             </div>
             
-            <div className={clsx(styles.windowInfoBlur, infoBlurOff && styles.windowInfoBlurOff)}>
+            <div onClick={blurHandler} className={clsx("switchOff", styles.windowInfoBlur, infoBlurOff && styles.windowInfoBlurOff)}>
                 <div className={styles.infoBox}>
                     <h1>Keep in mind that newly added menu items will "only" be available in newly created tables</h1>
                     <button onClick={() => setInfoBlurOff(true)} className="btn btn-warning">OK</button>
                 </div>
             </div>
 
-            <div onClick={blurHandler} className={clsx(styles.windowEditBlur, blurEditOn && styles.windowEditBlurOff, blurSwitchOff && styles.blurSwitchOff)}>
+            <div onClick={blurHandler} className={clsx("switchOff", styles.windowEditBlur, blurEditOn && styles.windowEditBlurOff, blurSwitchOff && styles.blurSwitchOff)}>
                 <div className={styles.editInfoBox}>
                     <form onSubmit={submitHandlerEdit}>
                         <label>Dish Name:</label>
