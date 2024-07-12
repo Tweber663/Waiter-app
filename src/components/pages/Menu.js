@@ -33,6 +33,7 @@ const Menu = () => {
     const [blurSwitchOff, setBlurSwitchOff] = useState(false);
     const [infoBlurOff, setInfoBlurOff] = useState(true);
     const [isSelected, setIsSelected] = useState(true);
+    const [file, setFile] = useState();
    
     useEffect(() => {
       const ulList = document.querySelectorAll(`.${styles.selectList} ul > li`);
@@ -88,9 +89,6 @@ const Menu = () => {
         setPhotoName({title: e.target.parentElement.querySelector('h6').innerHTML, photo: e.target.parentElement.getAttribute('value')});
         setIsSelected(true);
     }
-
-
-
 
     return (
         <div className={styles.mainBox}>

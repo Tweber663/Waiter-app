@@ -4,7 +4,6 @@ import { MoonLoader} from "react-spinners"
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { Container } from "react-bootstrap";
-import { API_URL } from "../../config";
 
 const Welcome = () => {
 
@@ -13,14 +12,7 @@ const [toggle, setToggle] = useState(true);
 setTimeout(() => {
    setToggle(false)
 }, 2000)
-
-
-//GET
-fetch(`http://localhost:3131/users`).then((raw) => raw.json()).then((done) => console.log(done))
-
-
-
-
+ 
 if (toggle === true) return (
 <div className={styles.spinnerBox}>
    <MoonLoader className={styles.spinner} color="#000000"size="70"/>

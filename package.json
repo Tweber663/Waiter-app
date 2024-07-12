@@ -29,7 +29,6 @@
     "start": "npm-run-all -p start:*",
     "start:react": "react-scripts start",
     "start:server": "json-server --port 3130 --no-cors --delay 600 --watch public/db/app.json --routes public/db/routes.json",
-    "start:server2": "json-server --port 3131 --no-cors --delay 600 --watch public/db/users.json --routes public/db/routes.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
