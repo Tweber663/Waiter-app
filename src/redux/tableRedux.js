@@ -1,15 +1,12 @@
 
 import { API_URL } from "../config";
-import shortid from "shortid";
 
 //**actionTypes
 const actionType1 =  (type) => `app/tables/${type}`;
 const GETTING_INFO = actionType1('GETTING_INFO')
 
 //**Action creatores
-
 export const addingTotalAmountToTable = (totalAmount, tableNum) => ({type: "ADDING_TOTAL_AMOUNT", payload: totalAmount, id: tableNum})
-
 export const menuPlacedDelete = (id, state) => {
     return () => {
         const options = {
@@ -33,7 +30,6 @@ export const menuPlacedDelete = (id, state) => {
         fetch(`${API_URL}/addTableTempOrderServer/77`, options)
     }
 }
-
 export const menuPlacedUpdate = (state, name, price, id, photo) => {
     const payload = {
         title: name.trim(),
@@ -70,7 +66,6 @@ export const menuPlacedUpdate = (state, name, price, id, photo) => {
         dispatch(menuPlacedGet())
     }
 }
-
 export const menuPlacedPut = (state, name, price, id, photo) => {
     const payload = {
         title: name.trim(),
@@ -108,7 +103,6 @@ export const menuPlacedPut = (state, name, price, id, photo) => {
         dispatch(menuPlacedGet())
     }
 }
-
 export const menuPlacedGet = () => {
     return(dispatch) => {  
         fetch(`${API_URL}/addTableTempOrderServer`).then((raw) => raw.json()).then((converted) => {
@@ -116,13 +110,11 @@ export const menuPlacedGet = () => {
         })
     }
 }
-
 export const orderPlacedGet = () => {
     return (dispatch) => {
         fetch(`${API_URL}/placedOrders`).then((raw) => raw.json()).then((converted) => dispatch(getOrderPlaced(converted)))
     }
 }
-
 export const orderPlacedPost = (activeOrders, id, timeStamp) => {
    return () => {
     let options = ''
@@ -153,7 +145,6 @@ export const orderPlacedPost = (activeOrders, id, timeStamp) => {
         fetch(`${API_URL}/placedOrders/`, options);
     }
 } 
-
 export const orderPlacedPut = (activeOrders, id, timeStamp, orderPlaced) => {
      return () => {
       let options = ''
@@ -184,8 +175,7 @@ export const orderPlacedPut = (activeOrders, id, timeStamp, orderPlaced) => {
           fetch(`${API_URL}/placedOrders/${id}`, options);
       }
   } 
-
-  export const orderPlacedDelete = (id) => {
+export const orderPlacedDelete = (id) => {
     return () => {
         const options = {
             method: "Delete", 
@@ -195,9 +185,8 @@ export const orderPlacedPut = (activeOrders, id, timeStamp, orderPlaced) => {
         }
         fetch(`${API_URL}/placedOrders/${id}`, options)
     }
-  }
-
-  export const orderPlacedTableReset = (deletedOrder, id) => {
+}
+export const orderPlacedTableReset = (deletedOrder, id) => {
     return () => {
         const options = {
             method: "PUT", 
@@ -208,11 +197,7 @@ export const orderPlacedPut = (activeOrders, id, timeStamp, orderPlaced) => {
         }
         fetch(`${API_URL}/tables/${id}`, options);
     }
-  }
-
-
-
-//Respo for fetching the info + passing the info to action creator
+}
 export const fetchingTables = () => {
     return(dispatch) => {  
         fetch(`${API_URL}/tables`)
@@ -224,8 +209,6 @@ export const fetchingTables = () => {
         //We can add 'dispatch' above because it was passed as argu
     }
 }
-// 
-
 export const fetchTablePost = (addedTable) => {
     return (dispatch) => {
         debugger
@@ -241,7 +224,6 @@ export const fetchTablePost = (addedTable) => {
         .then(() => dispatch(fetchingTables()));
     }
 }
-
 export const deleteTable = (id) => {
     return (dispatch) => {
         const options = {
@@ -255,7 +237,6 @@ export const deleteTable = (id) => {
         .then(() => dispatch((fetchingTables())))
     } 
 }  
-
 export const fetchingTablesPUT = (updatedTable) => {
     console.log(updatedTable)
     debugger
@@ -271,11 +252,9 @@ export const fetchingTablesPUT = (updatedTable) => {
         .then(() => dispatch(fetchingTables()));
     }
 }
-
 export const updateStore = (payload) => {
    return ({type: "UPDATE_STORE", payload})
 }
-
 export const tableErrMsgCheck = (state) => {
        let errMsg = true; 
        let errObj = [];
@@ -289,55 +268,39 @@ export const tableErrMsgCheck = (state) => {
        }
         return {notTriggered: errMsg, error: errObj}; 
 }
-
-export const ifTableAlredyExists = (id, state) => {
-    if (state.tables.fetched) {
-        return state.tables.tables.find((table) => table.id == id)
-    }
-}
-
-export const grabingTotalAmount = (state, id, precent) => {
-
-const tableOrder = state.filter((table) => table.tableId === id? table.tableTotalAmount: null); 
-
-
-
-return  state.filter((table) => table.tableId === id? table.tableTotalAmount: null)
-
-
-}
-
-export const ifTableLimitReached = (state) => {
-    if (state.tables.fetched) {
-      return state.tables.tables.length > 10 ? true : false
-    }
-}
 export const updateMenuItem = (payload, total) => {
     return ({type: "UPDATING_MENU_ITEM", payload, total});
 }
-
 export const newMenuListItem = (name, price, id) => {
-   return ({type: "ADDING_ITEM_MENU", payload: {
-    basePrice: Number(price), 
-    checkbox: false, 
-    id: id, 
-    orderServed: false, 
-    photo: "fork.png",
-    quantity: 0,
-    tableNum: "",
-    title: name.trim(),
-    totalAmount: 0,
-   }, id}); 
+    return ({type: "ADDING_ITEM_MENU", payload: {
+     basePrice: Number(price), 
+     checkbox: false, 
+     id: id, 
+     orderServed: false, 
+     photo: "fork.png",
+     quantity: 0,
+     tableNum: "",
+     title: name.trim(),
+     totalAmount: 0,
+    }, id}); 
+}
+export const updateMenuOrderTemp = (payload) => {
+    return ({type: "UPDATE_MENU_ORDER_TEMP", payload})
+}
+export const addServiceChargeToTemp = (payload, precentage, id) => {
+    return ({type: "ADDING_SERVICE_CHARGE_TEMP", payload: {state: payload, precentage, id}})
 }
 
-//**Selectors
 export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
 export const deletingTable = (payload) => ({type: "DELETING_TABLE", payload});
-export const selectedTable = ({id, state}) => state.tables.tables.filter((table) => id === table.id);   
-
 export const tableErrMsg = (payload) => ({type: "ERROR_MESSAGE", payload});
 export const tableErrMsgClear = (payload) => ({type: "ERROR_MESSAGE_CLEAR", payload});
 
+
+
+//**Selectors
+export const grabingTotalAmount = (state, id) => state.filter((table) => table.tableId === id? table.tableTotalAmount: null)
+export const selectedTable = ({id, state}) => state.tables.tables.filter((table) => id === table.id);   
 export const menuOrderList = (payload) => payload.tables.tables
 export const checkMenuOrderId = (state, id) => {
     const filtered = state.tables.menuOrderTemp.filter((order) => {
@@ -360,7 +323,6 @@ export const addTableTemplate = (state, tableId) => {
     }
     return {...state.tables, addTableTempOrder: filteredTable}
 }
-
 export const searchFilter = (state, id) => {
     const regexNum = /\d/;
     const regexLett = /[a-zA-Z]/;
@@ -394,7 +356,6 @@ export const checkingforOrders = (state, id) => {
       })
       return activeOrders
 }
-
 export const getOrderPlaced = (payload) => {
     return ({type: "GETTING_ORDERS", payload: payload.map((order) => {
         return {
@@ -403,16 +364,15 @@ export const getOrderPlaced = (payload) => {
         }
     })})
 } 
-
-
-
-export const updateMenuOrderTemp = (payload) => {
-    return ({type: "UPDATE_MENU_ORDER_TEMP", payload})
+export const ifTableAlredyExists = (id, state) => {
+    if (state.tables.fetched) {
+        return state.tables.tables.find((table) => table.id == id)
+    }
 }
-
-
-export const addServiceChargeToTemp = (payload, precentage, id) => {
-    return ({type: "ADDING_SERVICE_CHARGE_TEMP", payload: {state: payload, precentage, id}})
+export const ifTableLimitReached = (state) => {
+    if (state.tables.fetched) {
+      return state.tables.tables.length > 10 ? true : false
+    }
 }
 
 
@@ -529,7 +489,6 @@ const tablesReducer = (statePart = [], action) => {
                 calculatedPrecent: table.service? ((action.total/10 * table.service/10) + action.total) : action.total
             }; 
         })
-        console.log({...statePart.tables, menuOrderTemp: filteredTables});
         return {...statePart.tables, menuOrderTemp: filteredTables}
             default:
         return statePart

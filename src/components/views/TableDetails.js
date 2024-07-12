@@ -1,17 +1,12 @@
 import styles from './TableDetails.module.scss'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import TableForm from "./TableForm"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { Container } from "react-bootstrap"
 import Navigation from "../features/Navigation"
 import clsx from "clsx"
-import { useDispatch } from 'react-redux'
-import { orderPlacedTableReset } from '../../redux/tableRedux'
-import { useSelector } from 'react-redux'
-import { orderPlacedDelete } from '../../redux/tableRedux'
-import { grabingTotalAmount } from '../../redux/tableRedux'
-import { useNavigate } from 'react-router-dom';
-import { fetchingTables } from '../../redux/tableRedux'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchingTables, grabingTotalAmount, orderPlacedDelete, orderPlacedTableReset } from '../../redux/tableRedux'
 
 
 const TableDetails = () => {
@@ -70,6 +65,7 @@ const TableDetails = () => {
         if (e.target.classList.contains("TableDetails_blurWindowRestart__lC2NP")) setBlurOnRestart(false);
     }
 
+    console.log(totalAmount[0]);
     return (
         <div className={styles.mainBox}>
              <div className={clsx(styles.blurWindow, blurOn && styles.blurWindowOn)}>
@@ -94,9 +90,11 @@ const TableDetails = () => {
             <Container>
                 <h1 className={styles.title}>Table {id}</h1>
                
-                {totalAmount.length &&  
-                <h1 className={styles.totalAmount}>${totalAmount[0].calculatedPrecent}</h1>
-                }
+                {totalAmount.length ?  
+                <h1 className={styles.totalAmount}>${totalAmount[0].calculatedPrecent}</h1> 
+                : 
+                <h1 className={styles.totalAmount}>$0</h1> 
+                } 
                 <TableForm 
                 setBlurInfo={setBlurInfo} 
                 setBlurOnReset={setBlurOnRestart} 

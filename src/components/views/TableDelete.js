@@ -1,7 +1,6 @@
 import styles from './TableDelete.module.scss'
 import { deleteTable } from '../../redux/tableRedux'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react';
 import { orderPlacedDelete } from '../../redux/tableRedux';
 
 const TableDelete = ({id}) => {

@@ -14,7 +14,7 @@ const TableSearch = (passed) => {
     
     const clickHandler = (e) => {
         e.preventDefault();
-        setIsVisible(!isVisible); // Toggle visibility
+        setIsVisible(!isVisible); 
     }
 
     return (

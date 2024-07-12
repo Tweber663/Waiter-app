@@ -3,10 +3,9 @@ import styles from './Orders.module.scss'
 import { Container } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
-import { fetchingTables } from "../../redux/tableRedux"
+import { fetchingTables, orderPlacedGet } from "../../redux/tableRedux"
 import { useDispatch } from "react-redux"
 import Order from "../features/order"
-import { orderPlacedGet } from "../../redux/tableRedux"
 import { useRef} from "react"
 import clsx from "clsx"
 import { MoonLoader } from "react-spinners"
@@ -19,8 +18,8 @@ const Orders = () => {
     useEffect(() => {
         dispatch(fetchingTables());
         dispatch(orderPlacedGet());
-    }, [dispatch]) //Stops from erros / get's triggered once
-
+    }, [dispatch])
+    
     const activeOrdersServer = useSelector(state => state.tables.ordersServer);
 
     const deleteHandler = () => {
@@ -29,7 +28,6 @@ const Orders = () => {
         }
     }
 
-    console.log(activeOrdersServer);
     return (
         <div>
              <Container>

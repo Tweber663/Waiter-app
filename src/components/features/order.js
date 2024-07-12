@@ -1,21 +1,14 @@
 import styles from './order.module.scss'
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import shortid from 'shortid';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { orderPlacedTableReset } from '../../redux/tableRedux';
-import { orderPlacedDelete } from '../../redux/tableRedux';
-import { orderPlacedGet } from '../../redux/tableRedux'
-import { orderPlacedPut } from '../../redux/tableRedux'
+import { useDispatch, useSelector } from 'react-redux';
+import { orderPlacedGet, orderPlacedPut, orderPlacedDelete, orderPlacedTableReset } from '../../redux/tableRedux'
 import { useImperativeHandle, forwardRef } from 'react';
-import { useRef } from 'react';
 
 const Order = forwardRef(({id, table, activeOrders, setBlurOn}, ref) => {
     const dispatch = useDispatch();
     const tableId = id; 
     const tableTemp = useSelector(state => state.tables.addTableTempOrder)
-
 
     const [timer, setTimer] = useState(() => {
         const timeNow = new Date();
@@ -69,7 +62,6 @@ const Order = forwardRef(({id, table, activeOrders, setBlurOn}, ref) => {
 
         return () => clearInterval(intervalId);
     }, [timer]);
-
 
     const deletes = (e) => {
         setBlurOn(false)
@@ -126,7 +118,7 @@ const Order = forwardRef(({id, table, activeOrders, setBlurOn}, ref) => {
         <div className={styles.orderBox}>
             <div className={clsx(styles.outerBox)} onClick={sliderHandler}>
                 <h2 className={styles.title}>Table: {table.id}, Time: {table.timeStamp}, Items...</h2>
-                <img className={styles.imgTimeLeft} src={`${process.env.PUBLIC_URL}/images/${foodStatus}`}/>
+                <img alt="foodPhoto" className={styles.imgTimeLeft} src={`${process.env.PUBLIC_URL}/images/${foodStatus}`}/>
                 <img className={clsx(styles.arrowImg, arrowDown && styles.arrowFlipDown, arrowUp && styles.arrowFlipUp)} alt="arrow" src={`${process.env.PUBLIC_URL}/images/arrow.png`}/>
             </div>
 

@@ -2,20 +2,18 @@ import { useState } from 'react';
 import styles from './MenuItem.module.scss'
 import clsx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateMenuItem } from '../../redux/tableRedux';
-import { checkMenuOrderId } from '../../redux/tableRedux';
+import { updateMenuItem, checkMenuOrderId } from '../../redux/tableRedux';
 
-const MenuItem = ({selectedTable, menuItems, setTotalAmount}) => {
+const MenuItem = ({menuItems}) => {
     const dispatch = useDispatch();
 
-
-    // let {status, bill, id, info, maxPeopleAmount, peopleAmount, menuOrder} = selectedTable;
     let {title, id, photo, basePrice, totalAmount, checkbox, quantity, tableNum} = menuItems;
 
     const [count, setCount] = useState(quantity);
     const [checked, setChecked] = useState(checkbox);
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, tableNum));
-    console.log(count.toString().padStart(2, 0));
+
+
     const onChangeAdd = (e) => {
         let total = basePrice;
         e.preventDefault();
@@ -25,9 +23,8 @@ const MenuItem = ({selectedTable, menuItems, setTotalAmount}) => {
         })
 
         setCount(prevCount => prevCount + 1);
-        if(count >= 0) {
-            setChecked(true);
-        }
+        if(count >= 0) setChecked(true);
+
         dispatch(updateMenuItem({
            title, 
            id, 
@@ -56,20 +53,25 @@ const MenuItem = ({selectedTable, menuItems, setTotalAmount}) => {
 
             return prevCount - 1;
         });
+
         if(count < 2) {
             setChecked(false);
             test = true;
         } 
-        dispatch(updateMenuItem({
-            title, 
-            id, 
-            tableNum,
-            photo, 
-            checkbox: checked,
-            basePrice: basePrice,
-            quantity: count - 1,
-            totalAmount: test === false? totalAmount - basePrice : 0
-         }, total))
+
+        console.log(count)
+        if (!count == 0) {
+            dispatch(updateMenuItem({
+                title, 
+                id, 
+                tableNum,
+                photo, 
+                checkbox: checked,
+                basePrice: basePrice,
+                quantity: count - 1,
+                totalAmount: test === false? totalAmount - basePrice : 0
+             }, total))
+        }
     }
     const temp = () => {}
     return (

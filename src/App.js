@@ -9,7 +9,6 @@ import Orders from "./components/pages/Orders";
 import Menu from "./components/pages/Menu";
 
 const App = ()  => {
-  console.log('bla')
   return (
     <Container className={styles.cont}>
     <Routes>

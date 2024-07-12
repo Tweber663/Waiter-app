@@ -10,24 +10,19 @@ const People = () => {
     const {id} = useParams();
     const table = useSelector(state => selectedTable({state, id}));
 
-    let {status, bill, peopleAmount, maxPeopleAmount} = table[0] || {};
+    let {peopleAmount, maxPeopleAmount} = table[0] || {};
 
-
-    if (status !== "Busy") bill = "0";
     if (peopleAmount < 1 ||  peopleAmount > 10) peopleAmount = 1;
     if (maxPeopleAmount < 1 ||  maxPeopleAmount > 10) maxPeopleAmount = 1;
-
 
     const handleBlur = () => {
         if (pepAmount < 1 || pepAmount > 10) setPepAmount(1);
         if (maxPepAmount < 1 || maxPepAmount > 10) setMaxPepAmount(1);
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
-
     
     const [pepAmount, setPepAmount] = useState(peopleAmount);
     const [maxPepAmount, setMaxPepAmount] = useState(maxPeopleAmount);
-
 
     const handlerChange1 = (e) => {
         e.preventDefault();

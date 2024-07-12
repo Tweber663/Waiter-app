@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { fetchingTables } from "../../redux/tableRedux"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Table from "./Table"
 import AddTable from "./AddTable"
 import styles from './Tables.module.scss'
-import TableDelete from "./TableDelete"
-import { gettingTables } from "../../redux/tableRedux"
 import { MoonLoader } from "react-spinners"
 import TableSearch from "./TableSearch"
-import { searchFilter } from "../../redux/tableRedux"
-import { orderPlacedGet } from "../../redux/tableRedux"
+import { searchFilter, fetchingTables } from "../../redux/tableRedux"
 
 const Tables = () => {
     const dispatch = useDispatch();
@@ -21,7 +16,7 @@ const Tables = () => {
     useEffect(() => {
         dispatch(fetchingTables());
         setTableFetched(true);
-    }, [dispatch]) //Stops from erros / get's triggered once
+    }, [dispatch]) 
 
     const addedTables = useSelector(state => searchFilter(state.tables, searchId));
 

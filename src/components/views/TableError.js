@@ -1,8 +1,6 @@
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { tableErrMsgCheck } from '../../redux/tableRedux'
-import { tableErrMsgClear } from '../../redux/tableRedux'
+import { tableErrMsgClear, tableErrMsgCheck } from '../../redux/tableRedux'
 import { useDispatch } from 'react-redux'
 import styles from './TableError.module.scss'
 
@@ -13,8 +11,7 @@ const TableError = () => {
     const {notTriggered, error} = errorMsg;
 
     const currentState = useSelector(state => tableErrMsgClear(state));
-    
-    //Clears the error in store 
+
     const clickHandler = () => {
         dispatch(tableErrMsgClear(currentState));
     }

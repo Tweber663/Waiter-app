@@ -17,7 +17,6 @@ const ServiceCharge = () => {
     const menuOrderTemp = useSelector(state => checkMenuOrderId(state, id));
     const currentState = useSelector(state => state);
     const [isSelected, setIsSelected] = useState(Number(menuOrderTemp[0].service)); 
-    console.log(isSelected)
 
    useEffect(() => {
     dispatch(menuPlacedGet()); 

@@ -5,14 +5,10 @@ import { useSelector } from 'react-redux'
 import MenuElement from './MenuElement'
 import MenuAdd from './MenuAdd';
 import clsx from 'clsx'
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { newMenuListItem } from '../../redux/tableRedux'
 import shortid from 'shortid'
-import { menuPlacedPut } from '../../redux/tableRedux'
-import { useEffect } from 'react'
-import { menuPlacedGet } from '../../redux/tableRedux'
-import { menuPlacedUpdate, menuPlacedDelete } from '../../redux/tableRedux'
+import { useEffect, useState } from 'react'
+import { menuPlacedUpdate, menuPlacedDelete, menuPlacedGet, menuPlacedPut, newMenuListItem } from '../../redux/tableRedux'
 
 
 const Menu = () => {
@@ -33,7 +29,6 @@ const Menu = () => {
     const [blurSwitchOff, setBlurSwitchOff] = useState(false);
     const [infoBlurOff, setInfoBlurOff] = useState(true);
     const [isSelected, setIsSelected] = useState(true);
-    const [file, setFile] = useState();
    
     useEffect(() => {
       const ulList = document.querySelectorAll(`.${styles.selectList} ul > li`);

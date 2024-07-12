@@ -1,22 +1,15 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchTablePost } from "../../redux/tableRedux";
-import { ifTableAlredyExists } from "../../redux/tableRedux";
-import { ifTableLimitReached } from "../../redux/tableRedux";
-import { tableErrMsg } from "../../redux/tableRedux";
 import styles from './AddTable.module.scss'
-import { updateStore } from "../../redux/tableRedux";
-import { addTableTemplate } from "../../redux/tableRedux";
+import { tableErrMsg, addTableTemplate, menuPlacedGet, ifTableLimitReached, ifTableAlredyExists, fetchTablePost } from "../../redux/tableRedux";
 import clsx from "clsx";
-import { tableErrMsgCheck } from "../../redux/tableRedux";
-import { menuPlacedGet } from "../../redux/tableRedux";
 
 const AddTable = () => {
 
    const dispatch = useDispatch();
    const [verifyInfo, setVerifyInfo] = useState(false);
    const [tableNum, setTableNum] = useState(0);
-   const [devault, setDefault] =useState();
+   const [devault] =useState();
    const [inputValue, setInputValue] =useState();
    const tableTemp = useSelector(state => addTableTemplate(state, tableNum));
    const ifTableIdUsed = useSelector(state => ifTableAlredyExists(tableNum, state));
@@ -91,7 +84,6 @@ const AddTable = () => {
         setInputValue("");
        }
     }
-
 
     return (
         <div onClick={clickOutside}  className={clsx(styles.mainBox, addClicked && styles.mainBoxVisible)}>

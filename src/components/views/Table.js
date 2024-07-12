@@ -1,6 +1,3 @@
-import { Container } from "react-bootstrap";
-import {Row} from "react-bootstrap";
-import {Col} from "react-bootstrap";
 import styles from './Table.module.scss'
 import { NavLink } from "react-router-dom";
 import TableDelete from "./TableDelete";
@@ -10,9 +7,6 @@ import { useEffect, useState } from "react";
 const Table = (table) => {
 
     const {id,status, peopleAmount, maxPeopleAmount, bill, time} = table.table;
-
-    console.log(table)
-
     const [isBusy, setIsBusy] = useState(false);
 
     useEffect(() => {
@@ -32,10 +26,10 @@ const Table = (table) => {
                 </div>
 
                 <div className={styles.middle}>
-                <h6>{time}</h6>
-                <h6>{status}</h6>
-                <h6>{peopleAmount}/{maxPeopleAmount}</h6>
-                <h6 className={styles.bill}>${bill}</h6>
+                    <h6>{time}</h6>
+                    <h6>{status}</h6>
+                    <h6>{peopleAmount}/{maxPeopleAmount}</h6>
+                    <h6 className={styles.bill}>${bill}</h6>
                 </div>
 
                 <div className={styles.bottom}>

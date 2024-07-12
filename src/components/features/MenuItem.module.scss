@@ -1,7 +1,7 @@
 
 .orderBox {
     position: relative;
-    flex: 0 1 calc(33.3333% - 20px); /* Adjust the percentage and margin for desired width and spacing */
+    flex: 0 1 calc(33.3333% - 20px); 
     height: 130px;
     width: 91px;
     border: 1px solid rgb(162, 162, 162);
@@ -24,15 +24,14 @@
     max-width: 30px;
     position: absolute;
     text-align: right;
-    top: 6px;
-    right: 6px;
+    top: 3px;
+    right: 3px;
 }
 
 .orderCost p {
     padding: 0;
     margin: 0;
 }
-
 
 .inputAmount {
     padding: 0;
@@ -72,9 +71,10 @@
     text-align: center;
     position: absolute;
     color: red;
-    top: 35%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
+    line-height: 0.9;
 }
 
 input[type="checkbox"] {

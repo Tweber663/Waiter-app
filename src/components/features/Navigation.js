@@ -1,9 +1,7 @@
-
 import styles from './Navigation.module.scss'
 import { NavLink } from 'react-router-dom'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 
 const Navigation = ({passed, selected}) => {
 
@@ -46,11 +44,11 @@ const Navigation = ({passed, selected}) => {
                 <img alt='tableIcon' src={`${process.env.PUBLIC_URL}/images/nav/time.png`}/>
                 </NavLink>
             </div>
-            <div className={clsx(styles.iconBox, isSelected4 && styles.iconBoxSelected)}>
+            {/* <div className={clsx(styles.iconBox, isSelected4 && styles.iconBoxSelected)}>
                 <NavLink to={"/home"}>
                 <img alt='tableIcon' src={`${process.env.PUBLIC_URL}/images/nav/settings.png`}/>
                 </NavLink>
-            </div>
+            </div> */}
         </div>
     )
 }

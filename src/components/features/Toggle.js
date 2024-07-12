@@ -1,10 +1,9 @@
 import clsx from "clsx";
 import styles from './Toggle.module.scss'
-import { selectedTable } from "../../redux/tableRedux";
+import { selectedTable, checkingforOrders } from "../../redux/tableRedux";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { checkingforOrders } from "../../redux/tableRedux";
 
 const Toggle = (passed) => {
     const {id} = useParams(); 
