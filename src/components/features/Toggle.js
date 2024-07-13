@@ -21,7 +21,6 @@ const Toggle = (passed) => {
 
     const toggleToggler = (e) => {
         setIsChecked(prev => !prev);
-        console.log(e.target.checked)
         if (activeOrders.length) {
             if (e.target.checked === true) {
                 setBusyStatus(false)
@@ -48,6 +47,7 @@ const Toggle = (passed) => {
             setOverLay(false);
             setIsChecked(prev => !prev);
             setBusyStatus(true)
+            passed.busyStatus("false"); 
         }
     }
 

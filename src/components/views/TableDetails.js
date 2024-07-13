@@ -77,7 +77,7 @@ const TableDetails = () => {
              <div onClick={blurOffHandler} className={clsx(styles.blurWindowRestart, blurOnRestart && styles.blurWindowOn)}>
                 <div className={styles.infoWindow}>
                     <h6 className={styles.restartInfo}>
-                        Switching table to 'Free' will restart the table and delete active orders this table belongs to. Are you sure you want to proceed? 
+                    Switching the table to "Free" will restart the table and remove the active orders to which this table belongs. Are you sure you want to continue? 
                     </h6>
                     <button onClick={restartHandler} className={"btn btn-warning"}>Yes</button>
                     <button onClick={() => { 

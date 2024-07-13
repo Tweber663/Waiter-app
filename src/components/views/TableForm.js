@@ -50,7 +50,6 @@ const TableForm = (passed) => {
                 service: menuOrderTemp[0].service > 0? menuOrderTemp[0].service : 0, 
                 menuOrder: menuOrderTemp[0].menuOrder,
             }));
-            debugger
             if (activeOrders && !table[0].orderPlaced) dispatch(orderPlacedPost(activeOrders, id, timeStamp))
             if (activeOrders && table[0].orderPlaced) dispatch(orderPlacedPut(activeOrders, id, timeStamp, false))
             passed.passedTriggerFunc('subimted');
@@ -58,18 +57,18 @@ const TableForm = (passed) => {
             passed.setBlurOn(true)
             passed.setBlurInfo(
             <ul className={styles.blurInfo}>
-                <li><h1>1. Order not send! Ensure that table status is switched to "Busy"</h1></li>
-                <li><h1>2. Ensure you have at least 1 item selected in your "Menu"</h1></li>
+                <li><h1>1. The order has not been send. Make sure the table status is set to "Busy"</h1></li>
+                <li><h1>2. Make sure that at least 1 item is selected in the "Menu"</h1></li>
             </ul>)
         } else if (busyStatus === "Busy" && !activeOrders.length) {
             passed.setBlurOn(true); 
-            passed.setBlurInfo(<h1>1. Ensure you have at least 1 item selected in your "Menu"</h1>)
+            passed.setBlurInfo(<h1>Make sure that at least 1 item is selected in the "Menu"</h1>)
         }else if (!totalAmount.length) {
             passed.setBlurOn(true); 
-            passed.setBlurInfo(<h1>To update table order ensure to change at least one menu item</h1>)
+            passed.setBlurInfo(<h1>Make sure that at least 1 item is selected in the "Menu"</h1>)
         } else {
             passed.setBlurOn(true);
-            passed.setBlurInfo(<h1>1. Order not send! Ensure that table status is switched to "Busy"</h1>)
+            passed.setBlurInfo(<h1>The order has not been send. Make sure the table status is set to "Busy"</h1>)
         }
     }
 

@@ -1,204 +1,15 @@
 {
   "tables": [
     {
-      "id": "10",
+      "id": "8",
       "orderPlaced": true,
       "status": "Busy",
       "peopleAmount": "2",
       "maxPeopleAmount": "4",
-      "timeStamp": 1720803284906,
-      "time": "18:54",
-      "bill": 69,
-      "billPlusService": 86.25,
-      "billDifference": 17.25,
-      "info": "Type your notes here:",
-      "service": "25",
-      "menuOrder": [
-        {
-          "title": "Crab",
-          "id": "NzVwQaTZuO",
-          "tableNum": "10",
-          "photo": "crab.png",
-          "basePrice": 49,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Burger",
-          "id": "BVAxR2CF52",
-          "tableNum": "10",
-          "photo": "burger&drink.png",
-          "basePrice": 15,
-          "quantity": 3,
-          "totalAmount": 45,
-          "checkbox": true
-        },
-        {
-          "title": "Spaghetti",
-          "id": "MmTlL8lqMy",
-          "tableNum": "10",
-          "photo": "spaghetti.png",
-          "basePrice": 23,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fried chicken",
-          "id": "XIyTEatqCr",
-          "tableNum": "10",
-          "photo": "fork.png",
-          "basePrice": 12,
-          "quantity": 1,
-          "totalAmount": 12,
-          "checkbox": true
-        },
-        {
-          "title": "Pizza",
-          "id": "yx4EmNeuhp",
-          "tableNum": "10",
-          "photo": "pizza.png",
-          "basePrice": 12,
-          "quantity": 1,
-          "totalAmount": 12,
-          "checkbox": true
-        },
-        {
-          "title": "Fish",
-          "id": "Hyo1OJ_q9A",
-          "tableNum": "10",
-          "photo": "fish.png",
-          "basePrice": 25,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "dumplings",
-          "id": "5bodTPWCN0",
-          "tableNum": "10",
-          "photo": "buns.png",
-          "basePrice": 26,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Tacos",
-          "id": "Asv5m-wXZO",
-          "tableNum": "10",
-          "photo": "taco.png",
-          "basePrice": 13,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Diet option",
-          "id": "hbZe1CLN54",
-          "tableNum": "10",
-          "photo": "diet.png",
-          "basePrice": 32,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Meal deal",
-          "id": "Aa7Ffa7cfO",
-          "tableNum": "10",
-          "photo": "fast-food.png",
-          "basePrice": 22,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "chicken chow mein",
-          "id": "ZZ7m4hCTkd",
-          "tableNum": "10",
-          "photo": "biryani.png",
-          "basePrice": 33,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "fruit bawl",
-          "id": "m4BGMoCeUg",
-          "tableNum": "10",
-          "photo": "fruit.png",
-          "basePrice": 12,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Fried rice",
-          "id": "OdZzZg5KjK",
-          "tableNum": "10",
-          "photo": "cooking.png",
-          "basePrice": 18,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Rice",
-          "id": "1Kf5_ib_w_",
-          "tableNum": "10",
-          "photo": "fork.png",
-          "basePrice": 5,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Ramen",
-          "id": "-Tqwh8z1m9",
-          "tableNum": "10",
-          "photo": "ramen.png",
-          "basePrice": 29,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        },
-        {
-          "title": "Wine",
-          "id": "xwNe8s94tH",
-          "tableNum": "10",
-          "photo": "fork.png",
-          "basePrice": 44,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "orderPlaced": true,
-      "status": "Busy",
-      "peopleAmount": "2",
-      "maxPeopleAmount": "4",
-      "timeStamp": 1720815368176,
-      "time": "22:16",
-      "bill": 125,
-      "billPlusService": 125,
+      "timeStamp": 1720862266421,
+      "time": "11:17",
+      "bill": 207,
+      "billPlusService": 207,
       "billDifference": 0,
       "info": "Type your notes here:",
       "service": 0,
@@ -206,7 +17,7 @@
         {
           "title": "Crab",
           "id": "NzVwQaTZuO",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "crab.png",
           "basePrice": 49,
           "quantity": 1,
@@ -216,93 +27,87 @@
         {
           "title": "Burger",
           "id": "BVAxR2CF52",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "burger&drink.png",
           "basePrice": 15,
-          "quantity": 2,
-          "totalAmount": 30,
+          "quantity": 1,
+          "totalAmount": 15,
           "checkbox": true
         },
         {
           "title": "Spaghetti",
           "id": "MmTlL8lqMy",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "spaghetti.png",
           "basePrice": 23,
-          "quantity": 2,
-          "totalAmount": 46,
+          "quantity": 1,
+          "totalAmount": 23,
           "checkbox": true
         },
         {
           "title": "Fried chicken",
           "id": "XIyTEatqCr",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "fork.png",
           "basePrice": 12,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
+          "quantity": 1,
+          "totalAmount": 12,
+          "checkbox": true
         },
         {
           "title": "Pizza",
           "id": "yx4EmNeuhp",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "pizza.png",
           "basePrice": 12,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
+          "quantity": 1,
+          "totalAmount": 12,
+          "checkbox": true
         },
         {
           "title": "Fish",
           "id": "Hyo1OJ_q9A",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "fish.png",
           "basePrice": 25,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
+          "quantity": 1,
+          "totalAmount": 25,
+          "checkbox": true
         },
         {
           "title": "dumplings",
           "id": "5bodTPWCN0",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "buns.png",
           "basePrice": 26,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
+          "quantity": 1,
+          "totalAmount": 26,
+          "checkbox": true
         },
         {
           "title": "Tacos",
           "id": "Asv5m-wXZO",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "taco.png",
           "basePrice": 13,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
+          "quantity": 1,
+          "totalAmount": 13,
+          "checkbox": true
         },
         {
           "title": "Diet option",
           "id": "hbZe1CLN54",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "diet.png",
           "basePrice": 32,
-          "quantity": 0,
-          "totalAmount": 0,
-          "checkbox": false,
-          "orderServed": false
+          "quantity": 1,
+          "totalAmount": 32,
+          "checkbox": true
         },
         {
           "title": "Meal deal",
           "id": "Aa7Ffa7cfO",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "fast-food.png",
           "basePrice": 22,
           "quantity": 0,
@@ -313,7 +118,7 @@
         {
           "title": "fruit bawl",
           "id": "m4BGMoCeUg",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "fruit.png",
           "basePrice": 12,
           "quantity": 0,
@@ -324,7 +129,7 @@
         {
           "title": "Fried rice",
           "id": "OdZzZg5KjK",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "cooking.png",
           "basePrice": 18,
           "quantity": 0,
@@ -335,7 +140,7 @@
         {
           "title": "Rice",
           "id": "1Kf5_ib_w_",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "fork.png",
           "basePrice": 5,
           "quantity": 0,
@@ -346,7 +151,7 @@
         {
           "title": "Ramen",
           "id": "-Tqwh8z1m9",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "ramen.png",
           "basePrice": 29,
           "quantity": 0,
@@ -357,7 +162,7 @@
         {
           "title": "Wine",
           "id": "xwNe8s94tH",
-          "tableNum": "2",
+          "tableNum": "8",
           "photo": "fork.png",
           "basePrice": 44,
           "quantity": 0,
@@ -368,7 +173,7 @@
       ]
     },
     {
-      "id": "3",
+      "id": "9",
       "orderPlaced": false,
       "status": "Free",
       "peopleAmount": "2",
@@ -381,7 +186,7 @@
         {
           "title": "Crab",
           "id": "NzVwQaTZuO",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "crab.png",
           "basePrice": 49,
           "quantity": 0,
@@ -392,7 +197,7 @@
         {
           "title": "Burger",
           "id": "BVAxR2CF52",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "burger&drink.png",
           "basePrice": 15,
           "quantity": 0,
@@ -403,7 +208,7 @@
         {
           "title": "Spaghetti",
           "id": "MmTlL8lqMy",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "spaghetti.png",
           "basePrice": 23,
           "quantity": 0,
@@ -414,7 +219,7 @@
         {
           "title": "Fried chicken",
           "id": "XIyTEatqCr",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "fork.png",
           "basePrice": 12,
           "quantity": 0,
@@ -425,7 +230,7 @@
         {
           "title": "Pizza",
           "id": "yx4EmNeuhp",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "pizza.png",
           "basePrice": 12,
           "quantity": 0,
@@ -436,7 +241,7 @@
         {
           "title": "Fish",
           "id": "Hyo1OJ_q9A",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "fish.png",
           "basePrice": 25,
           "quantity": 0,
@@ -447,7 +252,7 @@
         {
           "title": "dumplings",
           "id": "5bodTPWCN0",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "buns.png",
           "basePrice": 26,
           "quantity": 0,
@@ -458,7 +263,7 @@
         {
           "title": "Tacos",
           "id": "Asv5m-wXZO",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "taco.png",
           "basePrice": 13,
           "quantity": 0,
@@ -469,7 +274,7 @@
         {
           "title": "Diet option",
           "id": "hbZe1CLN54",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "diet.png",
           "basePrice": 32,
           "quantity": 0,
@@ -480,7 +285,7 @@
         {
           "title": "Meal deal",
           "id": "Aa7Ffa7cfO",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "fast-food.png",
           "basePrice": 22,
           "quantity": 0,
@@ -491,7 +296,7 @@
         {
           "title": "fruit bawl",
           "id": "m4BGMoCeUg",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "fruit.png",
           "basePrice": 12,
           "quantity": 0,
@@ -502,7 +307,7 @@
         {
           "title": "Fried rice",
           "id": "OdZzZg5KjK",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "cooking.png",
           "basePrice": 18,
           "quantity": 0,
@@ -513,7 +318,7 @@
         {
           "title": "Rice",
           "id": "1Kf5_ib_w_",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "fork.png",
           "basePrice": 5,
           "quantity": 0,
@@ -524,7 +329,7 @@
         {
           "title": "Ramen",
           "id": "-Tqwh8z1m9",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "ramen.png",
           "basePrice": 29,
           "quantity": 0,
@@ -535,7 +340,7 @@
         {
           "title": "Wine",
           "id": "xwNe8s94tH",
-          "tableNum": "3",
+          "tableNum": "9",
           "photo": "fork.png",
           "basePrice": 44,
           "quantity": 0,
@@ -548,71 +353,96 @@
   ],
   "placedOrders": [
     {
-      "id": "10",
+      "id": "8",
       "menuOrder": [
         {
-          "id": "10",
-          "title": "Burger",
-          "quantity": 3,
-          "totalAmount": 45,
-          "basePrice": 15,
-          "photo": "burger&drink.png",
-          "timeStamp": 1720803284906,
-          "orderPlaced": false
-        },
-        {
-          "id": "10",
-          "title": "Fried chicken",
-          "quantity": 1,
-          "totalAmount": 12,
-          "basePrice": 12,
-          "photo": "fork.png",
-          "timeStamp": 1720803284906,
-          "orderPlaced": false
-        },
-        {
-          "id": "10",
-          "title": "Pizza",
-          "quantity": 1,
-          "totalAmount": 12,
-          "basePrice": 12,
-          "photo": "pizza.png",
-          "timeStamp": 1720803284906,
-          "orderPlaced": false
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "menuOrder": [
-        {
-          "id": "2",
+          "id": "8",
           "title": "Crab",
           "quantity": 1,
           "totalAmount": 49,
           "basePrice": 49,
           "photo": "crab.png",
-          "timeStamp": 1720815368176,
+          "timeStamp": 1720862266421,
           "orderPlaced": false
         },
         {
-          "id": "2",
+          "id": "8",
           "title": "Burger",
-          "quantity": 2,
-          "totalAmount": 30,
+          "quantity": 1,
+          "totalAmount": 15,
           "basePrice": 15,
           "photo": "burger&drink.png",
-          "timeStamp": 1720815368176,
+          "timeStamp": 1720862266421,
           "orderPlaced": false
         },
         {
-          "id": "2",
+          "id": "8",
           "title": "Spaghetti",
-          "quantity": 2,
-          "totalAmount": 46,
+          "quantity": 1,
+          "totalAmount": 23,
           "basePrice": 23,
           "photo": "spaghetti.png",
-          "timeStamp": 1720815368176,
+          "timeStamp": 1720862266421,
+          "orderPlaced": false
+        },
+        {
+          "id": "8",
+          "title": "Fried chicken",
+          "quantity": 1,
+          "totalAmount": 12,
+          "basePrice": 12,
+          "photo": "fork.png",
+          "timeStamp": 1720862266421,
+          "orderPlaced": false
+        },
+        {
+          "id": "8",
+          "title": "Pizza",
+          "quantity": 1,
+          "totalAmount": 12,
+          "basePrice": 12,
+          "photo": "pizza.png",
+          "timeStamp": 1720862266421,
+          "orderPlaced": false
+        },
+        {
+          "id": "8",
+          "title": "Fish",
+          "quantity": 1,
+          "totalAmount": 25,
+          "basePrice": 25,
+          "photo": "fish.png",
+          "timeStamp": 1720862266421,
+          "orderPlaced": false
+        },
+        {
+          "id": "8",
+          "title": "dumplings",
+          "quantity": 1,
+          "totalAmount": 26,
+          "basePrice": 26,
+          "photo": "buns.png",
+          "timeStamp": 1720862266421,
+          "orderPlaced": false
+        },
+        {
+          "id": "8",
+          "title": "Tacos",
+          "quantity": 1,
+          "totalAmount": 13,
+          "basePrice": 13,
+          "photo": "taco.png",
+          "timeStamp": 1720862266421,
+          "orderPlaced": false
+        },
+        {
+          "id": "8",
+          "title": "Diet option",
+          "quantity": 1,
+          "totalAmount": 32,
+          "basePrice": 32,
+          "photo": "diet.png",
+          "timeStamp": 1720862266421,
           "orderPlaced": false
         }
       ]

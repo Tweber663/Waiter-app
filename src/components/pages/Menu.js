@@ -121,7 +121,7 @@ const Menu = () => {
             
             <div onClick={blurHandler} className={clsx("switchOff", styles.windowInfoBlur, infoBlurOff && styles.windowInfoBlurOff)}>
                 <div className={styles.infoBox}>
-                    <h1>Keep in mind that newly added menu items will "only" be available in newly created tables</h1>
+                    <h1>Keep in mind that newly added menu items will only be available in newly created tables</h1>
                     <button onClick={() => setInfoBlurOff(true)} className="btn btn-warning">OK</button>
                 </div>
             </div>
