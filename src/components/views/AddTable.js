@@ -30,7 +30,7 @@ const AddTable = () => {
         dispatch(tableErrMsg({stateMessage: currentStateMess, id: 4, notTriggered: false}));
         setInputValue('')
         setTableNum('');
-        setVerifyInfo('')
+        setVerifyInfo(false)
     } else if (regEx.test(targetValue) && targetValue <= 10) {
         console.log(true)
         setVerifyInfo(true)
@@ -51,7 +51,7 @@ const AddTable = () => {
         dispatch(fetchTablePost(tableTemp.addTableTempOrder[0]))
         setVerifyInfo(false);
         setAddClicked(false);
-        setInputValue(null)
+        setInputValue('');
         } else if (ifTableLimit){
             dispatch(tableErrMsg({stateMessage: currentStateMess, id: 1, notTriggered: false}));
             setInputValue('')
